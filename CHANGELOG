@@ -1,0 +1,21 @@
+###ReWriteX-Akira###
+
+#Changelog
+•v5.2
+- Reduce top-app stune boost on performance mode
+
+•v5.3
+- Add zram size options (2gb,3gb,or 4gb)
+
+•v5.4
+- Remove internet tweaks(unstable)
+- Add toast notification 
+
+•v5.5
+- Reduce top-app stune boost
+- Enable cpu5 on balance mode
+- Move toast app to system/app
+
+• v5.6
+- Add support RagnarokX and KingsRaid
+- Light profile LMK
