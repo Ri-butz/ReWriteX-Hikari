@@ -134,7 +134,7 @@ echo "10" > /proc/sys/vm/stat_interval
 echo "8192" > /proc/sys/vm/min_free_kbytes
 
 # LMK
-echo "0" > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
+echo "1" > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
 chmod 666 /sys/module/lowmemorykiller/parameters/minfree
 chown root /sys/module/lowmemorykiller/parameters/minfree
 echo "2048,4096,8192,16384,24576,32768" > /sys/module/lowmemorykiller/parameters/minfree
