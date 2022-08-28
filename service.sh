@@ -44,6 +44,7 @@ echo "10000000" > /proc/sys/kernel/sched_min_granularity_ns
 echo "5000000" > /proc/sys/kernel/sched_migration_cost_ns
 
 # Devfreq
+echo "performance" > /sys/class/devfreq/1d84000.ufshc/governor
 echo "bw_hwmon" > /sys/class/devfreq/soc:qcom,cpubw/governor
 echo "bw_hwmon" > /sys/class/devfreq/soc:qcom,llccbw/governor
 echo "8000" > /sys/class/devfreq/soc:qcom,l3-cpu4/mem_latency/ratio_ceil
