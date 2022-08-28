@@ -138,7 +138,7 @@ echo "8192" > /proc/sys/vm/min_free_kbytes
 echo "1" > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
 chmod 666 /sys/module/lowmemorykiller/parameters/minfree
 chown root /sys/module/lowmemorykiller/parameters/minfree
-echo "2048,4096,8192,16384,24576,32768" > /sys/module/lowmemorykiller/parameters/minfree
+echo "28928,43605,58140,72675,87210,101745" > /sys/module/lowmemorykiller/parameters/minfree
 echo "33280" > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 
 # I/O scheduler optimized
