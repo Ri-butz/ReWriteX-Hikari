@@ -48,7 +48,7 @@ echo "7000" > /sys/class/devfreq/soc:qcom,llccbw/max_freq
 echo "100" > /sys/module/lpm_levels/parameters/bias_hyst
 
 # Top app stune boost
-echo "20" > /dev/stune/top-app/schedtune.boost
+echo "60" > /dev/stune/top-app/schedtune.boost
 
 # Gpu
 echo "0" > /sys/class/kgsl/kgsl-3d0/throttling
