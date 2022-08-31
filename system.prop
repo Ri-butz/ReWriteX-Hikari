@@ -37,7 +37,7 @@ net.lte.dns1
 net.lte.dns2
 
 # Renderer Tweaks (CPU & GPU)
-debug.composition.type=gpu
+debug.composition.type=dyn
 debug.cpurend.vsync=false
 debug.egl.hw=1
 debug.enable.sglscale=1
