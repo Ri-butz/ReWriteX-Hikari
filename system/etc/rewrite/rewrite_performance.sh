@@ -40,10 +40,6 @@ chmod 644 /sys/devices/system/cpu/cpu7/online
 echo "1" > /sys/devices/system/cpu/cpu7/online
 chmod 444 /sys/devices/system/cpu/cpu7/online
 
-# Devfreq
-echo "11000" > /sys/class/devfreq/soc:qcom,cpubw/max_freq
-echo "7000" > /sys/class/devfreq/soc:qcom,llccbw/max_freq
-
 # Lpm
 echo "100" > /sys/module/lpm_levels/parameters/bias_hyst
 
