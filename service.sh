@@ -55,12 +55,12 @@ for gov in /sys/devices/system/cpu/*/cpufreq
 do
     echo "schedutil" > $gov/scaling_governor
     
-for cpu in /sys/devices/system/cpu/*/cpufreq/schedutil
+for sched  in /sys/devices/system/cpu/*/cpufreq/schedutil
 do
-    echo "0" > $cpu/up_rate_limit_us
-    echo "0" > $cpu/down_rate_limit_us
-    echo "90" > $cpu/hispeed_load
-    echo "1" > $cpu/pl
+    echo "0" > $sche/up_rate_limit_us
+    echo "0" > $sche/down_rate_limit_us
+    echo "90" > $sched/hispeed_load
+    echo "1" > $sched/pl
 done
 
 # Disable cpu input boost
