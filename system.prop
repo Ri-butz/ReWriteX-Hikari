@@ -58,9 +58,6 @@ dev.pm.dyn_samplingrate=1
 persist.sys.ui.hw=1
 sys.use_fifo_ui=1
 
-# Enable OpenGL backpressure
-debug.sf.enable_gl_backpressure=1
-
 # Renderer Tweaks (HWUI)
 ro.hwui.drop_shadow_cache_size=6
 ro.hwui.fbo_cache_size=16
