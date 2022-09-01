@@ -78,8 +78,10 @@ if [ "$(ls -A $MODPATH/addon/*/install.sh 2>/dev/null)" ]; then
 fi
 
 ui_print "" 
-ui_print "  Volume Key Selector:"
-ui_print "  • Used to select options on Disable thermal, DNS changer and Zram size"
+ui_print "  Volume Key Selector to select options:"
+ui_print "  1) Disable thermal engine"
+ui_print "  2) DNS Changer"
+ui_print "  3) Zram size"
 ui_print ""
 sleep 2
 ui_print "  Button Function:"
