@@ -9,7 +9,7 @@ P=$MODDIR/system/etc/rewrite/rewrite_performance.sh
 LOG=/sdcard/ReWrite.log
 
 echo "# ReWriteX-Akira" > $LOG
-echo "# Version : v5.7" >> $LOG
+echo "# Version : v5.8" >> $LOG
 echo "# Build Date: 01/09/2022" >> $LOG
 echo "# By Ri_Butz (Telegram)" >> $LOG
 echo " " >> $LOG
