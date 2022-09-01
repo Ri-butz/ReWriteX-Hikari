@@ -53,9 +53,9 @@ echo "0" > /proc/sys/kernel/timer_migration
 # Cpu tunables
 for cpu in /sys/devices/system/cpu/*/cpufreq/schedutil
 do
-    echo "1000" > $cpu/up_rate_limit_us
-    echo "20000" > $cpu/down_rate_limit_us
-    echo "80" > $cpu/hispeed_load
+    echo "0" > $cpu/up_rate_limit_us
+    echo "0" > $cpu/down_rate_limit_us
+    echo "90" > $cpu/hispeed_load
     echo "1" > $cpu/pl
 done
 
@@ -118,8 +118,8 @@ swapon /dev/block/zram0 > /dev/null 2>&1
 # Virtual memory tweaks
 echo "10" > /proc/sys/vm/dirty_background_ratio
 echo "20" > /proc/sys/vm/dirty_ratio
-echo "3000" > /proc/sys/vm/dirty_expire_centisecs
-echo "3000" > /proc/sys/vm/dirty_writeback_centisecs
+echo "300" > /proc/sys/vm/dirty_expire_centisecs
+echo "5000" > /proc/sys/vm/dirty_writeback_centisecs
 echo "750" > /proc/sys/vm/extfrag_threshold
 echo "100" > /proc/sys/vm/swappiness
 echo "0" > /proc/sys/vm/oom_kill_allocating_task
