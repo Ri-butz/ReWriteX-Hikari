@@ -57,7 +57,7 @@ do
     
 for sched  in /sys/devices/system/cpu/*/cpufreq/schedutil
 do
-    echo "0" > $sche/up_rate_limit_us
+    echo "0" > $sched/up_rate_limit_us
     echo "0" > $sched/down_rate_limit_us
     echo "90" > $sched/hispeed_load
     echo "1" > $sched/pl
