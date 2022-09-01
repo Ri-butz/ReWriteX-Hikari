@@ -51,6 +51,10 @@ echo "0" > /sys/module/lpm_levels/parameters/sleep_disabled
 echo "0" > /proc/sys/kernel/timer_migration
 
 # Cpu tunables
+for gov in /sys/devices/system/cpu/*/cpufreq
+do
+    echo "schedutil" > $gov/scaling_governor
+    
 for cpu in /sys/devices/system/cpu/*/cpufreq/schedutil
 do
     echo "0" > $cpu/up_rate_limit_us
