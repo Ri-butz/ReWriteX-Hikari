@@ -54,7 +54,8 @@ echo "0" > /proc/sys/kernel/timer_migration
 for gov in /sys/devices/system/cpu/*/cpufreq
 do
     echo "schedutil" > $gov/scaling_governor
-    
+done
+
 for sched  in /sys/devices/system/cpu/*/cpufreq/schedutil
 do
     echo "0" > $sched/up_rate_limit_us
