@@ -24,3 +24,8 @@
 - Light profile lmk from smartpack
 - Remove devfreq
 - Increase top-app stune boost
+
+• v5.8
+- Disable kernel panic
+- Disable fsync
+- OpenGL as default render ui
