@@ -50,6 +50,19 @@ echo "0" > /sys/module/lpm_levels/parameters/sleep_disabled
 # Disable timer migration
 echo "0" > /proc/sys/kernel/timer_migration
 
+# Disable kernel panic
+echo '0' > /proc/sys/kernel/panic
+echo '0' > /proc/sys/kernel/panic_on_oops
+echo '0' > /proc/sys/kernel/panic_on_warn
+echo '0' > /sys/module/kernel/parameters/panic
+echo '0' > /sys/module/kernel/parameters/panic_on_warn
+echo '0' > /sys/module/kernel/parameters/pause_on_oops
+
+# Disable Fsync
+chmod 666 /sys/module/sync/parameters/fsync_enable
+chown root /sys/module/sync/parameters/fsync_enable
+echo "N" > /sys/module/sync/parameters/fsync_enable
+
 # Cpu tunables
 for gov in /sys/devices/system/cpu/*/cpufreq
 do
