@@ -42,7 +42,7 @@ ro.hwui.use_vulkan=false
 
 # Renderer Tweaks (CPU & GPU)
 debug.composition.type=dyn
-persist.sys.composition.type=dy
+persist.sys.composition.type=dyn
 debug.cpurend.vsync=false
 debug.egl.hw=1
 debug.enable.sglscale=1
