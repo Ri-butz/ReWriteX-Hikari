@@ -36,8 +36,13 @@ net.pdpbr1.dns2
 net.lte.dns1
 net.lte.dns2
 
+# OpenGL default render
+debug.hwui.renderer=skiagl
+ro.hwui.use_vulkan=false
+
 # Renderer Tweaks (CPU & GPU)
 debug.composition.type=dyn
+persist.sys.composition.type=dy
 debug.cpurend.vsync=false
 debug.egl.hw=1
 debug.enable.sglscale=1
