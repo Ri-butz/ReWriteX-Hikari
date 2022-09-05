@@ -114,42 +114,6 @@ echo "5:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo "6:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo "7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 
-# Stune Boost
-echo "1" > /dev/stune/schedtune.sched_boost_enabled
-echo "0" > /dev/stune/schedtune.boost
-echo "0" > /dev/stune/schedtune.sched_boost_no_override
-echo "0" > /dev/stune/schedtune.prefer_idle
-echo "0" > /dev/stune/schedtune.colocate
-echo "0" > /dev/stune/cgroup.clone_children
-echo "0" > /dev/stune/cgroup.sane_behavior
-##Background
-echo "1" > /dev/stune/background/schedtune.sched_boost_enabled
-echo "0" > /dev/stune/background/schedtune.boost
-echo "0" > /dev/stune/background/schedtune.sched_boost_no_override
-echo "0" > /dev/stune/background/schedtune.prefer_idle
-echo "0" > /dev/stune/background/schedtune.colocate
-echo "0" > /dev/stune/background/cgroup.clone_children
-##Foreground
-echo "1" > /dev/stune/foreground/schedtune.sched_boost_enabled
-echo "0" > /dev/stune/foreground/schedtune.boost
-echo "1" > /dev/stune/foreground/schedtune.sched_boost_no_override
-echo "0" > /dev/stune/foreground/schedtune.prefer_idle
-echo "0" > /dev/stune/foreground/schedtune.colocate 0
-echo "0" > /dev/stune/foreground/cgroup.clone_children
-##Real time
-echo "1" > /dev/stune/rt/schedtune.sched_boost_enabled
-echo "0" > /dev/stune/rt/schedtune.boost
-echo "0" > /dev/stune/rt/schedtune.sched_boost_no_override
-echo "0" > /dev/stune/rt/schedtune.prefer_idle
-echo "0" > /dev/stune/rt/schedtune.colocate
-echo "0" > /dev/stune/rt/cgroup.clone_children
-##Top app
-echo "1" > /dev/stune/top-app/schedtune.sched_boost_enabled
-echo "1" > /dev/stune/top-app/schedtune.sched_boost_no_override
-echo "1" > /dev/stune/top-app/schedtune.prefer_idle
-echo "1" > /dev/stune/top-app/schedtune.colocate
-echo "0" > /dev/stune/top-app/cgroup.clone_children
-
 # Zram
 ZRAMSIZE=0
 swapoff /dev/block/zram0 > /dev/null 2>&1
