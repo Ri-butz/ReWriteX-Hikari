@@ -47,6 +47,9 @@ echo "5000000" > /proc/sys/kernel/sched_migration_cost_ns
 echo "0" > /sys/module/lpm_levels/parameters/lpm_prediction
 echo "0" > /sys/module/lpm_levels/parameters/sleep_disabled
 
+# Disable Stats
+echo "0" > /proc/sys/kernel/sched_schedstats
+
 # Disable timer migration
 echo "0" > /proc/sys/kernel/timer_migration
 
