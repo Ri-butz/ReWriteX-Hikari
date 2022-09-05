@@ -50,6 +50,7 @@ echo "60" > /dev/stune/top-app/schedtune.boost
 echo "0" > /sys/class/kgsl/kgsl-3d0/throttling
 echo "1" > /sys/class/kgsl/kgsl-3d0/force_no_nap
 echo "1" > /sys/class/kgsl/kgsl-3d0/force_rail_on
+echo "0" > /sys/class/kgsl/kgsl-3d0/perfcounter
 echo "1" > /sys/class/kgsl/kgsl-3d0/force_bus_on
 echo "1" > /sys/class/kgsl/kgsl-3d0/force_clk_on
 
