@@ -48,9 +48,9 @@ echo "0" > /dev/stune/top-app/schedtune.boost
 
 # Gpu
 echo "1" > /sys/class/kgsl/kgsl-3d0/throttling
+echo "1" > /sys/class/kgsl/kgsl-3d0/perfcounter
 echo "0" > /sys/class/kgsl/kgsl-3d0/force_no_nap
 echo "0" > /sys/class/kgsl/kgsl-3d0/force_rail_on
-echo "1" > /sys/class/kgsl/kgsl-3d0/perfcounter
 echo "0" > /sys/class/kgsl/kgsl-3d0/force_bus_on
 echo "0" > /sys/class/kgsl/kgsl-3d0/force_clk_on
 
