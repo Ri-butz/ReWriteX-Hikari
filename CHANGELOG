@@ -26,6 +26,10 @@
 - Increase top-app stune boost
 
 • v5.8
+- Disable printk
+- Disable some debug
+- Disable kernel tracking
 - Disable kernel panic
 - Disable fsync
 - OpenGL as default render ui
+- etc
