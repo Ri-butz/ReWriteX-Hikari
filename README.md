@@ -16,7 +16,7 @@ ReWriteX-Akira is an advanced version of the previously released ReWriteX Alpha 
 
 
 
-# How to repack with termux on android
+#How to repack with termux on android
 
 termux-setup-storage
 pkg install git
@@ -26,7 +26,6 @@ cd rewritex-akira
 zip -r ../ReWriteX.Akira.zip *
 cd ..
 cp ReWriteX.Akira.zip /storage/emulated/0
-
 
 # How to update
 
