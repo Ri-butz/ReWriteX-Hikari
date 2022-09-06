@@ -129,13 +129,14 @@ swapon /dev/block/zram0 > /dev/null 2>&1
 
 # Virtual memory tweaks
 echo "10" > /proc/sys/vm/dirty_background_ratio
-echo "20" > /proc/sys/vm/dirty_ratio
-echo "300" > /proc/sys/vm/dirty_expire_centisecs
-echo "5000" > /proc/sys/vm/dirty_writeback_centisecs
+echo "30" > /proc/sys/vm/dirty_ratio
+echo "3000" > /proc/sys/vm/dirty_expire_centisecs
+echo "3000" > /proc/sys/vm/dirty_writeback_centisecs
 echo "750" > /proc/sys/vm/extfrag_threshold
 echo "100" > /proc/sys/vm/swappiness
+echo "0" > /proc/sys/vm/page-cluster
 echo "0" > /proc/sys/vm/oom_kill_allocating_task
-echo "80" > /proc/sys/vm/vfs_cache_pressure
+echo "100" > /proc/sys/vm/vfs_cache_pressure
 echo "10" > /proc/sys/vm/stat_interval
 echo "8192" > /proc/sys/vm/min_free_kbytes
 
