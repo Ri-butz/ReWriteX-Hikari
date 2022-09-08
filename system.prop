@@ -41,8 +41,8 @@ debug.hwui.renderer=skiagl
 ro.hwui.use_vulkan=false
 
 # Renderer Tweaks (CPU & GPU)
-debug.composition.type=dyn
-persist.sys.composition.type=dyn
+debug.composition.type=c2d
+persist.sys.composition.type=c2d
 debug.cpurend.vsync=false
 debug.egl.hw=1
 debug.enable.sglscale=1
@@ -79,12 +79,6 @@ ro.hwui.text_small_cache_width=1024
 ro.hwui.texture_cache_flushrate=0.4
 ro.hwui.texture_cache_size=72
 
-# Memory Optimization
-ro.sys.fw.bservice_enable=true
-ro.sys.fw.bservice_limit=128
-ro.sys.fw.bservice_age=10000
-ro.sys.fw.bg_apps_limit=192
-
 # Better Scrolling responsiveness and speed
 windowsmgr.max_events_per_sec=90
 ro.max.fling_velocity=12000
@@ -95,16 +89,6 @@ persist.sys.scrollingcache=4
 # Smoothens UI
 persist.service.lgospd.enable=0
 persist.service.pcsync.enable=0
-
-# Performance
-ro.ril.power_collapse=1
-pm.sleep_mode=1 
-wifi.supplicant_scan_interval=180
-power_supply.wakeup=enable 
-ro.config.hw_power_saving=1
-
-# Ram
-ro.HOME_APP_ADJ=1
 
 # Disable unnesesary things on props
 debug.als.logs=0
