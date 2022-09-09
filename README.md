@@ -45,6 +45,6 @@ cp ReWriteX.Akira.zip /storage/emulated/0
 - [Gloeyisk](https://github.com/gloeyisk)
 - [NotZeetaa](https://github.com/NotZeetaa)
 - [IamLooper](https://github.com/iamlooper)
-- [Tak🌿](https://github.com/takeru-kageyuki)
+- [Taka🌿](https://github.com/takeru-kageyuki)
 - [Simonsmh](https://github.com/simonsmh)
 - And all my friends who contributed to the development of the project and many others
