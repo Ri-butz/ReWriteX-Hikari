@@ -1,8 +1,8 @@
-##ReWriteX-Akira##
+# ##ReWriteX-Akira##
 
 ReWriteX-Akira is an advanced version of the previously released ReWriteX Alpha and Omega
 
-#Features:
+# Features:
 - Kernel parameters tweak for better UX and less latency
 - Zram with ram management tweak
 - Gms Doze from Gloeyisk
@@ -15,7 +15,7 @@ ReWriteX-Akira is an advanced version of the previously released ReWriteX Alpha 
 
 
 
-#How to repack with termux on android
+# How to repack with termux on android
 
 ```
 termux-setup-storage
@@ -28,7 +28,7 @@ cd ..
 cp ReWriteX.Akira.zip /storage/emulated/0
 ```
 
-#How to update
+# How to update
 
 ```
 rm -f ReWriteX.Akira.zip
