@@ -38,3 +38,14 @@ zip -r ../ReWriteX.Akira.zip *
 cd ..
 cp ReWriteX.Akira.zip /storage/emulated/0
 ```
+
+# Thanks To
+
+- Allah sw
+- [Gloeyisk](https://github.com/gloeyisk)
+- [NotZeetaa](https://github.com/NotZeetaa)
+- [IamLooper](https://github.com/iamlooper)
+- [Tak🌿](https://github.com/takeru-kageyuki)
+- [Simonsmh](https://github.com/simonsmh)
+- And all my friends who contributed to the"
+ui_print "  development of the project and many others
