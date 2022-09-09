@@ -2,25 +2,7 @@
 # Example: Change dpi
 # ro.sf.lcd_density=320
 
-# Touch improve
-touch.pressure.scale=0.001
-persist.sys.ui.hw=1
-view.scroll_friction=10
-touch.size.calibration=diameter
-touch.size.scale=1
-touch.size.bias=0
-touch.size.isSummed=0
-touch.orientation.calibration=none
-touch.distance.calibration=none
-touch.distance.scale=0
-touch.coverage.calibration=box
-touch.gestureMode=spots
-MultitouchMinDistance=1px
-MultitouchSettleInterval=1ms
-TapInterval=1ms
-TapSlop=1px
-
-# DNS Changer
+# DNS Changer (disable)
 net.dns1
 net.dns2
 net.eth0.dns1
@@ -36,10 +18,6 @@ net.pdpbr1.dns2
 net.lte.dns1
 net.lte.dns2
 
-# OpenGL default render
-debug.hwui.renderer=skiagl
-ro.hwui.use_vulkan=false
-
 # Renderer Tweaks (CPU & GPU)
 debug.composition.type=c2d
 persist.sys.composition.type=c2d
@@ -47,10 +25,6 @@ debug.cpurend.vsync=false
 debug.egl.hw=1
 debug.enable.sglscale=1
 debug.enabletr=1
-debug.hwui.disable_vsync=true
-debug.hwui.render_dirty_regions=false
-debug.hwui.use_buffer_age=true
-debug.hwui.use_gpu_pixel_buffers=true
 debug.sf.disable_backpressure=1
 debug.sf.disable_client_composition_cache=1
 debug.sf.enable_advanced_sf_phase_offset=1
@@ -63,21 +37,29 @@ dev.pm.dyn_samplingrate=1
 persist.sys.ui.hw=1
 sys.use_fifo_ui=1
 
-# Renderer Tweaks (HWUI)
-ro.hwui.drop_shadow_cache_size=6
-ro.hwui.fbo_cache_size=16
-ro.hwui.gradient_cache_size=1
-ro.hwui.layer_cache_size=48
+# HWUI TWEAKS
+ro.zygote.disable_gl_preload=false
+ro.hwui.disable_scissor_opt=false
+ro.hwui.texture_cache_size=24
+ro.hwui.layer_cache_size=16
+ro.hwui.gradient_cache_size=0.5
 ro.hwui.patch_cache_size=128
-ro.hwui.path_cache_size=32
-ro.hwui.r_buffer_cache_size=8
-ro.hwui.shape_cache_size=4
-ro.hwui.text_large_cache_height=1024
-ro.hwui.text_large_cache_width=2048
-ro.hwui.text_small_cache_height=1024
+ro.hwui.path_cache_size=4
+ro.hwui.shape_cache_size=1
+ro.hwui.drop_shadow_cache_size=2
+ro.hwui.r_buffer_cache_size=2
+ro.hwui.texture_cache_flush_rate=0.6
 ro.hwui.text_small_cache_width=1024
-ro.hwui.texture_cache_flushrate=0.4
-ro.hwui.texture_cache_size=72
+ro.hwui.text_small_cache_height=256
+ro.hwui.text_large_cache_width=2048
+ro.hwui.text_large_cache_height=512
+hwui.text_gamma_correction=lookup
+hwui.text_gamma=1.4
+hwui.text_gamma.black_threshold=64
+hwui.text_gamma.white_threshold=192
+hwui.use_gpu_pixel_buffers=true
+hwui.render_dirty_regions=false
+hwui.use.blacklist=true
 
 # Better Scrolling responsiveness and speed
 windowsmgr.max_events_per_sec=90
