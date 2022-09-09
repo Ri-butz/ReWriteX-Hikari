@@ -34,3 +34,8 @@
 - OpenGL as default render ui
 - Support game from asobimo.inc
 - Support app ffmpeggui 
+
+• v5.9
+- Add Hwui tweak from pixel device
+- Remove useless script
+
