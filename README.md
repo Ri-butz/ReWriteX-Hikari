@@ -41,7 +41,7 @@ cp ReWriteX.Akira.zip /storage/emulated/0
 
 # Thanks To
 
-- Allah sw
+- Allah swt
 - [Gloeyisk](https://github.com/gloeyisk)
 - [NotZeetaa](https://github.com/NotZeetaa)
 - [IamLooper](https://github.com/iamlooper)
