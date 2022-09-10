@@ -37,5 +37,8 @@
 
 • v5.9
 - Add Hwui tweak from pixel device
+- Add SurfaceFlinger tweak from pixel device
+- Add notification
 - Remove useless script
+- Etc
 
