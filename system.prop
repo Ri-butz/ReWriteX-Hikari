@@ -18,11 +18,23 @@ net.pdpbr1.dns2
 net.lte.dns1
 net.lte.dns2
 
-# DalvikVm
+# Enable iorapd
+ro.iorapd.enable=true
+
+# LMK 
+ro.lmk.use_minfree_levels=false
+ro.lmk.critical_upgrade=true
+ro.lmk.low=1001
+ro.lmk.medium=1001
+ro.lmk.critical=990
+ro.lmk.super_critical=845
+ro.lmk.thrashing_limit=60
+ro.lmk.thrashing_limit_decay=70
+ro.lmk.thrashing_min_score_adj=300
+
+# DalvikVm
 dalvik.vm.heapmaxfree=8m
-dalvik.vm.heapminfree=2m
-dalvik.vm.heapgrowthlimit=320m
-dalvik.vm.heapsize=640m
+dalvik.vm.heapminfree=1m
 
 # Renderer Tweaks (CPU & GPU)
 debug.composition.type=c2d
