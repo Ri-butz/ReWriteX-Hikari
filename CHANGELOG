@@ -39,6 +39,7 @@
 - Add Hwui tweak from pixel device
 - Add SurfaceFlinger tweak from pixel device
 - Add notification
+- Enable iorapd
 - Remove useless script
 - Etc
 
