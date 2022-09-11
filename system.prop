@@ -32,7 +32,7 @@ ro.lmk.thrashing_limit=60
 ro.lmk.thrashing_limit_decay=70
 ro.lmk.thrashing_min_score_adj=300
 
-# DalvikVm
+# DalvikVm
 dalvik.vm.heapmaxfree=8m
 dalvik.vm.heapminfree=1m
 
