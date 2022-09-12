@@ -47,8 +47,9 @@ echo "100" > /sys/module/lpm_levels/parameters/bias_hyst
 echo "60" > /dev/stune/top-app/schedtune.boost
 
 # Gpu
+MAX=$(cat /sys/class/kgsl/kgsl-3d0/max_pwrlevel)
 echo "0" > /sys/class/kgsl/kgsl-3d0/throttling
-echo "0" > /sys/class/kgsl/kgsl-3d0/perfcounter
+echo "$MAX" > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
 echo "1" > /sys/class/kgsl/kgsl-3d0/force_no_nap
 echo "1" > /sys/class/kgsl/kgsl-3d0/force_rail_on
 echo "1" > /sys/class/kgsl/kgsl-3d0/force_bus_on
