@@ -129,6 +129,7 @@ mkswap /dev/block/zram0 > /dev/null 2>&1
 swapon /dev/block/zram0 > /dev/null 2>&1
 
 # Virtual memory tweaks
+stop perfd
 echo "10" > /proc/sys/vm/dirty_background_ratio
 echo "30" > /proc/sys/vm/dirty_ratio
 echo "3000" > /proc/sys/vm/dirty_expire_centisecs
@@ -140,6 +141,10 @@ echo "0" > /proc/sys/vm/oom_kill_allocating_task
 echo "100" > /proc/sys/vm/vfs_cache_pressure
 echo "10" > /proc/sys/vm/stat_interval
 echo "8192" > /proc/sys/vm/min_free_kbytes
+start perfd
+
+# Max Processing
+[ $(getprop ro.build.version.release) -gt 9 ] && /system/bin/device_config put activity_manager max_phantom_processes 2147483647 ; /system/bin/device_config put activity_manager max_cached_processes 160 || settings put global activity_manager_constants max_cached_processes=160
 
 # LMK
 echo "1" > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
