@@ -1,4 +1,4 @@
-###ReWriteX-Akira###
+###ReWriteX-Hikari###
 
 #Changelog
 •v5.2
@@ -44,6 +44,7 @@
 - Etc
 
 • v6.1
+- Renamed ReWriteX Hikari
 - Add dns from AdGuard,OpenDns,Quad9,and uncensored dns
 - Remove status mode on description module
 
