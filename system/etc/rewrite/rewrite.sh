@@ -9,8 +9,8 @@ P=$MODDIR/system/etc/rewrite/rewrite_performance.sh
 LOG=/sdcard/ReWrite.log
 
 echo "# ReWriteX-Akira" > $LOG
-echo "# Version : v6.0" >> $LOG
-echo "# Build Date: 11/09/2022" >> $LOG
+echo "# Version : v6.1" >> $LOG
+echo "# Build Date: 14/09/2022" >> $LOG
 echo "# By Ri_Butz (Telegram)" >> $LOG
 echo " " >> $LOG
 echo "  • Device          : $(getprop ro.product.system.model)" >> $LOG
@@ -22,7 +22,6 @@ echo "  • Kernel          : $(uname -r)" >> $LOG
 echo " " >> $LOG
 
 # Begin of AI
-sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ 🤖 Ai is started... ] /g' "/data/adb/modules/ReWrite/module.prop"
 am start -a android.intent.action.MAIN -e toasttext "🤖 Ai is started..." -n bellavita.toast/.MainActivity
 
 # Thx to @wHo_EM_i for his top script
