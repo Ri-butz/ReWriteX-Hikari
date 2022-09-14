@@ -183,9 +183,6 @@ fstrim -v /cache
 fstrim -v /vendor
 fstrim -v /product
 
-# Start iorapd
-su -c start iorapd
-
 # Dex2oat
 su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '⛔ Dex2oat Optimizer is running...'" >/dev/null 2>&1
 sleep 15
