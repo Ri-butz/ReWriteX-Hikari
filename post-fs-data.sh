@@ -1,8 +1,5 @@
 #!/sbin/sh
 
-# ReWrite tweak is started
-sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ Re-write your destiny ] /g' "/data/adb/modules/ReWrite/module.prop"
-
 # Search and patch any conflicting modules (if present)
 # Patch conflicting XML files
 conflict=$(xml=$(find /data/adb -iname "*.xml");for i in $xml; do if grep -q 'allow-in-power-save package="com.google.android.gms"' $i 2>/dev/null; then echo "$i";fi; done)
