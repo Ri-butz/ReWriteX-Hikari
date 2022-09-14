@@ -1,4 +1,4 @@
-# ##ReWriteX-Hikar##
+# ##ReWriteX-Hikari##
 
 ReWriteX-Hikari is an advanced version of the previously released ReWriteX Alpha and Omega
 
