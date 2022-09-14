@@ -25,7 +25,6 @@ wait_until_login() {
 wait_until_login
 
 # Enable all tweak
-sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ 🚴 ReWriteX is started please wait... ] /g' "/data/adb/modules/ReWrite/module.prop"
 su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '🚴 Apply tweaks please wait...'" >/dev/null 2>&1
 
 # AVC denial fix
@@ -188,12 +187,10 @@ fstrim -v /product
 su -c start iorapd
 
 # Dex2oat
-sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ⛔ Dex2oat Optimizer is running... ] /g' "/data/adb/modules/ReWrite/module.prop"
 su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '⛔ Dex2oat Optimizer is running...'" >/dev/null 2>&1
 sleep 15
 dex2oat_opt
 su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '✅ Dex2oat Optimizer is finished...'" >/dev/null 2>&1
-sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ✅ Dex2oat Optimizer is finished... ] /g' "/data/adb/modules/ReWrite/module.prop"
 
 # Run Ai
 sleep 3
