@@ -19,7 +19,7 @@ ui_print "                  ##  ##                 "
 ui_print "                    ##                   "
 ui_print "                  ##  ##                 "
 ui_print "                 ##    ##                "
-ui_print "                ##      ##          AOZORA"
+ui_print "                ##      ##           HIKARI"
 ui_print "----------Re-write your destiny-----------"
 ui_print "##########################################"
 sleep 1.5
