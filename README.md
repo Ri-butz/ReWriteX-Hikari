@@ -1,6 +1,6 @@
-# ##ReWriteX-Akira##
+# ##ReWriteX-Hikar##
 
-ReWriteX-Akira is an advanced version of the previously released ReWriteX Alpha and Omega
+ReWriteX-Hikari is an advanced version of the previously released ReWriteX Alpha and Omega
 
 # Features:
 - Kernel parameters tweak for better UX and less latency
