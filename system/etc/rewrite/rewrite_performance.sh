@@ -139,5 +139,4 @@ echo "1024" > /proc/sys/kernel/random/read_wakeup_threshold
 echo "2048" > /proc/sys/kernel/random/write_wakeup_threshold
 
 # Report
-sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ 🥵 Performance Mode... ] /g' "/data/adb/modules/ReWrite/module.prop"
 am start -a android.intent.action.MAIN -e toasttext "🥵 Performance Mode..." -n bellavita.toast/.MainActivity
