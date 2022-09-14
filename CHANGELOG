@@ -35,11 +35,15 @@
 - Support game from asobimo.inc
 - Support app ffmpeggui 
 
-• v5.9
+• v6.0
 - Add Hwui tweak from pixel device
 - Add SurfaceFlinger tweak from pixel device
 - Add notification
 - Enable iorapd
 - Remove useless script
 - Etc
+
+• v6.1
+- Add dns from AdGuard,OpenDns,Quad9,and uncensored dns
+- Remove status mode on description module
 
