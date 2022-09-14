@@ -1,0 +1,45 @@
+###ReWriteX-Akira###
+
+#Changelog
+•v5.2
+- Reduce top-app stune boost on performance mode
+
+•v5.3
+- Add zram size options (2gb,3gb,or 4gb)
+
+•v5.4
+- Remove internet tweaks(unstable)
+- Add toast notification 
+
+•v5.5
+- Reduce top-app stune boost
+- Enable cpu5 on balance mode
+- Move toast app to system/app
+
+• v5.6
+- Add support RagnarokX and KingsRaid
+- Light profile LMK
+
+• v5.7
+- Light profile lmk from smartpack
+- Remove devfreq
+- Increase top-app stune boost
+
+• v5.8
+- Disable printk
+- Disable some debug
+- Disable kernel tracking
+- Disable kernel panic
+- Disable fsync
+- OpenGL as default render ui
+- Support game from asobimo.inc
+- Support app ffmpeggui 
+
+• v5.9
+- Add Hwui tweak from pixel device
+- Add SurfaceFlinger tweak from pixel device
+- Add notification
+- Enable iorapd
+- Remove useless script
+- Etc
+
