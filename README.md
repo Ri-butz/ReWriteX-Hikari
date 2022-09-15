@@ -21,7 +21,7 @@ ReWriteX-Hikari is an advanced version of the previously released ReWriteX Alpha
 termux-setup-storage
 pkg install git
 pkg install zip
-git clone https://gitlab.freedesktop.org/rybutz69/rewritex-hikari.git
+git clone https://github.com/Aozora69/ReWriteX-Hikari.git
 cd rewritex-hikari
 zip -r ../ReWriteX.Hikari.zip *
 cd ..
