@@ -40,6 +40,19 @@ chmod 644 /sys/devices/system/cpu/cpu7/online
 echo "1" > /sys/devices/system/cpu/cpu7/online
 chmod 444 /sys/devices/system/cpu/cpu7/online
 
+# Cpu tunables
+for gov in /sys/devices/system/cpu/*/cpufreq
+do
+    echo "schedutil" > $gov/scaling_governor
+done
+for sched  in /sys/devices/system/cpu/*/cpufreq/schedutil
+do
+    echo "0" > $sched/up_rate_limit_us
+    echo "0" > $sched/down_rate_limit_us
+    echo "80" > $sched/hispeed_load
+    echo "1" > $sched/pl
+done
+
 # Lpm
 echo "100" > /sys/module/lpm_levels/parameters/bias_hyst
 
