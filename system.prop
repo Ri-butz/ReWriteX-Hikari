@@ -18,6 +18,17 @@ net.pdpbr1.dns2
 net.lte.dns1
 net.lte.dns2
 
+# Tcp buffersize
+net.tcp.buffersize.default=4096,87380,256960,4096, 16384,256960
+net.tcp.buffersize.wifi=4096,87380,256960,4096,163 84,256960
+net.tcp.buffersize.lte=524288,1048576,2097152,5242 88,1048576,2097152
+net.tcp.buffersize.hsdpa=6144,87380,1048576,6144,8 7380,1048576
+net.tcp.buffersize.hspa=6144,87380,524288,6144,163 84,262144
+net.tcp.buffersize.umts=4096,87380,256960,4096,163 84,256960
+net.tcp.buffersize.edge=4096,87380,256960,4096,163 84,256960
+net.tcp.buffersize.gprs=4096,87380,256960,4096,163 84,256960
+net.tcp.buffersize.evdo_b=6144,87380,1048576,6144, 87380,1048576
+
 # LMK 
 ro.lmk.use_minfree_levels=false
 ro.lmk.critical_upgrade=true
