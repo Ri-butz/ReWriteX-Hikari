@@ -93,20 +93,6 @@ echo "N" > /sys/module/ip6_tunnel/parameters/log_ecn_error
 # Disable CRC
 echo "0" > /sys/module/mmc_core/parameters/use_spi_crc
 
-# Cpu tunables
-for gov in /sys/devices/system/cpu/*/cpufreq
-do
-    echo "schedutil" > $gov/scaling_governor
-done
-
-for sched  in /sys/devices/system/cpu/*/cpufreq/schedutil
-do
-    echo "0" > $sched/up_rate_limit_us
-    echo "0" > $sched/down_rate_limit_us
-    echo "90" > $sched/hispeed_load
-    echo "1" > $sched/pl
-done
-
 # Disable cpu input boost
 echo "0" > /sys/module/cpu_boost/parameters/sched_boost_on_input
 echo "0:0" > /sys/module/cpu_boost/parameters/input_boost_freq
