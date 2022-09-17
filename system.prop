@@ -44,6 +44,11 @@ ro.lmk.thrashing_min_score_adj=300
 dalvik.vm.heapmaxfree=8m
 dalvik.vm.heapminfree=1m
 
+# SkiaGL Optimization by @kntdreborn ! and created by @zaidannn7
+debug.hwui.renderer=skiagl
+debug.renderengine.backend=skiaglthreaded
+renderthread.skia.reduceopstasksplitting=true
+
 # Renderer Tweaks (CPU & GPU)
 debug.composition.type=c2d
 persist.sys.composition.type=c2d
