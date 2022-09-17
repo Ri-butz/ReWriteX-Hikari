@@ -153,4 +153,5 @@ echo "128" > /proc/sys/kernel/random/read_wakeup_threshold
 echo "512" > /proc/sys/kernel/random/write_wakeup_threshold
 
 # Report
+sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ 🥶 Balance Mode... ] /g' "/data/adb/modules/ReWrite/module.prop"
 am start -a android.intent.action.MAIN -e toasttext "🥶 Balance Mode..." -n bellavita.toast/.MainActivity
