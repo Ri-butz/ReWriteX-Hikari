@@ -71,26 +71,6 @@ chmod 666 /sys/module/sync/parameters/fsync_enable
 chown root /sys/module/sync/parameters/fsync_enable
 echo "N" > /sys/module/sync/parameters/fsync_enable
 
-# Disable tracing
-stop traced
-echo "0" > /sys/kernel/tracing/tracing_on
-
-# Disable Printk Fully
-echo "0 0 0 0" > /proc/sys/kernel/printk
-echo "off" > /proc/sys/kernel/printk_devkmsg
-echo "Y" > /sys/module/printk/parameters/console_suspend
-echo "N" > /sys/module/printk/parameters/cpu
-echo "0" > /sys/kernel/printk_mode/printk_mode
-echo "Y" > /sys/module/printk/parameters/ignore_loglevel
-echo "N" > /sys/module/printk/parameters/pid
-echo "N" > /sys/module/printk/parameters/time
-
-# Disable some debug
-echo "0" > /sys/module/rpm_smd/parameters/debug_mask
-echo "0" > /sys/module/msm_show_resume_irq/parameters/debug_mask
-echo "0" > /sys/module/rmnet_data/parameters/rmnet_data_log_level
-echo "N" > /sys/module/ip6_tunnel/parameters/log_ecn_error
-
 # Disable CRC
 echo "0" > /sys/module/mmc_core/parameters/use_spi_crc
 
