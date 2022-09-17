@@ -67,6 +67,27 @@ sys.use_fifo_ui=1
 ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 ro.surface_flinger.vsync_event_phase_offset_ns=2000000
 ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
+ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
+ro.surface_flinger.protected_contents=true
+ro.surface_flinger.max_virtual_display_dimension=4096
+
+# PROFILE_MAXFRAMES_PROPERTY
+debug.hwui.profile.maxframes=60
+
+# PROPERTY_SKIP_EMPTY_DAMAGE
+debug.hwui.skip_empty_damage=true
+
+# PROPERTY_USE_BUFFER_AGE
+debug.hwui.use_buffer_age=true
+
+# PROPERTY_ENABLE_PARTIAL_UPDATES
+debug.hwui.use_partial_updates=false
+
+# PROPERTY_ENABLE_GPU_PIXEL_BUFFERS
+debug.hwui.use_gpu_pixel_buffers=true
+
+# PROPERTY_DEBUG_SHOW_DIRTY_REGIONS
+debug.hwui.show_dirty_regions=false
 
 # HWUI TWEAKS
 ro.zygote.disable_gl_preload=false
