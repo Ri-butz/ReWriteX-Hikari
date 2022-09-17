@@ -22,7 +22,7 @@ termux-setup-storage
 pkg install git
 pkg install zip
 git clone https://github.com/Aozora69/ReWriteX-Hikari.git
-cd rewritex-hikari
+cd ReWriteX-Hikari
 zip -r ../ReWriteX.Hikari.zip *
 cd ..
 cp ReWriteX.Hikari.zip /storage/emulated/0
@@ -32,7 +32,7 @@ cp ReWriteX.Hikari.zip /storage/emulated/0
 
 ```
 rm -f ReWriteX.Hikari.zip
-cd rewritex-hikari
+cd ReWriteX-Hikari
 git pull
 zip -r ../ReWriteX.Hikari.zip *
 cd ..
