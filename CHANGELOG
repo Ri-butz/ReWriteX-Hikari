@@ -53,3 +53,5 @@
 - Add support performance mode for kimcy screen record and app from XD entertainment 
 - Bringing back some old features
 - SkiaGL Optimization by @kntdreborn ! and created by @zaidannn7
+- Sync gms doze 1.8.7 from Gloeyisk
+- Move all i/o scheduler strings to service.sh
