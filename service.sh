@@ -39,11 +39,14 @@ iptables -t nat -I OUTPUT -p tcp --dport 53 -j DNAT --to-destination :53
 iptables -t nat -I OUTPUT -p udp --dport 53 -j DNAT --to-destination :53
 
 # Kernel parameters
-echo "5" > /proc/sys/kernel/perf_cpu_time_max_percent
-echo "15000000" > /proc/sys/kernel/sched_wakeup_granularity_ns
-echo "10000000" > /proc/sys/kernel/sched_min_granularity_ns
+SCHED_TASKS=10
+SCHED_PERIOD=$((1 * 1000 * 1000))
+echo "3" > /proc/sys/kernel/perf_cpu_time_max_percent
+echo "$SCHED_PERIOD" > /proc/sys/kernel/sched_latency_ns
+echo "$((SCHED_PERIOD / 2))" > /proc/sys/kernel/sched_wakeup_granularity_ns
+echo "$((SCHED_PERIOD / SCHED_TASKS))" > /proc/sys/kernel/sched_min_granularity_ns
 echo "5000000" > /proc/sys/kernel/sched_migration_cost_ns
-echo "32" > /proc/sys/kernel/sched_nr_migrate
+echo "4" > /proc/sys/kernel/sched_nr_migrate
 echo "1" > /proc/sys/kernel/sched_autogroup_enabled
 echo "0" > /proc/sys/kernel/sched_tunable_scaling
 echo "1" > /proc/sys/kernel/sched_child_runs_first
