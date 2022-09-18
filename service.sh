@@ -120,28 +120,55 @@ echo "14535,29070,43605,58112,72675,87210" > /sys/module/lowmemorykiller/paramet
 echo "33280" > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 
 # I/O scheduler optimized
-for queue in /sys/block/*/queue
+# all sd, sda, sdb, etc.
+for queue in /sys/block/sd*/queue
 do
-    echo "0" > $queue/iostats
-    echo "0" > $queue/add_random
-    echo "0" > $queue/rotational
-    echo "1" > $queue/rq_affinity
-    echo "cfq" > $queue/scheduler
-    echo "0" > $queue/iosched/slice_idle
-    echo "0" > $queue/iosched/group_idle
-    echo "0" > $queue/iosched/group_idle_us
-    echo "1" > $queue/iosched/low_latency
-    echo "50" > $queue/iosched/target_latency
-    echo "50000" > $queue/iosched/target_latency_us
+    echo "cfq" > "$queue/scheduler"
+    echo "0" > "$queue/iostats"
+    echo "0" > "$queue/add_random"
+    echo "0" > "$queue/nomerges"
+    echo "64" > "$queue/nr_requests"
+    echo "1" > "$queue/rq_affinity"
+    echo "128" > "$queue/read_ahead_kb"
+    echo "0" > "$queue/iosched/slice_idle"
+    echo "0" > "$queue/iosched/slice_idle_us"
+    echo "0" > "$queue/iosched/group_idle"
+    echo "0" > "$queue/iosched/group_idle_us"
+    echo "1" > "$queue/iosched/low_latency"
+    echo "100" > "$queue/iosched/target_latency"
+    echo "100000" > "$queue/iosched/target_latency_us"
 done
 
-# Multi User Support
-for i in $(ls /data/user/)
-do
-# Disable collective Device administrators
-pm disable com.google.android.gms/com.google.android.gms.auth.managed.admin.DeviceAdminReceiver
-pm disable com.google.android.gms/com.google.android.gms.mdm.receivers.MdmDeviceAdminReceiver
-done
+# Universal GMS Doze by the
+# open source loving GL-DP and all contributors;
+# Patches Google Play services app and its background
+# processes to be able using battery optimization
+(   
+    # Wait until boot completed
+    until [ $(resetprop sys.boot_completed) -eq 1 ] &&
+        [ -d /sdcard ]; do
+        sleep 60
+    done
+
+    # GMS components
+    GMS="com.google.android.gms"
+    GC1="auth.managed.admin.DeviceAdminReceiver"
+    GC2="mdm.receivers.MdmDeviceAdminReceiver"
+    GC3="chimera.GmsIntentOperationService"
+    NLL="/dev/null"
+
+    # Disable collective device administrators
+    for U in $(ls /data/user); do
+        for C in $GC1 $GC2 $GC3; do
+            pm disable --user $U "$GMS/$GMS.$C" &> $NLL
+        done
+    done
+
+    # Add GMS to battery optimization
+    dumpsys deviceidle whitelist -com.google.android.gms &> $NLL
+
+    exit 0
+)
 
 # Fstrim
 fstrim -v /data
