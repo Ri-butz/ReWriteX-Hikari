@@ -7,6 +7,17 @@ SCHED_PERIOD=$((10 * 1000 * 1000))
 su -c stop thermal-engine
 su -c stop vendor.thermal-engine
 
+# Kernel parameters
+echo "20" > /proc/sys/kernel/perf_cpu_time_max_percent
+echo "$SCHED_PERIOD" > /proc/sys/kernel/sched_latency_ns
+echo "$((SCHED_PERIOD / 2))" > /proc/sys/kernel/sched_wakeup_granularity_ns
+echo "$((SCHED_PERIOD / SCHED_TASKS))" > /proc/sys/kernel/sched_min_granularity_ns
+echo "5000000" > /proc/sys/kernel/sched_migration_cost_ns
+echo "128" > /proc/sys/kernel/sched_nr_migrate
+echo "1" > /proc/sys/kernel/sched_autogroup_enabled
+echo "0" > /proc/sys/kernel/sched_tunable_scaling
+echo "1" > /proc/sys/kernel/sched_child_runs_first
+
 # Core Control
 ##cpuset
 echo "0-7" > /dev/cpuset/foreground/cpus
