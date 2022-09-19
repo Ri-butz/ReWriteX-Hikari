@@ -1,5 +1,8 @@
 #!/system/bin/sh
 
+SCHED_TASKS=6
+SCHED_PERIOD=$((10 * 1000 * 1000))
+
 # Disable Thermal
 su -c stop thermal-engine
 su -c stop vendor.thermal-engine
@@ -44,9 +47,9 @@ chmod 444 /sys/devices/system/cpu/cpu7/online
 for gov in /sys/devices/system/cpu/*/cpufreq
 do
     echo "schedutil" > $gov/scaling_governor
-    echo "0" > $gov/schedutil/up_rate_limit_us
-    echo "0" > $gov/schedutil/down_rate_limit_us
-    echo "80" > $gov/schedutil/hispeed_load
+    echo "$((SCHED_PERIOD / 1000))" > $gov/schedutil/up_rate_limit_us
+    echo "$((4 * SCHED_PERIOD / 1000))" > $gov/schedutil/down_rate_limit_us
+    echo "85" > $gov/schedutil/hispeed_load
     echo "1" > $gov/schedutil/pl
 done
 
