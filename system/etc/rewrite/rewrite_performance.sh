@@ -58,9 +58,9 @@ chmod 444 /sys/devices/system/cpu/cpu7/online
 for gov in /sys/devices/system/cpu/*/cpufreq
 do
     echo "schedutil" > $gov/scaling_governor
-    echo "$((SCHED_PERIOD / 1000))" > $gov/schedutil/up_rate_limit_us
-    echo "$((4 * SCHED_PERIOD / 1000))" > $gov/schedutil/down_rate_limit_us
-    echo "85" > $gov/schedutil/hispeed_load
+    echo "0" > $gov/schedutil/up_rate_limit_us
+    echo "0" > $gov/schedutil/down_rate_limit_us
+    echo "90" > $gov/schedutil/hispeed_load
     echo "1" > $gov/schedutil/pl
 done
 
@@ -68,7 +68,7 @@ done
 echo "100" > /sys/module/lpm_levels/parameters/bias_hyst
 
 # Top app stune boost
-echo "60" > /dev/stune/top-app/schedtune.boost
+echo "70" > /dev/stune/top-app/schedtune.boost
 
 # Gpu
 echo "0" > /sys/class/kgsl/kgsl-3d0/throttling
