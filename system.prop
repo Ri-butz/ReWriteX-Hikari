@@ -29,17 +29,6 @@ net.tcp.buffersize.edge=4096,87380,256960,4096,163 84,256960
 net.tcp.buffersize.gprs=4096,87380,256960,4096,163 84,256960
 net.tcp.buffersize.evdo_b=6144,87380,1048576,6144, 87380,1048576
 
-# LMK 
-ro.lmk.use_minfree_levels=false
-ro.lmk.critical_upgrade=true
-ro.lmk.low=1001
-ro.lmk.medium=1001
-ro.lmk.critical=990
-ro.lmk.super_critical=845
-ro.lmk.thrashing_limit=60
-ro.lmk.thrashing_limit_decay=70
-ro.lmk.thrashing_min_score_adj=300
-
 # DalvikVm
 dalvik.vm.heapmaxfree=8m
 dalvik.vm.heapminfree=1m
