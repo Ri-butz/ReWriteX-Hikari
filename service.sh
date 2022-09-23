@@ -188,6 +188,10 @@ dex2oat_opt
 su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '✅ Dex2oat Optimizer is finished...'" >/dev/null 2>&1
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ✅ Dex2oat Optimizer is finished... ] /g' "/data/adb/modules/ReWrite/module.prop"
 
+# Force deep idle
+dumpsys deviceidle enable
+dumpsys deviceidle force-idle
+
 # Run Ai
 sleep 3
 $MODDIR/system/etc/rewrite/rewrite.sh > /dev/null
