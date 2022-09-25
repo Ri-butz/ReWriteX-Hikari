@@ -9,8 +9,8 @@ P=$MODDIR/system/etc/rewrite/rewrite_performance.sh
 LOG=/sdcard/ReWrite.log
 
 echo "# ReWriteX-Hikari" > $LOG
-echo "# Version : v6.2" >> $LOG
-echo "# Build Date: 18/09/2022" >> $LOG
+echo "# Version : v6.4" >> $LOG
+echo "# Build Date: 25/09/2022" >> $LOG
 echo "# By Ri_Butz (Telegram)" >> $LOG
 echo " " >> $LOG
 echo "  • Device          : $(getprop ro.product.system.model)" >> $LOG
