@@ -59,3 +59,8 @@
 • v6.3
 - Changed proc/sys/kernel value to reduce latency
 - Add pmgqos_active_latency on kgsl/kgsl-3d0 
+
+• v6.4
+- Add force deep doze
+- Enable force 4x MSAA
+
