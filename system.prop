@@ -38,6 +38,9 @@ debug.hwui.renderer=skiagl
 debug.renderengine.backend=skiaglthreaded
 renderthread.skia.reduceopstasksplitting=true
 
+# Force 4x msaa
+debug.egl.force_msaa=true
+
 # Renderer Tweaks (CPU & GPU)
 debug.composition.type=c2d
 persist.sys.composition.type=c2d
