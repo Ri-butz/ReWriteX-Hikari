@@ -37,7 +37,7 @@ while true; do
             sh $P
             echo " " >> $LOG
             echo "=> Performance mode activated  $(date "+%H:%M:%S")" >> $LOG
-            sleep 1
+            sleep 60
             fi
 else
             if tail -n 1 /sdcard/Rewrite.log | grep -w "Balance"
