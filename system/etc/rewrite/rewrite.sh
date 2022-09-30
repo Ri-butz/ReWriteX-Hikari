@@ -9,8 +9,8 @@ P=$MODDIR/system/etc/rewrite/rewrite_performance.sh
 LOG=/sdcard/ReWrite.log
 
 echo "# ReWriteX-Hikari" > $LOG
-echo "# Version : v6.4rev2" >> $LOG
-echo "# Build Date: 26/09/2022" >> $LOG
+echo "# Version : v6.5" >> $LOG
+echo "# Build Date: 30/09/2022" >> $LOG
 echo "# By Ri_Butz (Telegram)" >> $LOG
 echo " " >> $LOG
 echo "  • Device          : $(getprop ro.product.system.model)" >> $LOG
@@ -37,7 +37,7 @@ while true; do
             sh $P
             echo " " >> $LOG
             echo "=> Performance mode activated  $(date "+%H:%M:%S")" >> $LOG
-            sleep 60
+            sleep 50
             fi
 else
             if tail -n 1 /sdcard/Rewrite.log | grep -w "Balance"
