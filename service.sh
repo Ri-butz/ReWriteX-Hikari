@@ -107,8 +107,8 @@ echo "750" > /proc/sys/vm/extfrag_threshold
 echo "100" > /proc/sys/vm/swappiness
 echo "0" > /proc/sys/vm/page-cluster
 echo "0" > /proc/sys/vm/oom_kill_allocating_task
-echo "100" > /proc/sys/vm/vfs_cache_pressure
-echo "10" > /proc/sys/vm/stat_interval
+echo "20" > /proc/sys/vm/vfs_cache_pressure
+echo "20" > /proc/sys/vm/stat_interval
 echo "8192" > /proc/sys/vm/min_free_kbytes
 start perfd
 
@@ -188,9 +188,9 @@ dex2oat_opt
 su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '✅ Dex2oat Optimizer is finished...'" >/dev/null 2>&1
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ✅ Dex2oat Optimizer is finished... ] /g' "/data/adb/modules/ReWrite/module.prop"
 
-# Force deep doze
-dumpsys deviceidle enable
-dumpsys deviceidle force-idle
+# Doze mode
+#dumpsysdeviceidle
+#forceidle
 
 # Run Ai
 sleep 3
