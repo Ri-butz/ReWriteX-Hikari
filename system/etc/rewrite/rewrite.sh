@@ -9,8 +9,8 @@ P=$MODDIR/system/etc/rewrite/rewrite_performance.sh
 LOG=/sdcard/ReWrite.log
 
 echo "# ReWriteX-Hikari" > $LOG
-echo "# Version : v6.5" >> $LOG
-echo "# Build Date: 30/09/2022" >> $LOG
+echo "# Version : v6.6" >> $LOG
+echo "# Build Date: 05/10/2022" >> $LOG
 echo "# By Ri_Butz (Telegram)" >> $LOG
 echo " " >> $LOG
 echo "  • Device          : $(getprop ro.product.system.model)" >> $LOG
@@ -29,7 +29,7 @@ am start -a android.intent.action.MAIN -e toasttext "🤖 Ai is started..." -n b
 
 while true; do
     sleep 5
-     if [ $(dumpsys activity | grep activity=activities | head -n 34 | grep -o -e 'nextgen' -e 'YoStarJP' -e 'AzurLane' -e 'ioncannon' -e 'clpeak' -e 'skynet' -e 'cputhrottlingtest' -e 'ea.gp' -e 'roblox' -e 'androbench2' -e 'com.andromeda.androbench2' -e 'andromeda' -e 'antutu' -e 'com.futuremark.dmandroid.application' -e 'futuremark' -e 'dmandroid' -e 'geekbench5' -e 'adventure.rpg.anime.game.vng.ys6' -e 'primatelabs' -e 'codm' -e 'com.mobile.legends' -e 'nexon' -e 'ea.game' -e 'konami' -e 'bandainamco' -e 'netmarble' -e 'edengames' -e 'tencent' -e 'krmobile' -e 'moonton' -e 'gameloft' -e 'netease' -e 'garena' -e 'pubg' -e 'pubgmhd' -e 'pubgmobile' -e 'miHoYo' -e 'mojang' -e 'AntutuBenchmark' -e 'aethersx2' -e 'criticalops' -e 'supercell' -e 'warface' -e 'ppsspp' -e 'ubisoft' -e 'activision' -e 'rockstargames' -e 'Fortnite' -e 'FortniteMobile' -e 'epicgames' -e 'garena' -e 'apexlegendsmobilefps' -e 'riotgames' -e 'me.pou.app' -e 'com.ngame.allstar.eu' -e 'levelinfinite' -e 'GacoGames' -e 'gacogames' -e 'carxtech' -e 'CarXTech' -e 'vespainteractive' -e 'KingsRaid' -e 'autochessmoba' -e 'com.play.rosea' -e 'bandainamcoent' -e 'asobimo' -e 'com.silentlexx.ffmpeggui' -e 'cyou.joiplay.joiplay' -e 'glip.gg' -e 'battlefun' -e 'clgame' -e 'com.GlobalSoFunny' -e 'com.xd' -e 'com.pinkcore.heros' -e 'rayark' | head -n 1) ]; then
+     if [ $(dumpsys activity | grep activity=activities | head -n 34 | grep -o -e 'com.github.stenzek.duckstation' -e 'org.mm.jr' -e 'gamesirnsemulator' -e 'skyline.emu' -e 'nextgen' -e 'YoStarJP' -e 'AzurLane' -e 'ioncannon' -e 'clpeak' -e 'skynet' -e 'cputhrottlingtest' -e 'ea.gp' -e 'roblox' -e 'androbench2' -e 'com.andromeda.androbench2' -e 'andromeda' -e 'antutu' -e 'com.futuremark.dmandroid.application' -e 'futuremark' -e 'dmandroid' -e 'geekbench5' -e 'adventure.rpg.anime.game.vng.ys6' -e 'primatelabs' -e 'codm' -e 'com.mobile.legends' -e 'nexon' -e 'ea.game' -e 'konami' -e 'bandainamco' -e 'netmarble' -e 'edengames' -e 'tencent' -e 'krmobile' -e 'moonton' -e 'gameloft' -e 'netease' -e 'garena' -e 'pubg' -e 'pubgmhd' -e 'pubgmobile' -e 'miHoYo' -e 'mojang' -e 'AntutuBenchmark' -e 'aethersx2' -e 'criticalops' -e 'supercell' -e 'warface' -e 'ppsspp' -e 'ubisoft' -e 'activision' -e 'rockstargames' -e 'Fortnite' -e 'FortniteMobile' -e 'epicgames' -e 'garena' -e 'apexlegendsmobilefps' -e 'riotgames' -e 'me.pou.app' -e 'com.ngame.allstar.eu' -e 'levelinfinite' -e 'GacoGames' -e 'gacogames' -e 'carxtech' -e 'CarXTech' -e 'vespainteractive' -e 'KingsRaid' -e 'autochessmoba' -e 'com.play.rosea' -e 'bandainamcoent' -e 'asobimo' -e 'com.silentlexx.ffmpeggui' -e 'cyou.joiplay.joiplay' -e 'glip.gg' -e 'battlefun' -e 'clgame' -e 'com.GlobalSoFunny' -e 'com.xd' -e 'com.pinkcore.heros' -e 'rayark' | head -n 1) ]; then
             if tail -n 1 /sdcard/Rewrite.log | grep -w "Performance"
             then
             echo " "
