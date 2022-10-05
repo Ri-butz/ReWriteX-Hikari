@@ -71,3 +71,7 @@
 - Add doze mode selector(disable,light,or deep)
 - Reduce vfs cache pressure
 - Increase stat interval
+
+• Disable adreno snapshot crashdumper
+• Increase vfs cache pressure to 50
+• Add skyline.emu,org.mm.jr,com.xiaoji.gamesirnsemulator,com.github.stenzek.duckstation to performance profile
