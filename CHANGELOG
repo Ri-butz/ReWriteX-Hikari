@@ -73,6 +73,6 @@
 - Increase stat interval
 
 • v6.6
-  - Disable adreno snapshot crashdumper
-  - Increase vfs cache pressure to 50
-  - Add skyline.emu,org.mm.jr,com.xiaoji.gamesirnsemulator,com.github.stenzek.duckstation to performance profile
+- Disable adreno snapshot crashdumper
+- Increase vfs cache pressure to 50
+- Add skyline.emu,org.mm.jr,com.xiaoji.gamesirnsemulator,com.github.stenzek.duckstation to performance profile
