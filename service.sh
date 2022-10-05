@@ -88,6 +88,9 @@ echo "5:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo "6:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo "7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 
+# Disable Adreno snapshot crashdumper
+echo "0" > /sys/class/kgsl/kgsl-3d0/snapshot/snapshot_crashdumper
+
 # Zram
 ZRAMSIZE=0
 swapoff /dev/block/zram0 > /dev/null 2>&1
@@ -174,11 +177,11 @@ done
 )
 
 # Fstrim
-fstrim -v /data
-fstrim -v /system
-fstrim -v /cache
-fstrim -v /vendor
-fstrim -v /product
+su -c "fstrim -v /data"
+su -c "fstrim -v /system"
+su -c "fstrim -v /cache"
+su -c "fstrim -v /vendor"
+su -c "fstrim -v /product"
 
 # Dex2oat
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ⛔ Dex2oat Optimizer is running... ] /g' "/data/adb/modules/ReWrite/module.prop"
