@@ -46,7 +46,7 @@ do
     echo "schedutil" > $gov/scaling_governor
     echo "0" > $gov/schedutil/up_rate_limit_us
     echo "0" > $gov/schedutil/down_rate_limit_us
-    echo "85" > $gov/schedutil/hispeed_load
+    echo "90" > $gov/schedutil/hispeed_load
     echo "0" > $gov/schedutil/pl
 done
 
@@ -64,7 +64,6 @@ echo "0" > /sys/class/kgsl/kgsl-3d0/force_no_nap
 echo "0" > /sys/class/kgsl/kgsl-3d0/force_rail_on
 echo "0" > /sys/class/kgsl/kgsl-3d0/force_bus_on
 echo "0" > /sys/class/kgsl/kgsl-3d0/force_clk_on
-echo "500" > /sys/class/kgsl/kgsl-3d0/pmqos_active_latency
 
 # Entropy
 echo "128" > /proc/sys/kernel/random/read_wakeup_threshold
