@@ -137,6 +137,12 @@ echo "5:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo "6:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo "7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 
+# Disable Ramdumps
+if [ -d "/sys/module/subsystem_restart/parameters" ]; then
+    echo "0" > /sys/module/subsystem_restart/parameters/enable_ramdumps
+    echo "0" > /sys/module/subsystem_restart/parameters/enable_mini_ramdumps
+fi
+
 # Disable Adreno snapshot crashdumper
 echo "0" > /sys/class/kgsl/kgsl-3d0/snapshot/snapshot_crashdumper
 
