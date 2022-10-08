@@ -42,7 +42,7 @@ dalvik.vm.heapsize=512m
 dalvik.vm.heaptargetutilization=0.75
 dalvik.vm.heapminfree=512k
 dalvik.vm.heapmaxfree=8m
-dalvik.vm.dexopt-flags=m=y
+dalvik.vm.dexopt-flags=m=y,o=v,u=y
 
 # SkiaGL Optimization by @kntdreborn ! and created by @zaidannn7
 debug.hwui.renderer=skiagl
