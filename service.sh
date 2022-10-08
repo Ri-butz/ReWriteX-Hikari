@@ -61,8 +61,8 @@ change_task_cgroup "android.hardware.graphics.composer" "foreground" "stune"
 function high_priority() {
   pgrep -f $1 | while read pid; do
   renice -n +40 -p $pid
-  renice -n -19 -p $pid
-  renice -n -15 -p $pid
+  renice -n -20 -p $pid
+  renice -n -18 -p $pid
   echo "$pid" > /dev/cpuset/top-app/cgroup.procs
   echo "$pid" > /dev/stune/top-app/cgroup.procs
   done
