@@ -76,3 +76,10 @@
 - Disable adreno snapshot crashdumper
 - Increase vfs cache pressure to 50
 - Add skyline.emu,org.mm.jr,com.xiaoji.gamesirnsemulator,com.github.stenzek.duckstation to performance profile
+
+• v6.7
+- Add renicer priority Surfaceflinger & Graphics composer
+- Add cgroup boost
+- Changing sched kernel settings
+- Fix gms doze 
+- etc
