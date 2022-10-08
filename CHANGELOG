@@ -82,4 +82,5 @@
 - Add cgroup boost
 - Changing sched kernel settings
 - Fix gms doze 
+- Disable rampdumps
 - etc
