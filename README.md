@@ -48,4 +48,5 @@ cp ReWriteX.Hikari.zip /storage/emulated/0
 - [Taka🌿](https://github.com/takeru-kageyuki)
 - [Simonsmh](https://github.com/simonsmh)
 - [Pedrozzz0](https://github.com/King-Projects)
+- [𝘿𝙀𝙎𝙄𝙍𝙀 🇷🇺](https://t.me/SMOOTH_Team)
 - And all my friends who contributed to the development of the project and many others
