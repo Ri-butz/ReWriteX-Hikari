@@ -165,7 +165,7 @@ echo "750" > /proc/sys/vm/extfrag_threshold
 echo "100" > /proc/sys/vm/swappiness
 echo "0" > /proc/sys/vm/page-cluster
 echo "0" > /proc/sys/vm/oom_kill_allocating_task
-echo "50" > /proc/sys/vm/vfs_cache_pressure
+echo "20" > /proc/sys/vm/vfs_cache_pressure
 echo "20" > /proc/sys/vm/stat_interval
 echo "8192" > /proc/sys/vm/min_free_kbytes
 start perfd
