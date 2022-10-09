@@ -2,7 +2,7 @@
 # Example: Change dpi
 # ro.sf.lcd_density=320
 
-# DNS Changer (disable)
+# DNS Changer
 net.dns1
 net.dns2
 net.eth0.dns1
