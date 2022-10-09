@@ -101,3 +101,5 @@ persist.sys.scrollingcache=4
 # Smoothens UI
 persist.service.lgospd.enable=0
 persist.service.pcsync.enable=0
+
+P
