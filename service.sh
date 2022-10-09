@@ -12,75 +12,9 @@ sleep 30
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ 🚴 Apply tweaks please wait... ] /g' "/data/adb/modules/ReWrite/module.prop"
 su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '🚴 Apply tweaks please wait...'" >/dev/null 2>&1
 
-# Basic tool function
-ps_ret=""
-write() {
-	# Bail out if file does not exist
-	[[ ! -f "$1" ]] && return 1
-
-	# Make file write-able in case it is not already
-	chmod +w "$1" 2>/dev/null
-
-	# Write the new value and bail if there's an error
-	if ! echo "$2" > "$1" 2>/dev/null
-	then
-		echo "[️X] Failed: $1 --> $2"
-		return 1
-	fi
-
-	# Log the success
-	echo "[✓] Success: $1 --> $2"
-}
-
-# Cgroup
-change_task_cgroup() {
-    local ps_ret
-    ps_ret="$(ps -Ao pid,args)"
-    for temp_pid in $(echo "$ps_ret" | grep "$1" | awk '{print $1}'); do
-        for temp_tid in $(ls "/proc/$temp_pid/task/"); do
-            echo "$temp_tid" > "/dev/$3/$2/tasks"
-        done
-    done
-}
-
-# Clear top-app
-for clear in $(cat /dev/cpuset/top-app/tasks); do
-    echo "$clear" >/dev/cpuset/foreground/tasks
-done
-
-# Reduce render thread waiting time
-change_task_cgroup "surfaceflinger" "" "cpuset"
-change_task_cgroup "surfaceflinger" "top-app" "cpuset"
-change_task_cgroup "surfaceflinger" "foreground" "stune"
-
-# Better rendering speed
-change_task_cgroup "android.hardware.graphics.composer" "top-app" "cpuset"
-change_task_cgroup "android.hardware.graphics.composer" "foreground" "stune"
-
-# Renicer
-function high_priority() {
-  pgrep -f $1 | while read pid; do
-  renice -n +40 -p $pid
-  renice -n -19 -p $pid
-  renice -n -15 -p $pid
-  echo "$pid" > /dev/cpuset/top-app/cgroup.procs
-  echo "$pid" > /dev/stune/top-app/cgroup.procs
-  done
-}
-
-# Set high priority
-high_priority android.hardware.graphics.composer
-high_priority surfaceflinger
-
 # AVC denial fix
 magiskpolicy --live 'allow untrusted_app proc_net_tcp_udp file {read write open getattr}'
 magiskpolicy --live 'allow untrusted_app app_data_file file {read write open getattr execute execute_no_trans}'
-
-# DNS Changer
-iptables -t nat -A OUTPUT -p tcp --dport 53 -j DNAT --to-destination :53
-iptables -t nat -A OUTPUT -p udp --dport 53 -j DNAT --to-destination :53
-iptables -t nat -I OUTPUT -p tcp --dport 53 -j DNAT --to-destination :53
-iptables -t nat -I OUTPUT -p udp --dport 53 -j DNAT --to-destination :53
 
 # Kernel parameters
 echo "0" > /proc/sys/kernel/sched_boost
@@ -165,7 +99,7 @@ echo "750" > /proc/sys/vm/extfrag_threshold
 echo "100" > /proc/sys/vm/swappiness
 echo "0" > /proc/sys/vm/page-cluster
 echo "0" > /proc/sys/vm/oom_kill_allocating_task
-echo "20" > /proc/sys/vm/vfs_cache_pressure
+echo "50" > /proc/sys/vm/vfs_cache_pressure
 echo "20" > /proc/sys/vm/stat_interval
 echo "8192" > /proc/sys/vm/min_free_kbytes
 start perfd
@@ -237,6 +171,46 @@ dex2oat_opt
 # Doze mode
 #dumpsysdeviceidle
 #forceidle
+
+# Cgroup
+change_task_cgroup() {
+    local ps_ret
+    ps_ret="$(ps -Ao pid,args)"
+    for temp_pid in $(echo "$ps_ret" | grep "$1" | awk '{print $1}'); do
+        for temp_tid in $(ls "/proc/$temp_pid/task/"); do
+            echo "$temp_tid" > "/dev/$3/$2/tasks"
+        done
+    done
+}
+
+# Clear top-app
+for clear in $(cat /dev/cpuset/top-app/tasks); do
+    echo "$clear" >/dev/cpuset/foreground/tasks
+done
+
+# Reduce render thread waiting time
+change_task_cgroup "surfaceflinger" "" "cpuset"
+change_task_cgroup "surfaceflinger" "top-app" "cpuset"
+change_task_cgroup "surfaceflinger" "foreground" "stune"
+
+# Better rendering speed
+change_task_cgroup "android.hardware.graphics.composer" "top-app" "cpuset"
+change_task_cgroup "android.hardware.graphics.composer" "foreground" "stune"
+
+# Renicer
+function high_priority() {
+  pgrep -f $1 | while read pid; do
+  renice -n +40 -p $pid
+  renice -n -19 -p $pid
+  renice -n -15 -p $pid
+  echo "$pid" > /dev/cpuset/top-app/cgroup.procs
+  echo "$pid" > /dev/stune/top-app/cgroup.procs
+  done
+}
+
+# Set high priority
+high_priority android.hardware.graphics.composer
+high_priority surfaceflinger
 
 # Done
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ✅ All tweaks is applied... ] /g' "/data/adb/modules/ReWrite/module.prop"
