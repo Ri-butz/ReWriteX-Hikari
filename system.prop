@@ -30,10 +30,6 @@ net.tcp.buffersize.gprs=4096,87380,256960,4096,163 84,256960
 net.tcp.buffersize.evdo_b=6144,87380,1048576,6144, 87380,1048576
 
 # DalvikVm
-ro.sys.fw.dex2oat_thread_count=4
-dalvik.vm.boot-dex2oat-threads=8
-dalvik.vm.dex2oat-threads=4
-dalvik.vm.image-dex2oat-threads=4
 dalvik.vm.dex2oat-filter=speed
 dalvik.vm.image-dex2oat-filter=speed
 dalvik.vm.heapgrowthlimit=256m
@@ -42,7 +38,7 @@ dalvik.vm.heapsize=512m
 dalvik.vm.heaptargetutilization=0.75
 dalvik.vm.heapminfree=512k
 dalvik.vm.heapmaxfree=8m
-dalvik.vm.dexopt-flags=v=a,o=v,m=y,u=y
+dalvik.vm.dexopt-flags=m=y
 
 # Graphics properties
 debug.hwui.renderer=skiagl
