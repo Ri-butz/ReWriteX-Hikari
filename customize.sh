@@ -232,43 +232,67 @@ sed -i '/gChannelBondingMode24GHz=/d;/gChannelBondingMode5GHz=/d;/gForce1x1Excep
 done
 [[ -z $SELECTPATH ]] && abort "- Installation FAILED. Your device didn't support WCNSS_qcom_cfg.ini." || { mkdir -p $MODPATH/system; mv -f $MODPATH/vendor $MODPATH/system/vendor;}
 
-# Patch the XML and place the modified one to the original directory
+# Patch the xml and place the modified one to the original directory
 ui_print "- Patching XML files"
-location=$(xml=$(find /system/ /system_ext/ /vendor/ -iname "*.xml");for i in $xml; do if grep -q 'allow-unthrottled-location package="com.google.android.gms"' $ROOT$i 2>/dev/null; then echo "$i";fi; done)
-ignore=$(xml=$(find /system/ /system_ext/ /vendor/ -iname "*.xml");for i in $xml; do if grep -q 'allow-ignore-location-settings package="com.google.android.gms"' $ROOT$i 2>/dev/null; then echo "$i";fi; done)
 
-for i in $location $ignore
-do
-mkdir -p `dirname $MODPATH$i`
-cp -af $ROOT$i $MODPATH$i
-sed -i '/allow-unthrottled-location package="com.google.android.gms"/d;/allow-ignore-location-settings package="com.google.android.gms"/d' $MODPATH$i
-done
+GMS0="\"com.google.android.gms"\"
+STR1="allow-unthrottled-location package=$GMS0"
+STR2="allow-ignore-location-settings package=$GMS0"
+STR3="allow-in-power-save package=$GMS0"
+STR4="allow-in-data-usage-save package=$GMS0"
+NULL="/dev/null"
 
-for i in product vendor
-do
-if [ -d $MODPATH/$i ]; then
-if [ ! -d $MODPATH/system/$i ]; then
-sleep 1
-ui_print "- Moving files to /system partition"
-mkdir -p $MODPATH/system/$i
-mv -f $MODPATH/$i $MODPATH/system/
-else
-rm -rf $MODPATH/$i
-fi
-fi
-done
+ui_print "- Finding system XML"
+SYS_XML="$(
+    SXML="$(find /system_ext/* /system/* \
+                 /vendor/* -type f -iname '*.xml' -print)"
+    for S in $SXML; do
+        if grep -qE "$STR1|$STR2|$STR3|$STR4" $ROOT$S 2> $NULL; then
+            echo "$S"
+        fi
+    done
+)"
+
+PATCH_SX() {
+    for SX in $SYS_XML; do
+        mkdir -p "$(dirname $MODPATH$SX)"
+        cp -af $ROOT$SX $MODPATH$SX
+        ui_print "  Patching: $SX"
+        sed -i "/$STR1/d;/$STR2/d;/$STR3/d;/$STR4/d" $MODPATH/$SX
+    done
+
+    # Merge patched files under /system dir
+    for P in product vendor; do
+        if [ -d $MODPATH/$P ]; then
+            ui_print "- Moving files to module dir"
+            mkdir -p $MODPATH/system/$P
+            mv -f $MODPATH/$P $MODPATH/system/$P
+        fi
+    done
+}
 
 # Search and patch any conflicting modules (if present)
-# Search conflicting XML files
-conflict1=$(xml=$(find /data/adb -iname "*.xml");for i in $xml; do if grep -q 'allow-unthrottled-location package="com.google.android.gms"' $i 2>/dev/null; then echo "$i";fi; done)
-conflict2=$(xml=$(find /data/adb -iname "*.xml");for i in $xml; do if grep -q 'allow-ignore-location-settings package="com.google.android.gms"' $i 2>/dev/null; then echo "$i";fi; done)
-for i in $conflict1 $conflict2
-do
-search=$(echo "$i" | sed -e 's/\// /g' | awk '{print $4}')
-ui_print "- Conflicting modules detected"
-ui_print "   $search"
-sed -i '/allow-unthrottled-location package="com.google.android.gms"/d;/allow-ignore-location-settings package="com.google.android.gms"/d' $i
-done
+# Search conflicting xml files
+MOD_XML="$(
+    MXML="$(find /data/adb/* -type f -iname "*.xml" -print)"
+    for M in $MXML; do
+        if grep -qE "$STR1|$STR2|$STR3|$STR4" $M; then
+            echo "$M"
+        fi
+    done
+)"
+
+PATCH_MX() {
+    ui_print "- Finding conflicting XML"
+    for MX in $MOD_XML; do
+        MOD="$(echo "$MX" | awk -F'/' '{print $5}')"
+        ui_print "  $MOD: $MX"
+        sed -i "/$STR1/d;/$STR2/d;/$STR3/d;/$STR4/d" $MX
+    done
+}
+
+# Find and patch XMLs
+PATCH_SX && PATCH_MX
 
 # Dex2oat Optimizer
 [[ "$IS64BIT" == "true" ]] && mv -f "$MODPATH/system/bin/dex2oat_opt64" "$MODPATH/system/bin/dex2oat_opt" && rm -f $MODPATH/system/bin/dex2oat_opt32 || mv -f "$MODPATH/system/bin/dex2oat_opt32" "$MODPATH/system/bin/dex2oat_opt" && rm -f $MODPATH/system/bin/dex2oat_opt64
