@@ -10,7 +10,7 @@ LOG=/sdcard/ReWrite.log
 
 echo "# ReWriteX-Hikari" > $LOG
 echo "# Version : v6.8" >> $LOG
-echo "# Build Date: 10/10/2022" >> $LOG
+echo "# Build Date: 12/10/2022" >> $LOG
 echo "# By Ri_Butz (Telegram)" >> $LOG
 echo " " >> $LOG
 echo "  • Device          : $(getprop ro.product.system.model)" >> $LOG
