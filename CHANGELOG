@@ -84,3 +84,8 @@
 - Fix gms doze 
 - Disable rampdumps
 - etc
+
+• v6.8
+- Add gpu idler timer and pmqos latency
+- Add support performance mode for lega.feisl.hhera
+- etc
