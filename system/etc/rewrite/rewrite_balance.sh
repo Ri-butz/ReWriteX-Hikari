@@ -58,7 +58,6 @@ echo "0" > /dev/stune/top-app/schedtune.boost
 
 # Gpu
 MIN=$(cat /sys/class/kgsl/kgsl-3d0/min_pwrlevel)
-echo "2000" > /sys/class/kgsl/kgsl-3d0/idle_timer
 echo "450" > /sys/class/kgsl/kgsl-3d0/pmqos_active_latency
 echo "1" > /sys/class/kgsl/kgsl-3d0/throttling
 echo "$MIN" > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
