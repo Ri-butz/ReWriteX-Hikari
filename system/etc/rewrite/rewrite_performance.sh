@@ -40,7 +40,7 @@ chmod 644 /sys/devices/system/cpu/cpu7/online
 echo "1" > /sys/devices/system/cpu/cpu7/online
 chmod 444 /sys/devices/system/cpu/cpu7/online
 
-# Disable hotplug
+# Disable core ctl
 echo "0" > /sys/devices/system/cpu/cpu0/core_ctl/enable
 
 # Lpm
