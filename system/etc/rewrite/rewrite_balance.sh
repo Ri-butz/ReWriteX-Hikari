@@ -40,21 +40,19 @@ chmod 644 /sys/devices/system/cpu/cpu7/online
 echo "0" > /sys/devices/system/cpu/cpu7/online
 chmod 444 /sys/devices/system/cpu/cpu7/online
 
-# Cpu tunables
-for gov in /sys/devices/system/cpu/*/cpufreq
-do
-    echo "schedutil" > $gov/scaling_governor
-    echo "0" > $gov/schedutil/up_rate_limit_us
-    echo "0" > $gov/schedutil/down_rate_limit_us
-    echo "90" > $gov/schedutil/hispeed_load
-    echo "0" > $gov/schedutil/pl
-done
+# Enable hotplug
+echo "1" > /sys/devices/system/cpu/cpu0/core_ctl/enable
 
 # Lpm
 echo "25" > /sys/module/lpm_levels/parameters/bias_hyst
 
-# Top app stune boost
+# Foreground
+echo "0" > /dev/stune/foreground/schedtune.boost
+echo "0" > /dev/stune/foreground/schedtune.sched_boost_no_override
+
+# Top app
 echo "0" > /dev/stune/top-app/schedtune.boost
+echo "0" > /dev/stune/top-app/schedtune.sched_boost_no_override
 
 # Gpu
 MIN=$(cat /sys/class/kgsl/kgsl-3d0/min_pwrlevel)
