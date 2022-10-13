@@ -92,7 +92,7 @@ for stune in /dev/stune/*; do
     echo "1" > "$stune/schedtune.sched_boost_enabled"
     echo "0" > "$stune/schedtune.boost"
     echo "0" > "$stune/schedtune.sched_boost_no_override"
-    echo "1" > "$stune/schedtune.prefer_idle"
+    echo "0" > "$stune/schedtune.prefer_idle"
     echo "0" > "$stune/schedtune.colocate"
     echo "0" > "$stune/cgroup.clone_children"
 done
