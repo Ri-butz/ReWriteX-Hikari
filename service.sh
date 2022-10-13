@@ -16,6 +16,15 @@ su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '🚴 Apply 
 magiskpolicy --live 'allow untrusted_app proc_net_tcp_udp file {read write open getattr}'
 magiskpolicy --live 'allow untrusted_app app_data_file file {read write open getattr execute execute_no_trans}'
 
+# Schedutil as default governor
+for gov in /sys/devices/system/cpu/*/cpufreq
+do
+    echo "schedutil" > $gov/scaling_governor
+    echo "0" > $gov/schedutil/up_rate_limit_us
+    echo "0" > $gov/schedutil/down_rate_limit_us
+    echo "85" > $gov/schedutil/hispeed_load
+done
+
 # Kernel parameters
 echo "0" > /proc/sys/kernel/sched_boost
 echo "15" > /proc/sys/kernel/perf_cpu_time_max_percent
@@ -70,6 +79,25 @@ echo "4:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo "5:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo "6:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo "7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
+
+# Stune boost
+echo "1" > /dev/stune/schedtune.sched_boost_enabled
+echo "0" > /dev/stune/schedtune.boost
+echo "0" > /dev/stune/schedtune.sched_boost_no_override
+echo "0" > /dev/stune/schedtune.prefer_idle
+echo "0" > /dev/stune/schedtune.colocate
+echo "0" > /dev/stune/cgroup.clone_children
+echo "0" > /dev/stune/cgroup.sane_behavior
+for stune in /dev/stune/*; do
+    echo "1" > "$stune/schedtune.sched_boost_enabled"
+    echo "0" > "$stune/schedtune.boost"
+    echo "0" > "$stune/schedtune.sched_boost_no_override"
+    echo "1" > "$stune/schedtune.prefer_idle"
+    echo "0" > "$stune/schedtune.colocate"
+    echo "0" > "$stune/cgroup.clone_children"
+done
+#Lower Schedtune on background as it will consume quite a lot of power.
+echo "1" > /dev/stune/background/schedtune.prefer_idle
 
 # Disable Ramdumps
 if [ -d "/sys/module/subsystem_restart/parameters" ]; then
@@ -134,15 +162,15 @@ do
     echo "100000" > "$queue/iosched/target_latency_us"
 done
 
-# Add GMS to battery optimization
-dumpsys deviceidle whitelist -com.google.android.gms
-
 # Fstrim
 su -c "fstrim -v /data"
 su -c "fstrim -v /system"
 su -c "fstrim -v /cache"
 su -c "fstrim -v /vendor"
 su -c "fstrim -v /product"
+
+# Unity Big.Little trick by lybxlpsv 
+nohup sh $MODDIR/script/unitytrick > /dev/null &
 
 # Dex2oat
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ⛔ Dex2oat Optimizer is running... ] /g' "/data/adb/modules/ReWrite/module.prop"
@@ -152,7 +180,10 @@ dex2oat_opt
 
 # Doze mode
 #dumpsysdeviceidle
-#forceidle
+# Without deep doze
+
+# Add GMS to battery optimization
+dumpsys deviceidle whitelist -com.google.android.gms
 
 # Cgroup
 change_task_cgroup() {
