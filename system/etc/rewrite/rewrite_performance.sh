@@ -57,7 +57,6 @@ echo "100" > /sys/module/lpm_levels/parameters/bias_hyst
 echo "70" > /dev/stune/top-app/schedtune.boost
 
 # Gpu
-echo "80" > /sys/class/kgsl/kgsl-3d0/idle_timer
 echo "1000" > /sys/class/kgsl/kgsl-3d0/pmqos_active_latency
 echo "0" > /sys/class/kgsl/kgsl-3d0/throttling
 echo "2" > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
