@@ -163,11 +163,11 @@ do
 done
 
 # Fstrim
-su -c "fstrim -v /data"
-su -c "fstrim -v /system"
-su -c "fstrim -v /cache"
-su -c "fstrim -v /vendor"
-su -c "fstrim -v /product"
+fstrim -v /data
+fstrim -v /system
+fstrim -v /cache
+fstrim -v /vendor
+fstrim -v /product
 
 # Unity Big.Little trick by lybxlpsv 
 nohup sh $MODDIR/script/unitytrick > /dev/null &
