@@ -1,8 +1,8 @@
 #!/system/bin/sh
 
 # Enable Thermal
-su -c start thermal-engine
-su -c start vendor.thermal-engine
+start thermal-engine
+start vendor.thermal-engine
 
 # Core Control
 ##cpuset
