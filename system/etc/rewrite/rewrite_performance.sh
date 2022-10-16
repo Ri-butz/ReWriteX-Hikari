@@ -1,8 +1,8 @@
 #!/system/bin/sh
 
 # Disable Thermal
-su -c stop thermal-engine
-su -c stop vendor.thermal-engine
+stop thermal-engine
+stop vendor.thermal-engine
 
 # Core Control
 ##cpuset
