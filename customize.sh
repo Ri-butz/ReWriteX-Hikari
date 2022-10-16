@@ -114,8 +114,8 @@ while true; do
 done
 ui_print "    Selected: $A"
 case $A in
-    1 ) TEXT1="🟢Yes"; sed -i '/su -c start thermal-engine/s/.*/su -c start thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_balance.sh; sed -i '/su -c start vendor.thermal-engine/s/.*/su -c start vendor.thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_balance.sh; sed -i '/su -c stop thermal-engine/s/.*/su -c stop thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_performance.sh; sed -i '/su -c stop vendor.thermal-engine/s/.*/su -c stop vendor.thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_performance.sh;;
-    2 ) TEXT1="🔴No"; sed -i '/su -c start thermal-engine/s/.*/# su -c start thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_balance.sh; sed -i '/su -c start vendor.thermal-engine/s/.*/# su -c start vendor.thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_balance.sh; sed -i '/su -c stop thermal-engine/s/.*/# su -c stop thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_performance.sh; sed -i '/su -c stop vendor.thermal-engine/s/.*/# su -c stop vendor.thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_performance.sh;;
+    1 ) TEXT1="🟢Yes"; sed -i '/start thermal-engine/s/.*/start thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_balance.sh; sed -i '/start vendor.thermal-engine/s/.*/start vendor.thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_balance.sh; sed -i '/stop thermal-engine/s/.*/stop thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_performance.sh; sed -i '/stop vendor.thermal-engine/s/.*/stop vendor.thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_performance.sh;;
+    2 ) TEXT1="🔴No"; sed -i '/start thermal-engine/s/.*/#start thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_balance.sh; sed -i '/start vendor.thermal-engine/s/.*/#start vendor.thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_balance.sh; sed -i '/stop thermal-engine/s/.*/#stop thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_performance.sh; sed -i '/stop vendor.thermal-engine/s/.*/#stop vendor.thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_performance.sh;;
 esac
 sleep 0.7
 ui_print "    $TEXT1"
