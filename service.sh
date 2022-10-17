@@ -133,7 +133,7 @@ echo "8192" > /proc/sys/vm/min_free_kbytes
 start perfd
 
 # Max Processing
-[ $(getprop ro.build.version.release) -gt 9 ] && /system/bin/device_config put activity_manager max_phantom_processes 2147483647 ; /system/bin/device_config put activity_manager max_cached_processes 160 || settings put global activity_manager_constants max_cached_processes=160
+[ $(getprop ro.build.version.release) -gt 9 ] && device_config put activity_manager max_phantom_processes 2147483647 ; device_config put activity_manager max_empty_time_millis 43200000 ; device_config put activity_manager max_cached_processes 256 || settings put global activity_manager_constants max_cached_processes=256
 
 # LMK
 echo "1" > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
