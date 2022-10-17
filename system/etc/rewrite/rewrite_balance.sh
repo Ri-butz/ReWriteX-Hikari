@@ -40,8 +40,12 @@ chmod 644 /sys/devices/system/cpu/cpu7/online
 echo "0" > /sys/devices/system/cpu/cpu7/online
 chmod 444 /sys/devices/system/cpu/cpu7/online
 
-# Enable core ctl
-echo "1" > /sys/devices/system/cpu/cpu0/core_ctl/enable
+# Enable Core control / hotplug
+for cctl in /sys/devices/system/cpu/*/core_ctl ; do
+    chmod 666 $cctl/enable
+	echo 1 > $cctl/enable
+	chmod 444 $cctl/enable
+done
 
 # Lpm
 echo "25" > /sys/module/lpm_levels/parameters/bias_hyst
