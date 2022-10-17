@@ -2,6 +2,9 @@
 
 #Changelog
 
+• v6.9
+- Just a few fixes and additions YoStarEN to performance profile
+
 • v6.8
 - Add gpu idler timer and pmqos latency
 - Add support performance mode for lega.feisl.hhera
