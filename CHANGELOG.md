@@ -4,6 +4,7 @@
 
 • v7.0
 - Restore some old settings for better ram management and less latency
+- Enable max_phantom_proccess and reduce max_cache_proccess
 
 • v6.9
 - Just a few fixes and additions YoStarEN to performance profile
