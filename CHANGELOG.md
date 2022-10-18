@@ -2,6 +2,9 @@
 
 #Changelog
 
+• v7.0
+- Restore some old settings for better ram management and less latency
+
 • v6.9
 - Just a few fixes and additions YoStarEN to performance profile
 
