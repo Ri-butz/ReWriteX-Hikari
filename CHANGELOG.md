@@ -2,6 +2,9 @@
 
 #Changelog
 
+• v7.1
+- Just a little improvement 
+
 • v7.0
 - Restore some old settings for better ram management and less latency
 - Enable max_phantom_proccess and reduce max_cache_proccess
