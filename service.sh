@@ -92,12 +92,12 @@ echo "0" > /dev/stune/schedtune.colocate
 echo "0" > /dev/stune/cgroup.clone_children
 echo "0" > /dev/stune/cgroup.sane_behavior
 for stune in /dev/stune/*; do
-    echo "1" > "$stune/schedtune.sched_boost_enabled"
-    echo "0" > "$stune/schedtune.boost"
-    echo "0" > "$stune/schedtune.sched_boost_no_override"
-    echo "0" > "$stune/schedtune.prefer_idle"
-    echo "0" > "$stune/schedtune.colocate"
-    echo "0" > "$stune/cgroup.clone_children"
+    echo "1" > $stune/schedtune.sched_boost_enabled
+    echo "0" > $stune/schedtune.boost
+    echo "0" > $stune/schedtune.sched_boost_no_override
+    echo "0" > $stune/schedtune.prefer_idle
+    echo "0" > $stune/schedtune.colocate
+    echo "0" > $stune/cgroup.clone_children
 done
 #Lower Schedtune on background as it will consume quite a lot of power.
 echo "1" > /dev/stune/background/schedtune.prefer_idle
@@ -146,20 +146,20 @@ echo "33280" > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 # all sd, sda, sdb, etc.
 for queue in /sys/block/sd*/queue
 do
-    echo "cfq" > "$queue/scheduler"
-    echo "0" > "$queue/iostats"
-    echo "0" > "$queue/add_random"
-    echo "0" > "$queue/nomerges"
-    echo "64" > "$queue/nr_requests"
-    echo "1" > "$queue/rq_affinity"
-    echo "128" > "$queue/read_ahead_kb"
-    echo "0" > "$queue/iosched/slice_idle"
-    echo "0" > "$queue/iosched/slice_idle_us"
-    echo "0" > "$queue/iosched/group_idle"
-    echo "0" > "$queue/iosched/group_idle_us"
-    echo "1" > "$queue/iosched/low_latency"
-    echo "100" > "$queue/iosched/target_latency"
-    echo "100000" > "$queue/iosched/target_latency_us"
+    echo "cfq" > $queue/scheduler
+    echo "0" > $queue/iostats
+    echo "0" > $queue/add_random
+    echo "0" > $queue/nomerges
+    echo "64" > $queue/nr_requests
+    echo "1" > $queue/rq_affinity
+    echo "128" > $queue/read_ahead_kb
+    echo "0" > $queue/iosched/slice_idle
+    echo "0" > $queue/iosched/slice_idle_us
+    echo "0" > $queue/iosched/group_idle
+    echo "0" > $queue/iosched/group_idle_us
+    echo "1" > $queue/iosched/low_latency
+    echo "100" > $queue/iosched/target_latency
+    echo "100000" > $queue/iosched/target_latency_us
 done
 
 # Max Processing
