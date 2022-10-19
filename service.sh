@@ -16,24 +16,33 @@ su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '🚴 Apply 
 magiskpolicy --live 'allow untrusted_app proc_net_tcp_udp file {read write open getattr}'
 magiskpolicy --live 'allow untrusted_app app_data_file file {read write open getattr execute execute_no_trans}'
 
+# Enable Explicit Congestion Control
+echo "1" > /proc/sys/net/ipv4/tcp_ecn
+
+# Enable fast socket open for receiver and sender
+echo "3" > /proc/sys/net/ipv4/tcp_fastopen
+
+# Disable SYN cookies
+echo "0" > /proc/sys/net/ipv4/tcp_syncookies
+
 # Schedutil as default governor
 for gov in /sys/devices/system/cpu/*/cpufreq
 do
     echo "schedutil" > $gov/scaling_governor
     echo "0" > $gov/schedutil/up_rate_limit_us
     echo "0" > $gov/schedutil/down_rate_limit_us
-    echo "85" > $gov/schedutil/hispeed_load
+    echo "90" > $gov/schedutil/hispeed_load
 done
 
 # Kernel parameters
-SCHED_TASKS=10
-SCHED_PERIOD=$((1 * 1000 * 1000))
-echo "3" > /proc/sys/kernel/perf_cpu_time_max_percent
+SCHED_TASKS=8
+SCHED_PERIOD=$((4 * 1000 * 1000))
+echo "15" > /proc/sys/kernel/perf_cpu_time_max_percent
 echo "$SCHED_PERIOD" > /proc/sys/kernel/sched_latency_ns
 echo "$((SCHED_PERIOD / 2))" > /proc/sys/kernel/sched_wakeup_granularity_ns
 echo "$((SCHED_PERIOD / SCHED_TASKS))" > /proc/sys/kernel/sched_min_granularity_ns
 echo "5000000" > /proc/sys/kernel/sched_migration_cost_ns
-echo "4" > /proc/sys/kernel/sched_nr_migrate
+echo "32" > /proc/sys/kernel/sched_nr_migrate
 echo "1" > /proc/sys/kernel/sched_autogroup_enabled
 echo "0" > /proc/sys/kernel/sched_tunable_scaling
 echo "1" > /proc/sys/kernel/sched_child_runs_first
@@ -112,6 +121,7 @@ mkswap /dev/block/zram0 > /dev/null 2>&1
 swapon /dev/block/zram0 > /dev/null 2>&1
 
 # Virtual memory tweaks
+stop perfd
 echo "10" > /proc/sys/vm/dirty_background_ratio
 echo "30" > /proc/sys/vm/dirty_ratio
 echo "3000" > /proc/sys/vm/dirty_expire_centisecs
@@ -123,9 +133,10 @@ echo "0" > /proc/sys/vm/oom_kill_allocating_task
 echo "20" > /proc/sys/vm/vfs_cache_pressure
 echo "20" > /proc/sys/vm/stat_interval
 echo "8192" > /proc/sys/vm/min_free_kbytes
+start perfd
 
 # LMK
-echo "1" > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
+echo "0" > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
 chmod 666 /sys/module/lowmemorykiller/parameters/minfree
 chown root /sys/module/lowmemorykiller/parameters/minfree
 echo "14535,29070,43605,58112,72675,87210" > /sys/module/lowmemorykiller/parameters/minfree
