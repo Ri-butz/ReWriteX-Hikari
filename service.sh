@@ -204,47 +204,7 @@ for U in $(ls /data/user); do
 done
 
 # Add GMS to battery optimization
-dumpsys deviceidle whitelist -com.google.android.gms
-
-# Cgroup
-change_task_cgroup() {
-    local ps_ret
-    ps_ret="$(ps -Ao pid,args)"
-    for temp_pid in $(echo "$ps_ret" | grep "$1" | awk '{print $1}'); do
-        for temp_tid in $(ls "/proc/$temp_pid/task/"); do
-            echo "$temp_tid" > "/dev/$3/$2/tasks"
-        done
-    done
-}
-
-# Clear top-app
-for clear in $(cat /dev/cpuset/top-app/tasks); do
-    echo "$clear" >/dev/cpuset/foreground/tasks
-done
-
-# Reduce render thread waiting time
-change_task_cgroup "surfaceflinger" "" "cpuset"
-change_task_cgroup "surfaceflinger" "top-app" "cpuset"
-change_task_cgroup "surfaceflinger" "foreground" "stune"
-
-# Better rendering speed
-change_task_cgroup "android.hardware.graphics.composer" "top-app" "cpuset"
-change_task_cgroup "android.hardware.graphics.composer" "foreground" "stune"
-
-# Renicer
-function high_priority() {
-  pgrep -f $1 | while read pid; do
-  renice -n +40 -p $pid
-  renice -n -19 -p $pid
-  renice -n -15 -p $pid
-  echo "$pid" > /dev/cpuset/top-app/cgroup.procs
-  echo "$pid" > /dev/stune/top-app/cgroup.procs
-  done
-}
-
-# Set high priority
-high_priority android.hardware.graphics.composer
-high_priority surfaceflinger
+dumpsys deviceidle whitelist -com.google.android.gms &> $NLL
 
 # Done
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ✅ All tweaks is applied... ] /g' "/data/adb/modules/ReWrite/module.prop"
