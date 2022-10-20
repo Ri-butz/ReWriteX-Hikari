@@ -208,9 +208,9 @@ while true; do
 done
 ui_print "    Selected: $D"
 case $D in
-    1 ) TEXT4="🔴Disable"; sed -i '/#dumpsysdeviceidle/s/.*/dumpsys deviceidle disable/' $MODPATH/service.sh;;
-    2 ) TEXT4="🟢Light"; sed -i '/#dumpsysdeviceidle/s/.*/dumpsys deviceidle enable light/' $MODPATH/service.sh;;
-    3 ) TEXT4="⚫Deep"; sed -i '/#dumpsysdeviceidle/s/.*/dumpsys deviceidle enable/' $MODPATH/service.sh; sed -i '/# Without deep doze/s/.*/dumpsys deviceidle force-idle/' $MODPATH/service.sh;;
+    1 ) TEXT4="🔴Disable"; sed -i '/# Doze mode/s/.*/# Doze mode(Disable)/' $MODPATH/service.sh; sed -i '/#dumpsysdeviceidle/s/.*/dumpsys deviceidle disable/' $MODPATH/service.sh;;
+    2 ) TEXT4="🟢Light"; sed -i '/# Doze mode/s/.*/# Doze mode(Light)/' $MODPATH/service.sh; sed -i '/#dumpsysdeviceidle/s/.*/dumpsys deviceidle enable light/' $MODPATH/service.sh;;
+    3 ) TEXT4="⚫Deep"; sed -i '/# Doze mode/s/.*/# Doze mode(Deep)/' $MODPATH/service.sh; sed -i '/#dumpsysdeviceidle/s/.*/dumpsys deviceidle enable/' $MODPATH/service.sh; sed -i '/# Without deep doze/s/.*/dumpsys deviceidle force-idle/' $MODPATH/service.sh;;
 esac
 sleep 0.7
 ui_print "    $TEXT4"
