@@ -16,15 +16,6 @@ su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '🚴 Apply 
 magiskpolicy --live 'allow untrusted_app proc_net_tcp_udp file {read write open getattr}'
 magiskpolicy --live 'allow untrusted_app app_data_file file {read write open getattr execute execute_no_trans}'
 
-# Enable Explicit Congestion Control
-echo "1" > /proc/sys/net/ipv4/tcp_ecn
-
-# Enable fast socket open for receiver and sender
-echo "3" > /proc/sys/net/ipv4/tcp_fastopen
-
-# Disable SYN cookies
-echo "0" > /proc/sys/net/ipv4/tcp_syncookies
-
 # Schedutil as default governor
 for gov in /sys/devices/system/cpu/*/cpufreq
 do
@@ -175,12 +166,6 @@ fstrim -v /product
 # Unity Big.Little trick by lybxlpsv 
 nohup sh $MODDIR/script/unitytrick > /dev/null &
 
-# Dex2oat
-sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ⛔ Dex2oat Optimizer is running... ] /g' "/data/adb/modules/ReWrite/module.prop"
-su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '⛔ Dex2oat Optimizer is running...'" >/dev/null 2>&1
-sleep 15
-dex2oat_opt
-
 # Doze mode
 #dumpsysdeviceidle
 # Without deep doze
@@ -205,6 +190,12 @@ done
 
 # Add GMS to battery optimization
 dumpsys deviceidle whitelist -com.google.android.gms &> $NLL
+
+# Dex2oat
+sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ⛔ Dex2oat Optimizer is running... ] /g' "/data/adb/modules/ReWrite/module.prop"
+su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '⛔ Dex2oat Optimizer is running...'" >/dev/null 2>&1
+sleep 15
+dex2oat_opt
 
 # Done
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ✅ All tweaks is applied... ] /g' "/data/adb/modules/ReWrite/module.prop"
