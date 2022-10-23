@@ -69,7 +69,7 @@ echo "1" > /sys/class/kgsl/kgsl-3d0/force_bus_on
 echo "1" > /sys/class/kgsl/kgsl-3d0/force_clk_on
 
 # Entropy
-echo "1024" > /proc/sys/kernel/random/read_wakeup_threshold
+echo "512" > /proc/sys/kernel/random/read_wakeup_threshold
 echo "2048" > /proc/sys/kernel/random/write_wakeup_threshold
 
 # Report
