@@ -71,7 +71,7 @@ echo "0" > /sys/class/kgsl/kgsl-3d0/force_clk_on
 
 # Entropy
 echo "128" > /proc/sys/kernel/random/read_wakeup_threshold
-echo "512" > /proc/sys/kernel/random/write_wakeup_threshold
+echo "1024" > /proc/sys/kernel/random/write_wakeup_threshold
 
 # Report
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ 🥶 Balance Mode... ] /g' "/data/adb/modules/ReWrite/module.prop"
