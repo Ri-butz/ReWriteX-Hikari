@@ -18,24 +18,31 @@ net.pdpbr1.dns2
 net.lte.dns1
 net.lte.dns2
 
-# Improve sliding response
-debug.egl.hw=1
-ro.max.fling_velocity=12000
-ro.min.fling_velocity=8000
-windowsmgr.max_events_per_sec=150
-view.scroll_friction=10
+# Disable vsync
+debug.cpurend.vsync=false
 
-# Performance
-ro.ril.power_collapse=1
-pm.sleep_mode=1 
-wifi.supplicant_scan_interval=180
-power_supply.wakeup=enable 
-ro.config.hw_fast_dormancy=1 
-ro.config.hw_power_saving=1
+# OpenGL default render
+debug.hwui.renderer=skiagl
+debug.renderengine.backend=skiaglthreaded
+renderthread.skia.reduceopstasksplitting=true
 
-# Ram
-ro.HOME_APP_ADJ=1
+# Surfaceflinger
+ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
+ro.surface_flinger.max_virtual_display_dimension=4096
+ro.surface_flinger.vsync_event_phase_offset_ns=2000000
+ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
+ro.surface_flinger.set_display_power_timer_ms=10000
+ro.surface_flinger.set_touch_timer_ms=5000
+ro.surface_flinger.set_idle_timer_ms=9000
+ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 
 # Open the first-in-first-out interface thread
 sys.use_fifo_ui=1
 
+# Dalvik thread
+persist.sys.dalvik.hyperthreading=true
+persist.sys.dalvik.multithread=true
+
+# Zygote Preforking Faster App Launch 
+persist.device_config.runtime_native.usap_pool_enabled=true
+persist.zygote.preload_threads=3
