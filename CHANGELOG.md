@@ -2,6 +2,12 @@
 
 #Changelog
 
+• v7.2
+- Add com.emulator.fpse64 to performance profile
+- Remove renicer
+- Reduce read wakeup threshold
+- etc
+
 • v7.1
 - Just a little improvement 
 
