@@ -191,6 +191,36 @@ done
 # Add GMS to battery optimization
 dumpsys deviceidle whitelist -com.google.android.gms &> $NLL
 
+# Guide: $1 - task_name | $2 - "cpuset" or "stune" | $3 - cgroup_name
+change_task_cgroup() {
+    local ps_ret
+    ps_ret="$(ps -Ao pid,args)"
+    for temp_pid in $(echo "$ps_ret" | grep "$1" | awk '{print $1}'); do
+        for temp_tid in $(ls "/proc/$temp_pid/task/"); do
+            write "/dev/$2/$3/tasks" "$temp_tid"
+        done
+    done
+}
+
+# Guide: $1 - task_name | $2 - nice (relative to 120)
+change_task_nice() {
+    local ps_ret
+    ps_ret="$(ps -Ao pid,args)"
+    for temp_pid in $(echo "$ps_ret" | grep "$1" | awk '{print $1}'); do
+        for temp_tid in $(ls "/proc/$temp_pid/task/"); do
+            renice -n "$2" -p "$temp_tid"
+        done
+    done
+}
+
+# Better rendering speed
+change_task_cgroup "surfaceflinger" "top-app" "cpuset"
+change_task_cgroup "surfaceflinger" "foreground" "stune"
+change_task_cgroup "android.hardware.graphics.composer" "top-app" "cpuset"
+change_task_cgroup "android.hardware.graphics.composer" "foreground" "stune"
+change_task_nice "surfaceflinger" "-15"
+change_task_nice "android.hardware.graphics.composer" "-15"
+
 # Dex2oat
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ⛔ Dex2oat Optimizer is running... ] /g' "/data/adb/modules/ReWrite/module.prop"
 su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '⛔ Dex2oat Optimizer is running...'" >/dev/null 2>&1
