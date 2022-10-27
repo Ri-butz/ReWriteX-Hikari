@@ -43,6 +43,7 @@ ui_print "• Taka🌿 (Dns changer and addon script)"
 ui_print "• Pedrozzz0 (Notification)"
 ui_print "• 𝘿𝙀𝙎𝙄𝙍𝙀 🇷🇺 (Renicer and Cgroup)"
 ui_print "• lybxlpsv (Unity Big.Little trick)"
+ui_print "• Niko Schwickert for all the suggestions"
 ui_print "• All my friends who contributed to the"
 ui_print "  development of the project and many others"
 ui_print "##########################################"
@@ -261,67 +262,51 @@ sed -i '/gChannelBondingMode24GHz=/d;/gChannelBondingMode5GHz=/d;/gForce1x1Excep
 done
 [[ -z $SELECTPATH ]] && abort "- Installation FAILED. Your device didn't support WCNSS_qcom_cfg.ini." || { mkdir -p $MODPATH/system; mv -f $MODPATH/vendor $MODPATH/system/vendor;}
 
-# Patch the xml and place the modified one to the original directory
+# Universal GMS Doze by gloeyisk
+# open source loving GL-DP and all contributors;
+# Patches Google Play services app and its background processes to be able using battery optimization
+#
+# Patch the XML and place the modified one to the original directory
 ui_print "- Patching XML files"
+gms=$(xml=$(find /system/ /product/ /vendor/ -iname "*.xml");for i in $xml; do if grep -q 'allow-in-power-save package="com.google.android.gms"' $ROOT$i 2>/dev/null; then echo "$i";fi; done)
+ims=$(xml=$(find /system/ /product/ /vendor/ -iname "*.xml");for i in $xml; do if grep -q 'allow-in-power-save package="com.google.android.ims"' $ROOT$i 2>/dev/null; then echo "$i";fi; done)
+pst=$(xml=$(find /system/ /product/ /vendor/ -iname "*.xml");for i in $xml; do if grep -q 'allow-in-power-save package="com.google.android.apps.safetyhub"' $ROOT$i 2>/dev/null; then echo "$i";fi; done)
+trb=$(xml=$(find /system/ /product/ /vendor/ -iname "*.xml");for i in $xml; do if grep -q 'allow-in-power-save package="com.google.android.apps.turbo"' $ROOT$i 2>/dev/null; then echo "$i";fi; done)
 
-GMS0="\"com.google.android.gms"\"
-STR1="allow-unthrottled-location package=$GMS0"
-STR2="allow-ignore-location-settings package=$GMS0"
-STR3="allow-in-power-save package=$GMS0"
-STR4="allow-in-data-usage-save package=$GMS0"
-NULL="/dev/null"
+for i in $gms $ims $pst $trb
+do
+mkdir -p `dirname $MODPATH$i`
+cp -af $ROOT$i $MODPATH$i
+sed -i '/allow-in-power-save package="com.google.android.gms"/d;/allow-in-data-usage-save package="com.google.android.gms"/d' $MODPATH$i
+sed -i '/allow-in-power-save package="com.google.android.ims"/d;/allow-in-data-usage-save package="com.google.android.ims"/d' $MODPATH$i
+sed -i '/allow-in-power-save package="com.google.android.apps.safetyhub"/d;/allow-in-data-usage-save package="com.google.android.apps.safetyhub"/d' $MODPATH$i
+sed -i '/allow-in-power-save package="com.google.android.apps.turbo"/d;/allow-in-data-usage-save package="com.google.android.apps.turbo"/d' $MODPATH$i
+done
 
-ui_print "- Finding system XML"
-SYS_XML="$(
-    SXML="$(find /system_ext/* /system/* \
-                 /vendor/* -type f -iname '*.xml' -print)"
-    for S in $SXML; do
-        if grep -qE "$STR1|$STR2|$STR3|$STR4" $ROOT$S 2> $NULL; then
-            echo "$S"
-        fi
-    done
-)"
-
-PATCH_SX() {
-    for SX in $SYS_XML; do
-        mkdir -p "$(dirname $MODPATH$SX)"
-        cp -af $ROOT$SX $MODPATH$SX
-        ui_print "  Patching: $SX"
-        sed -i "/$STR1/d;/$STR2/d;/$STR3/d;/$STR4/d" $MODPATH/$SX
-    done
-
-    # Merge patched files under /system dir
-    for P in product vendor; do
-        if [ -d $MODPATH/$P ]; then
-            ui_print "- Moving files to module dir"
-            mkdir -p $MODPATH/system/$P
-            mv -f $MODPATH/$P $MODPATH/system/$P
-        fi
-    done
-}
+for i in product vendor
+do
+if [ -d $MODPATH/$i ]; then
+if [ ! -d $MODPATH/system/$i ]; then
+sleep 1
+ui_print "- Moving files to /system partition"
+mkdir -p $MODPATH/system/$i
+mv -f $MODPATH/$i $MODPATH/system/
+else
+rm -rf $MODPATH/$i
+fi
+fi
+done
 
 # Search and patch any conflicting modules (if present)
-# Search conflicting xml files
-MOD_XML="$(
-    MXML="$(find /data/adb/* -type f -iname "*.xml" -print)"
-    for M in $MXML; do
-        if grep -qE "$STR1|$STR2|$STR3|$STR4" $M; then
-            echo "$M"
-        fi
-    done
-)"
-
-PATCH_MX() {
-    ui_print "- Finding conflicting XML"
-    for MX in $MOD_XML; do
-        MOD="$(echo "$MX" | awk -F'/' '{print $5}')"
-        ui_print "  $MOD: $MX"
-        sed -i "/$STR1/d;/$STR2/d;/$STR3/d;/$STR4/d" $MX
-    done
-}
-
-# Find and patch XMLs
-PATCH_SX && PATCH_MX
+# Search conflicting XML files
+conflict=$(xml=$(find /data/adb -iname "*.xml");for i in $xml; do if grep -q 'allow-in-power-save package="com.google.android.gms"' $i 2>/dev/null; then echo "$i";fi; done)
+for i in $conflict
+do
+search=$(echo "$i" | sed -e 's/\// /g' | awk '{print $4}')
+ui_print "- Conflicting modules detected"
+ui_print "   $search"
+sed -i '/allow-in-power-save package="com.google.android.gms"/d;/allow-in-data-usage-save package="com.google.android.gms"/d' $i
+done
 
 # Dex2oat Optimizer
 [[ "$IS64BIT" == "true" ]] && mv -f "$MODPATH/system/bin/dex2oat_opt64" "$MODPATH/system/bin/dex2oat_opt" && rm -f $MODPATH/system/bin/dex2oat_opt32 || mv -f "$MODPATH/system/bin/dex2oat_opt32" "$MODPATH/system/bin/dex2oat_opt" && rm -f $MODPATH/system/bin/dex2oat_opt64
