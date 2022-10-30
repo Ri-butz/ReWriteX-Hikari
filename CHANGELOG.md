@@ -2,6 +2,11 @@
 
 #Changelog
 
+• v7.3
+- Renicer is back
+- Use gms doze 1.8.5 without disable gms service, just sysconfig/google.xml
+- Etc
+
 • v7.2
 - Add com.emulator.fpse64 to performance profile
 - Remove renicer
