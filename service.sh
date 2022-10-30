@@ -118,7 +118,7 @@ echo "30" > /proc/sys/vm/dirty_ratio
 echo "3000" > /proc/sys/vm/dirty_expire_centisecs
 echo "3000" > /proc/sys/vm/dirty_writeback_centisecs
 echo "750" > /proc/sys/vm/extfrag_threshold
-echo "100" > /proc/sys/vm/swappiness
+echo "80" > /proc/sys/vm/swappiness
 echo "0" > /proc/sys/vm/page-cluster
 echo "0" > /proc/sys/vm/oom_kill_allocating_task
 echo "20" > /proc/sys/vm/vfs_cache_pressure
