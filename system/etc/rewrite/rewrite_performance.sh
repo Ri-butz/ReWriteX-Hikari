@@ -40,7 +40,7 @@ chmod 644 /sys/devices/system/cpu/cpu7/online
 echo "1" > /sys/devices/system/cpu/cpu7/online
 chmod 444 /sys/devices/system/cpu/cpu7/online
 
-# Disable Core ctl / hotplug
+# Disable Core ctl
 for cctl in /sys/devices/system/cpu/*/core_ctl ; do
     chmod 666 $cctl/enable
 	echo 0 > $cctl/enable
