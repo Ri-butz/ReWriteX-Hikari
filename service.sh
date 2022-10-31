@@ -39,6 +39,12 @@ echo "0" > /proc/sys/kernel/sched_tunable_scaling
 echo "1" > /proc/sys/kernel/sched_child_runs_first
 echo "0" > /proc/sys/kernel/timer_migration
 echo "0" > /proc/sys/kernel/sched_schedstats
+echo "0" > /proc/sys/kernel/sched_boost
+echo "15" > /proc/sys/kernel/sched_min_task_util_for_boost
+echo "1000" > /proc/sys/kernel/sched_min_task_util_for_colocation
+echo "100" > /proc/sys/kernel/sched_rr_timeslice_ns
+echo "1000000" > /proc/sys/kernel/sched_rt_period_us
+echo "950000" > /proc/sys/kernel/sched_rt_runtime_us
 
 # Lpm
 echo "0" > /sys/module/lpm_levels/parameters/lpm_prediction
@@ -131,26 +137,15 @@ echo "0" > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
 chmod 666 /sys/module/lowmemorykiller/parameters/minfree
 chown root /sys/module/lowmemorykiller/parameters/minfree
 echo "14535,29070,43605,58112,72675,87210" > /sys/module/lowmemorykiller/parameters/minfree
+chmod 444 /sys/module/lowmemorykiller/parameters/minfree
 echo "33280" > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 
-# I/O scheduler optimized
-# all sd, sda, sdb, etc.
-for queue in /sys/block/sd*/queue
+# I/O scheduler
+for sched in /sys/block/*/queue
 do
-    echo "cfq" > $queue/scheduler
-    echo "0" > $queue/iostats
-    echo "0" > $queue/add_random
-    echo "0" > $queue/nomerges
-    echo "64" > $queue/nr_requests
-    echo "1" > $queue/rq_affinity
-    echo "128" > $queue/read_ahead_kb
-    echo "0" > $queue/iosched/slice_idle
-    echo "0" > $queue/iosched/slice_idle_us
-    echo "0" > $queue/iosched/group_idle
-    echo "0" > $queue/iosched/group_idle_us
-    echo "1" > $queue/iosched/low_latency
-    echo "100" > $queue/iosched/target_latency
-    echo "100000" > $queue/iosched/target_latency_us
+    echo "noop" > $sched/scheduler
+    echo "512" > $sched/read_ahead_kb
+    echo "128" > $sched/nr_requests
 done
 
 # Max Processing
