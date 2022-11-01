@@ -2,7 +2,8 @@
 
 #Changelog
 
-• v7.3 Rev2
+• v7.4
+- Use noop i/o scheduler governor
 - Fixed some minor bugs
 
 • v7.3
