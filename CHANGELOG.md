@@ -2,6 +2,9 @@
 
 #Changelog
 
+• v7.3 Rev2
+- Fixed some minor bugs
+
 • v7.3
 - Renicer is back
 - Use gms doze 1.8.5 without disable gms service, just sysconfig/google.xml
