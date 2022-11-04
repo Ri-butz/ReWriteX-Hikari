@@ -40,6 +40,18 @@ chmod 644 /sys/devices/system/cpu/cpu7/online
 echo "1" > /sys/devices/system/cpu/cpu7/online
 chmod 444 /sys/devices/system/cpu/cpu7/online
 
+# Cpu power limit
+##Little
+for little in /sys/devices/system/cpu/cpu[0,1,2,3]/cpufreq
+do
+  echo "0" > $little/schedutil/pl
+done
+##Big
+for big in /sys/devices/system/cpu/cpu[4,5,6,7]/cpufreq
+do
+  echo "0" > $big/schedutil/pl
+done
+
 # Disable Core ctl
 for cctl in /sys/devices/system/cpu/*/core_ctl
 do
