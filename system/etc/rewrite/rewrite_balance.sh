@@ -40,6 +40,18 @@ chmod 644 /sys/devices/system/cpu/cpu7/online
 echo "0" > /sys/devices/system/cpu/cpu7/online
 chmod 444 /sys/devices/system/cpu/cpu7/online
 
+# Cpu power limit
+##Little
+for little in /sys/devices/system/cpu/cpu[0,1,2,3]/cpufreq
+do
+  echo "1" > $little/schedutil/pl
+done
+##Big
+for big in /sys/devices/system/cpu/cpu[4,5,6,7]/cpufreq
+do
+  echo "1" > $big/schedutil/pl
+done
+
 # Enable Core control
 for cctl in /sys/devices/system/cpu/*/core_ctl
 do
@@ -47,9 +59,6 @@ do
     echo 1 > $cctl/enable
     chmod 444 $cctl/enable
 done
-
-# Lpm
-echo "25" > /sys/module/lpm_levels/parameters/bias_hyst
 
 # Foreground
 echo "0" > /dev/stune/foreground/schedtune.boost
@@ -61,8 +70,6 @@ echo "0" > /dev/stune/top-app/schedtune.sched_boost_no_override
 
 # Gpu
 MIN=$(cat /sys/class/kgsl/kgsl-3d0/min_pwrlevel)
-echo "80" > /sys/class/kgsl/kgsl-3d0/idle_timer
-echo "450" > /sys/class/kgsl/kgsl-3d0/pmqos_active_latency
 echo "1" > /sys/class/kgsl/kgsl-3d0/throttling
 echo "$MIN" > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
 echo "0" > /sys/class/kgsl/kgsl-3d0/force_no_nap
