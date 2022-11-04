@@ -19,10 +19,11 @@ magiskpolicy --live 'allow untrusted_app app_data_file file {read write open get
 # Schedutil as default governor
 for gov in /sys/devices/system/cpu/*/cpufreq
 do
-    echo "schedutil" > $gov/scaling_governor
-    echo "0" > $gov/schedutil/up_rate_limit_us
-    echo "0" > $gov/schedutil/down_rate_limit_us
-    echo "90" > $gov/schedutil/hispeed_load
+  echo "schedutil" > $gov/scaling_governor
+  echo "500" > $gov/schedutil/up_rate_limit_us
+  echo "20000" > $gov/schedutil/down_rate_limit_us
+  echo "90" > $gov/schedutil/hispeed_load
+  echo "0" > $gov/schedutil/hispeed_freq
 done
 
 # Kernel parameters
@@ -46,10 +47,6 @@ echo "100" > /proc/sys/kernel/sched_rr_timeslice_ns
 echo "1000000" > /proc/sys/kernel/sched_rt_period_us
 echo "950000" > /proc/sys/kernel/sched_rt_runtime_us
 
-# Lpm
-echo "0" > /sys/module/lpm_levels/parameters/lpm_prediction
-echo "0" > /sys/module/lpm_levels/parameters/sleep_disabled
-
 # Disable kernel panic
 echo "0" > /proc/sys/kernel/panic
 echo "0" > /proc/sys/kernel/panic_on_oops
@@ -57,14 +54,6 @@ echo "0" > /proc/sys/kernel/panic_on_warn
 echo "0" > /sys/module/kernel/parameters/panic
 echo "0" > /sys/module/kernel/parameters/panic_on_warn
 echo "0" > /sys/module/kernel/parameters/pause_on_oops
-
-# Disable Fsync
-chmod 666 /sys/module/sync/parameters/fsync_enable
-chown root /sys/module/sync/parameters/fsync_enable
-echo "N" > /sys/module/sync/parameters/fsync_enable
-
-# Disable CRC
-echo "0" > /sys/module/mmc_core/parameters/use_spi_crc
 
 # Cpu Efficient
 echo "Y" > /sys/module/workqueue/parameters/power_efficient
@@ -90,15 +79,15 @@ echo "0" > /dev/stune/cgroup.clone_children
 echo "0" > /dev/stune/cgroup.sane_behavior
 for stune in /dev/stune/*
 do
-    echo "1" > $stune/schedtune.sched_boost_enabled
-    echo "0" > $stune/schedtune.boost
-    echo "0" > $stune/schedtune.sched_boost_no_override
-    echo "0" > $stune/schedtune.prefer_idle
-    echo "0" > $stune/schedtune.colocate
-    echo "0" > $stune/cgroup.clone_children
+  echo "1" > $stune/schedtune.sched_boost_enabled
+  echo "0" > $stune/schedtune.boost
+  echo "0" > $stune/schedtune.sched_boost_no_override
+  echo "0" > $stune/schedtune.prefer_idle
+  echo "0" > $stune/schedtune.colocate
+  echo "0" > $stune/cgroup.clone_children
 done
-#Lower Schedtune on background as it will consume quite a lot of power.
-echo "1" > /dev/stune/background/schedtune.prefer_idle
+  #Lower Schedtune on background as it will consume quite a lot of power.
+  echo "1" > /dev/stune/background/schedtune.prefer_idle
 
 # Disable Ramdumps
 if [ -d "/sys/module/subsystem_restart/parameters" ]
@@ -140,14 +129,32 @@ chmod 666 /sys/module/lowmemorykiller/parameters/minfree
 chown root /sys/module/lowmemorykiller/parameters/minfree
 echo "14535,29070,43605,58112,72675,87210" > /sys/module/lowmemorykiller/parameters/minfree
 chmod 444 /sys/module/lowmemorykiller/parameters/minfree
-echo "33280" > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 
 # I/O scheduler
-for sched in /sys/block/*/queue
+for queue in /sys/block/*/queue
 do
-    echo "noop" > $sched/scheduler
-    echo "512" > $sched/read_ahead_kb
-    echo "128" > $sched/nr_requests
+	 #Choose the first governor available
+	 avail_scheds="$(cat "$queue/scheduler")"
+	 for sched in noop bfq maple cfq deadline mq-deadline none
+  do
+    if [[ "$avail_scheds" == *"$sched"* ]]
+	   then
+			     echo "$sched" > $queue/scheduler
+			 break
+		  fi
+	 done
+
+	 #Do not use I/O as a source of randomness
+  echo "0" > $queue/add_random
+
+	 #Disable I/O statistics accounting
+  echo "0" > $queue/iostats
+
+	 #Reduce heuristic read-ahead
+	 echo "512" > $queue/read_ahead_kb
+
+	 #Reduce the maximum number of I/O request
+	 echo "128" > $queue/nr_requests
 done
 
 # Max Processing
@@ -165,39 +172,9 @@ nohup sh $MODDIR/script/unitytrick > /dev/null &
 
 # Doze mode
 #dumpsysdeviceidle
-# Without deep doze
+#deep doze
 
-# Guide: $1 - task_name | $2 - "cpuset" or "stune" | $3 - cgroup_name
-change_task_cgroup() {
-    local ps_ret
-    ps_ret="$(ps -Ao pid,args)"
-    for temp_pid in $(echo "$ps_ret" | grep "$1" | awk '{print $1}'); do
-        for temp_tid in $(ls "/proc/$temp_pid/task/"); do
-            write "/dev/$2/$3/tasks" "$temp_tid"
-        done
-    done
-}
-
-# Guide: $1 - task_name | $2 - nice (relative to 120)
-change_task_nice() {
-    local ps_ret
-    ps_ret="$(ps -Ao pid,args)"
-    for temp_pid in $(echo "$ps_ret" | grep "$1" | awk '{print $1}'); do
-        for temp_tid in $(ls "/proc/$temp_pid/task/"); do
-            renice -n "$2" -p "$temp_tid"
-        done
-    done
-}
-
-# Better rendering speed
-change_task_cgroup "surfaceflinger" "top-app" "cpuset"
-change_task_cgroup "surfaceflinger" "foreground" "stune"
-change_task_cgroup "android.hardware.graphics.composer" "top-app" "cpuset"
-change_task_cgroup "android.hardware.graphics.composer" "foreground" "stune"
-change_task_nice "surfaceflinger" "-15"
-change_task_nice "android.hardware.graphics.composer" "-15"
-
-# Dex2oat
+#DO
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ⛔ Dex2oat Optimizer is running... ] /g' "/data/adb/modules/ReWrite/module.prop"
 su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '⛔ Dex2oat Optimizer is running...'" >/dev/null 2>&1
 sleep 15
