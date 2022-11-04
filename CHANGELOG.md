@@ -2,6 +2,10 @@
 
 #Changelog
 
+• v7.5
+- Add more options when installing
+- New schedutil tweaks(test)
+
 • v7.4
 - Use noop i/o scheduler governor
 - Fixed some minor bugs
