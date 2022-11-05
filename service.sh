@@ -20,9 +20,9 @@ magiskpolicy --live 'allow untrusted_app app_data_file file {read write open get
 for gov in /sys/devices/system/cpu/*/cpufreq
 do
   echo "schedutil" > $gov/scaling_governor
-  echo "500" > $gov/schedutil/up_rate_limit_us
-  echo "20000" > $gov/schedutil/down_rate_limit_us
-  echo "90" > $gov/schedutil/hispeed_load
+  echo "0" > $gov/schedutil/up_rate_limit_us
+  echo "0" > $gov/schedutil/down_rate_limit_us
+  echo "88" > $gov/schedutil/hispeed_load
   echo "0" > $gov/schedutil/hispeed_freq
 done
 
