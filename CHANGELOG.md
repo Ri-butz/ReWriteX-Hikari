@@ -5,6 +5,8 @@
 • v7.5
 - Add more options when installing
 - New schedutil tweaks(test)
+- Add support for A13(need more tester)
+- Etc
 
 • v7.4
 - Use noop i/o scheduler governor
