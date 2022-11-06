@@ -60,10 +60,6 @@ do
     chmod 444 $cctl/enable
 done
 
-# Foreground
-echo "0" > /dev/stune/foreground/schedtune.boost
-echo "0" > /dev/stune/foreground/schedtune.sched_boost_no_override
-
 # Top app
 echo "0" > /dev/stune/top-app/schedtune.boost
 echo "0" > /dev/stune/top-app/schedtune.sched_boost_no_override
