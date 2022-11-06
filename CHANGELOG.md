@@ -5,6 +5,7 @@
 • v7.5
 - Add more options when installing
 - New schedutil tweaks(test)
+- Use cfq i/o scheduler
 - Add support for A13(need more tester)
 - Etc
 
