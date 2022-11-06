@@ -22,30 +22,30 @@ do
   echo "schedutil" > $gov/scaling_governor
   echo "0" > $gov/schedutil/up_rate_limit_us
   echo "0" > $gov/schedutil/down_rate_limit_us
-  echo "88" > $gov/schedutil/hispeed_load
+  echo "90" > $gov/schedutil/hispeed_load
   echo "0" > $gov/schedutil/hispeed_freq
 done
 
 # Kernel parameters
-SCHED_TASKS=8
-SCHED_PERIOD=$((4 * 1000 * 1000))
-echo "15" > /proc/sys/kernel/perf_cpu_time_max_percent
-echo "$SCHED_PERIOD" > /proc/sys/kernel/sched_latency_ns
-echo "$((SCHED_PERIOD / 2))" > /proc/sys/kernel/sched_wakeup_granularity_ns
-echo "$((SCHED_PERIOD / SCHED_TASKS))" > /proc/sys/kernel/sched_min_granularity_ns
-echo "5000000" > /proc/sys/kernel/sched_migration_cost_ns
-echo "32" > /proc/sys/kernel/sched_nr_migrate
-echo "1" > /proc/sys/kernel/sched_autogroup_enabled
-echo "0" > /proc/sys/kernel/sched_tunable_scaling
+echo "20" > /proc/sys/kernel/perf_cpu_time_max_percent
+echo "0" > /proc/sys/kernel/sched_autogroup_enabled
+echo "1" > /proc/sys/kernel/sched_boost
 echo "1" > /proc/sys/kernel/sched_child_runs_first
-echo "0" > /proc/sys/kernel/timer_migration
+echo "5000000" > /proc/sys/kernel/sched_migration_cost_ns
+echo "10000000" > /proc/sys/kernel/sched_min_granularity_ns
+echo "20" > /proc/sys/kernel/sched_min_task_util_for_colocation
 echo "0" > /proc/sys/kernel/sched_schedstats
-echo "0" > /proc/sys/kernel/sched_boost
-echo "15" > /proc/sys/kernel/sched_min_task_util_for_boost
-echo "1000" > /proc/sys/kernel/sched_min_task_util_for_colocation
-echo "100" > /proc/sys/kernel/sched_rr_timeslice_ns
-echo "1000000" > /proc/sys/kernel/sched_rt_period_us
-echo "950000" > /proc/sys/kernel/sched_rt_runtime_us
+echo "0" > /proc/sys/kernel/sched_tunable_scaling
+echo "15000000" > /proc/sys/kernel/sched_wakeup_granularity_ns
+echo "1" > /proc/sys/kernel/timer_migration
+echo "0	0 0 0" > /proc/sys/kernel/printk
+echo "off" > /proc/sys/kernel/printk_devkmsg
+
+# Enable ECN negotiation by default
+echo 1 > /proc/sys/net/ipv4/tcp_ecn
+
+# Enable fast socket open for receiver and sender
+echo 3 > /proc/sys/net/ipv4/tcp_fastopen
 
 # Disable kernel panic
 echo "0" > /proc/sys/kernel/panic
@@ -121,6 +121,8 @@ echo "0" > /proc/sys/vm/oom_kill_allocating_task
 echo "20" > /proc/sys/vm/vfs_cache_pressure
 echo "20" > /proc/sys/vm/stat_interval
 echo "8192" > /proc/sys/vm/min_free_kbytes
+echo "32" > /proc/sys/vm/watermark_scale_factor
+echo "1500" > /proc/sys/vm/watermark_boost_factor
 start perfd
 
 # LMK
@@ -131,31 +133,26 @@ echo "14535,29070,43605,58112,72675,87210" > /sys/module/lowmemorykiller/paramet
 chmod 444 /sys/module/lowmemorykiller/parameters/minfree
 
 # I/O scheduler
-for queue in /sys/block/*/queue
-do
-	 #Choose the first governor available
-	 avail_scheds="$(cat "$queue/scheduler")"
-	 for sched in noop bfq maple cfq deadline mq-deadline none
+  #Internal storage
+  for int in /sys/block/sd*/queue
   do
-    if [[ "$avail_scheds" == *"$sched"* ]]
-	   then
-			     echo "$sched" > $queue/scheduler
-			 break
-		  fi
-	 done
-
-	 #Do not use I/O as a source of randomness
-  echo "0" > $queue/add_random
-
-	 #Disable I/O statistics accounting
-  echo "0" > $queue/iostats
-
-	 #Reduce heuristic read-ahead
-	 echo "512" > $queue/read_ahead_kb
-
-	 #Reduce the maximum number of I/O request
-	 echo "128" > $queue/nr_requests
-done
+    echo "cfq" > $int/scheduler
+    echo "0" > $int/add_random
+    echo "0" > $int/iostats
+    echo "2" > $int/rq_affinity
+	   echo "128" > $int/read_ahead_kb
+	   echo "64" > $int/nr_requests
+  done
+  #External storage
+  for ext in /sys/block/mmc*/queue
+  do
+    echo "cfq" > $ext/scheduler
+    echo "0" > $ext/add_random
+    echo "0" > $ext/iostats
+    echo "2" > $ext/rq_affinity
+	   echo "128" > $ext/read_ahead_kb
+	   echo "64" > $ext/nr_requests
+  done
 
 # Max Processing
 [ $(getprop ro.build.version.release) -gt 9 ] && device_config put activity_manager max_phantom_processes 32 ; device_config put activity_manager max_cached_processes 64 || settings put global activity_manager_constants max_cached_processes=64
