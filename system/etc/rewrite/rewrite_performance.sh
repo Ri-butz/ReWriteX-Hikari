@@ -65,8 +65,10 @@ echo "70" > /dev/stune/top-app/schedtune.boost
 echo "1" > /dev/stune/top-app/schedtune.sched_boost_no_override
 
 # Gpu
+echo "1000000" > /sys/class/kgsl/kgsl-3d0/idle_timer
+echo "1" > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
 echo "0" > /sys/class/kgsl/kgsl-3d0/throttling
-echo "2" > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
+echo "0" > /sys/class/kgsl/kgsl-3d0/bus_split
 echo "1" > /sys/class/kgsl/kgsl-3d0/force_no_nap
 echo "1" > /sys/class/kgsl/kgsl-3d0/force_rail_on
 echo "1" > /sys/class/kgsl/kgsl-3d0/force_bus_on
