@@ -66,8 +66,11 @@ echo "0" > /dev/stune/top-app/schedtune.sched_boost_no_override
 
 # Gpu
 MIN=$(cat /sys/class/kgsl/kgsl-3d0/min_pwrlevel)
-echo "1" > /sys/class/kgsl/kgsl-3d0/throttling
+echo "414000000" > /sys/class/kgsl/kgsl-3d0/max_gpuclk
+echo "1000" > /sys/class/kgsl/kgsl-3d0/idle_timer
 echo "$MIN" > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
+echo "1" > /sys/class/kgsl/kgsl-3d0/throttling
+echo "1" > /sys/class/kgsl/kgsl-3d0/bus_split
 echo "0" > /sys/class/kgsl/kgsl-3d0/force_no_nap
 echo "0" > /sys/class/kgsl/kgsl-3d0/force_rail_on
 echo "0" > /sys/class/kgsl/kgsl-3d0/force_bus_on
