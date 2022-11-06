@@ -55,9 +55,9 @@ done
 # Enable Core control
 for cctl in /sys/devices/system/cpu/*/core_ctl
 do
-    chmod 666 $cctl/enable
-    echo 1 > $cctl/enable
-    chmod 444 $cctl/enable
+  chmod 666 $cctl/enable
+  echo 1 > $cctl/enable
+  chmod 444 $cctl/enable
 done
 
 # Top app
