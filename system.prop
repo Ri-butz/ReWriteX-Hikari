@@ -56,6 +56,25 @@ debug.hwui.render_dirty_regions=false
 debug.hwui.show_dirty_regions=false
 DEBUG_DIRTY_REGION=false
 
+# Graphics
+debug.egl.hw=0
+debug.mdpcomp.logs=0
+debug.hwui.renderer=skiagl
+debug.renderengine.backend=skiaglthreaded
+debug.sf.enable_gl_backpressure=1
+debug.sf.enable_egl_image_tracker=1
+debug.sf.early.sf.duration=16000000
+debug.sf.early.app.duration=16500000
+debug.sf.earlyGl.sf.duration=13500000
+debug.sf.earlyGl.app.duration=21000000
+debug.sf.hw=0
+debug.sf.latch_unsignaled=1
+debug.sf.late.sf.duration=10500000
+debug.sf.late.app.duration=20500000
+debug.sf.use_phase_offsets_as_durations=1
+renderthread.skia.reduceopstasksplitting=true
+vendor.gralloc.disable_ubwc=0
+
 # Dalvik thread
 persist.sys.dalvik.hyperthreading=true
 persist.sys.dalvik.multithread=true
