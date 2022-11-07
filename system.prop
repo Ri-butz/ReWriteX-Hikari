@@ -28,8 +28,6 @@ ro.max.fling_velocity=12000
 ro.min.fling_velocity=8000
 ro.vendor.perf.scroll_opt=true
 persist.sys.scrollingcache=2
-debug.sf.latch_unsignaled=1
-debug.sf.disable_backpressure=1
 sys.use_fifo_ui=1
 windowsmgr.max_events_per_sec=150
 
