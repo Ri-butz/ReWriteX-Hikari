@@ -41,12 +41,6 @@ echo "1" > /proc/sys/kernel/timer_migration
 echo "0	0 0 0" > /proc/sys/kernel/printk
 echo "off" > /proc/sys/kernel/printk_devkmsg
 
-# Enable ECN negotiation by default
-echo 1 > /proc/sys/net/ipv4/tcp_ecn
-
-# Enable fast socket open for receiver and sender
-echo 3 > /proc/sys/net/ipv4/tcp_fastopen
-
 # Disable kernel panic
 echo "0" > /proc/sys/kernel/panic
 echo "0" > /proc/sys/kernel/panic_on_oops
@@ -177,10 +171,16 @@ su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '⛔ Dex2oat
 sleep 15
 dex2oat_opt
 
+# Report max frequency to unity tasks
+[[ -e "/proc/sys/kernel/sched_lib_mask_force" ]] && [[ -e "/proc/sys/kernel/sched_lib_name" ]] && {
+	echo "UnityMain,libunity.so" > "/proc/sys/kernel/sched_lib_name"
+	echo "255" > "/proc/sys/kernel/sched_lib_mask_force"
+}
+
 # Done
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ✅ All tweaks is applied... ] /g' "/data/adb/modules/ReWrite/module.prop"
 su -lp 2000 -c "cmd notification post -S bigtext -t 'Re-WriteX' tag '✅ All tweaks is applied...'" >/dev/null 2>&1
 
 # Run Ai
 sleep 3
-$MODDIR/system/etc/rewrite/rewrite.sh > /dev/null
+rewrite
