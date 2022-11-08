@@ -23,6 +23,7 @@ debug.egl.hw=0
 debug.mdpcomp.logs=0
 debug.hwui.renderer=skiagl
 debug.renderengine.backend=skiaglthreaded
+debug.sf.disable_hwc_overlays=1
 debug.sf.enable_gl_backpressure=1
 debug.sf.enable_egl_image_tracker=1
 debug.sf.early.sf.duration=16000000
@@ -34,6 +35,7 @@ debug.sf.latch_unsignaled=1
 debug.sf.late.sf.duration=10500000
 debug.sf.late.app.duration=20500000
 debug.sf.use_phase_offsets_as_durations=1
+graphics.gpu.profiler.support=true
 renderthread.skia.reduceopstasksplitting=true
 vendor.gralloc.disable_ubwc=0
 
