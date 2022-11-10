@@ -18,35 +18,6 @@ net.pdpbr1.dns2
 net.lte.dns1
 net.lte.dns2
 
-# Graphics
-debug.egl.hw=0
-debug.mdpcomp.logs=0
-debug.hwui.renderer=skiagl
-debug.renderengine.backend=skiaglthreaded
-debug.sf.disable_hwc_overlays=1
-debug.sf.enable_gl_backpressure=1
-debug.sf.enable_egl_image_tracker=1
-debug.sf.early.sf.duration=16000000
-debug.sf.early.app.duration=16500000
-debug.sf.earlyGl.sf.duration=13500000
-debug.sf.earlyGl.app.duration=21000000
-debug.sf.hw=0
-debug.sf.latch_unsignaled=1
-debug.sf.late.sf.duration=10500000
-debug.sf.late.app.duration=20500000
-debug.sf.use_phase_offsets_as_durations=1
-graphics.gpu.profiler.support=true
-renderthread.skia.reduceopstasksplitting=true
-vendor.gralloc.disable_ubwc=0
-
-# Smooth UI Experience
-ro.max.fling_velocity=12000
-ro.min.fling_velocity=8000
-ro.vendor.perf.scroll_opt=true
-persist.sys.scrollingcache=2
-sys.use_fifo_ui=1
-windowsmgr.max_events_per_sec=150
-
 # Hwui 
 ro.hwui.texture_cache_size=72
 ro.hwui.layer_cache_size=48
@@ -69,6 +40,72 @@ debug.hwui.use_gpu_pixel_buffers=false
 debug.hwui.render_dirty_regions=false
 debug.hwui.show_dirty_regions=false
 DEBUG_DIRTY_REGION=false
+
+# Graphics & Performance
+debug.overlayui.enable=1
+debug.enabletr=true
+debug.qctwa.preservebuf=1
+debug.performance.tuning=1
+debug.composition.type=c2d
+debug.egl.swapinterval=0
+debug.gr.numframebuffers=1
+debug.egl.hw=1
+debug.mdpcomp.logs=0
+debug.hwui.renderer=skiagl
+debug.renderengine.backend=skiaglthreaded
+debug.sf.disable_hwc_overlays=1
+debug.sf.enable_gl_backpressure=1
+debug.sf.enable_egl_image_tracker=1
+debug.sf.early.sf.duration=16000000
+debug.sf.early.app.duration=16500000
+debug.sf.earlyGl.sf.duration=13500000
+debug.sf.earlyGl.app.duration=21000000
+debug.sf.hw=1
+debug.sf.latch_unsignaled=1
+debug.sf.late.sf.duration=10500000
+debug.sf.late.app.duration=20500000
+debug.sf.use_phase_offsets_as_durations=1
+dev.pm.dyn_samplingrate=1
+graphics.gpu.profiler.support=true
+renderthread.skia.reduceopstasksplitting=true
+ro.sf.compbypass.enable=0
+ro.vold.umsdirtyratio=20
+ro.fb.mode=1
+ro.max.fling_velocity=12000
+ro.min.fling_velocity=8000
+ro.vendor.perf.scroll_opt=true
+persist.sys.scrollingcache=2
+persist.sys.composition.type=c2d
+persist.sys.purgeable_assets=1
+persist.sys.ui.hw=1
+sys.use_fifo_ui=1
+vendor.gralloc.disable_ubwc=0
+video.accelerate.hw=1
+windowsmgr.max_events_per_sec=150
+
+# Signal Tweaks
+persist.cust.tel.eons=1 
+ro.config.hw_fast_dormancy=1
+ro.config.combined_signal=true
+telephony.lteOnCdmaDevice=1
+
+# Support For IPV4 and IPV6
+persist.telephony.support.ipv6=1
+persist.telephony.support.ipv4=1
+
+# Internet Tweaks
+net.tcp.buffersize.default=4096,87380,256960,4096,16384,256960
+net.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960
+net.tcp.buffersize.lte=524288,1048576,2097152,524288,1048576,2097152
+net.tcp.buffersize.umts=4096,87380,256960,4096,16384,256960
+net.tcp.buffersize.evdo=4096,87380,563200,4096,16384,262144
+net.tcp.buffersize.evdo_b=6144,262144,1048576,6144,262144,1048576
+net.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960
+net.tcp.buffersize.edge=4096,87380,256960,4096,16384,256960
+net.tcp.buffersize.hsdpa=6144,87380,1048576,6144,87380,1048576
+net.tcp.buffersize.hspa=6144,87380,524288,6144,16384,262144
+net.tcp.buffersize.hspap=4096,87380,1220608,4096,16384,393216
+net.tcp.buffersize.hsupa=4096,87380,704512,4096,16384,262144
 
 # Dalvik thread
 persist.sys.dalvik.hyperthreading=true
