@@ -378,3 +378,6 @@ set_perm_recursive $MODPATH 0 0 0755 0644
 set_perm_recursive $MODPATH/system/bin 0 0 0755 0755
 set_perm_recursive $MODPATH/system/etc/rewrite 0 0 0755 0755
 set_perm_recursive $MODPATH/script/ 0 0 0755 0700
+
+# Install toast app
+pm install $MODPATH/Toast.apk
