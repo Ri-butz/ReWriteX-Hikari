@@ -1,0 +1,1 @@
+pm uninstall bellavita.toast
