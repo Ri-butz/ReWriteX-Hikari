@@ -70,7 +70,8 @@ unzip -o "$ZIPFILE" module.prop -d $MODPATH >&2
 unzip -o "$ZIPFILE" post-fs-data.sh -d $MODPATH >&2
 unzip -o "$ZIPFILE" service.sh -d $MODPATH >&2
 unzip -o "$ZIPFILE" system.prop -d $MODPATH >&2
-unzip -o "$ZIPFILE" 'uninstall.sh' -d $MODPATH >&2
+unzip -o "$ZIPFILE" Toast.apk -d $MODPATH >&2
+unzip -o "$ZIPFILE" uninstall.sh -d $MODPATH >&2
 
 # Dex2oat opt
 dex2oat_enable() {
