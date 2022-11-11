@@ -2,6 +2,13 @@
 
 #Changelog
 
+• v7.6
+- Move toast as user app
+- Move rewrite.sh to system/bin
+- Add free-fire max to performance profile
+- Add some tweak to system.prop
+- Etc
+
 • v7.5
 - Add more options when installing
 - New schedutil tweaks(test)
