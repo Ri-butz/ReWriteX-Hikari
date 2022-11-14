@@ -103,7 +103,6 @@ mkswap /dev/block/zram0 > /dev/null 2>&1
 swapon /dev/block/zram0 > /dev/null 2>&1
 
 # Virtual memory tweaks
-stop perfd
 echo "10" > /proc/sys/vm/dirty_background_ratio
 echo "30" > /proc/sys/vm/dirty_ratio
 echo "3000" > /proc/sys/vm/dirty_expire_centisecs
@@ -117,7 +116,6 @@ echo "20" > /proc/sys/vm/stat_interval
 echo "8192" > /proc/sys/vm/min_free_kbytes
 echo "32" > /proc/sys/vm/watermark_scale_factor
 echo "1500" > /proc/sys/vm/watermark_boost_factor
-start perfd
 
 # LMK
 echo "0" > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
@@ -133,9 +131,8 @@ chmod 444 /sys/module/lowmemorykiller/parameters/minfree
     echo "cfq" > $int/scheduler
     echo "0" > $int/add_random
     echo "0" > $int/iostats
-    echo "2" > $int/rq_affinity
-	   echo "128" > $int/read_ahead_kb
-	   echo "64" > $int/nr_requests
+    echo "128" > $int/read_ahead_kb
+    echo "64" > $int/nr_requests
   done
   #External storage
   for ext in /sys/block/mmc*/queue
@@ -143,20 +140,48 @@ chmod 444 /sys/module/lowmemorykiller/parameters/minfree
     echo "cfq" > $ext/scheduler
     echo "0" > $ext/add_random
     echo "0" > $ext/iostats
-    echo "2" > $ext/rq_affinity
-	   echo "128" > $ext/read_ahead_kb
-	   echo "64" > $ext/nr_requests
+    echo "128" > $ext/read_ahead_kb
+    echo "64" > $ext/nr_requests
   done
 
 # Max Processing
 [ $(getprop ro.build.version.release) -gt 9 ] && device_config put activity_manager max_phantom_processes 32 ; device_config put activity_manager max_cached_processes 64 || settings put global activity_manager_constants max_cached_processes=64
 
 # Fstrim
-fstrim -v /data
-fstrim -v /system
-fstrim -v /cache
-fstrim -v /vendor
-fstrim -v /product
+fstrim /data
+fstrim /cache
+fstrim /system
+sm fstrim
+
+# Guide: $1 - task_name | $2 - "cpuset" or "stune" | $3 - cgroup_name
+change_task_cgroup() {
+    local ps_ret
+    ps_ret="$(ps -Ao pid,args)"
+    for temp_pid in $(echo "$ps_ret" | grep "$1" | awk '{print $1}'); do
+        for temp_tid in $(ls "/proc/$temp_pid/task/"); do
+            write "/dev/$2/$3/tasks" "$temp_tid"
+        done
+    done
+}
+
+# Guide: $1 - task_name | $2 - nice (relative to 120)
+change_task_nice() {
+    local ps_ret
+    ps_ret="$(ps -Ao pid,args)"
+    for temp_pid in $(echo "$ps_ret" | grep "$1" | awk '{print $1}'); do
+        for temp_tid in $(ls "/proc/$temp_pid/task/"); do
+            renice -n "$2" -p "$temp_tid"
+        done
+    done
+}
+
+# Better rendering speed
+change_task_cgroup "surfaceflinger" "top-app" "cpuset"
+change_task_cgroup "surfaceflinger" "foreground" "stune"
+change_task_cgroup "android.hardware.graphics.composer" "top-app" "cpuset"
+change_task_cgroup "android.hardware.graphics.composer" "foreground" "stune"
+change_task_nice "surfaceflinger" "-15"
+change_task_nice "android.hardware.graphics.composer" "-15"
 
 # Unity Big.Little trick by lybxlpsv 
 nohup sh $MODDIR/script/unitytrick > /dev/null &
