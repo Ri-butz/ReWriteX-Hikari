@@ -27,17 +27,22 @@ do
 done
 
 # Kernel parameters
-echo "20" > /proc/sys/kernel/perf_cpu_time_max_percent
-echo "0" > /proc/sys/kernel/sched_autogroup_enabled
-echo "1" > /proc/sys/kernel/sched_boost
-echo "1" > /proc/sys/kernel/sched_child_runs_first
-echo "5000000" > /proc/sys/kernel/sched_migration_cost_ns
-echo "10000000" > /proc/sys/kernel/sched_min_granularity_ns
-echo "20" > /proc/sys/kernel/sched_min_task_util_for_colocation
-echo "0" > /proc/sys/kernel/sched_schedstats
-echo "0" > /proc/sys/kernel/sched_tunable_scaling
+echo "15" > /proc/sys/kernel/perf_cpu_time_max_percent
+echo "4000000" > /proc/sys/kernel/sched_latency_ns
 echo "15000000" > /proc/sys/kernel/sched_wakeup_granularity_ns
-echo "1" > /proc/sys/kernel/timer_migration
+echo "10000000" > /proc/sys/kernel/sched_min_granularity_ns
+echo "5000000" > /proc/sys/kernel/sched_migration_cost_ns
+echo "32" > /proc/sys/kernel/sched_nr_migrate
+echo "15" > /proc/sys/kernel/sched_min_task_util_for_boost
+echo "1000" > /proc/sys/kernel/sched_min_task_util_for_colocation
+echo "100" > /proc/sys/kernel/sched_rr_timeslice_ns
+echo "1000000" > /proc/sys/kernel/sched_rt_period_us
+echo "950000" > /proc/sys/kernel/sched_rt_runtime_us
+echo "0" > /proc/sys/kernel/sched_autogroup_enabled
+echo "0" > /proc/sys/kernel/sched_tunable_scaling
+echo "0" > /proc/sys/kernel/sched_child_runs_first
+echo "0" > /proc/sys/kernel/timer_migration
+echo "0" > /proc/sys/kernel/sched_schedstats
 echo "0	0 0 0" > /proc/sys/kernel/printk
 echo "off" > /proc/sys/kernel/printk_devkmsg
 
@@ -105,13 +110,13 @@ swapon /dev/block/zram0 > /dev/null 2>&1
 # Virtual memory tweaks
 echo "10" > /proc/sys/vm/dirty_background_ratio
 echo "30" > /proc/sys/vm/dirty_ratio
-echo "3000" > /proc/sys/vm/dirty_expire_centisecs
-echo "3000" > /proc/sys/vm/dirty_writeback_centisecs
+echo "300" > /proc/sys/vm/dirty_expire_centisecs
+echo "700" > /proc/sys/vm/dirty_writeback_centisecs
 echo "750" > /proc/sys/vm/extfrag_threshold
-echo "80" > /proc/sys/vm/swappiness
+echo "100" > /proc/sys/vm/swappiness
 echo "0" > /proc/sys/vm/page-cluster
 echo "0" > /proc/sys/vm/oom_kill_allocating_task
-echo "20" > /proc/sys/vm/vfs_cache_pressure
+echo "50" > /proc/sys/vm/vfs_cache_pressure
 echo "20" > /proc/sys/vm/stat_interval
 echo "8192" > /proc/sys/vm/min_free_kbytes
 echo "32" > /proc/sys/vm/watermark_scale_factor
@@ -153,6 +158,13 @@ fstrim /cache
 fstrim /system
 sm fstrim
 
+# Unity Big.Little trick by lybxlpsv 
+nohup sh $MODDIR/script/unitytrick > /dev/null &
+
+# Doze mode
+#dumpsysdeviceidle
+#deep doze
+
 # Guide: $1 - task_name | $2 - "cpuset" or "stune" | $3 - cgroup_name
 change_task_cgroup() {
     local ps_ret
@@ -182,13 +194,6 @@ change_task_cgroup "android.hardware.graphics.composer" "top-app" "cpuset"
 change_task_cgroup "android.hardware.graphics.composer" "foreground" "stune"
 change_task_nice "surfaceflinger" "-15"
 change_task_nice "android.hardware.graphics.composer" "-15"
-
-# Unity Big.Little trick by lybxlpsv 
-nohup sh $MODDIR/script/unitytrick > /dev/null &
-
-# Doze mode
-#dumpsysdeviceidle
-#deep doze
 
 #DO
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ⛔ Dex2oat Optimizer is running... ] /g' "/data/adb/modules/ReWrite/module.prop"
