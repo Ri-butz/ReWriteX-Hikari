@@ -41,19 +41,13 @@ echo "0" > /sys/devices/system/cpu/cpu7/online
 chmod 444 /sys/devices/system/cpu/cpu7/online
 
 # Cpu power limit
-##Little
-for little in /sys/devices/system/cpu/cpu[0,1,2,3]/cpufreq
+for cpl in /sys/devices/system/cpu/cpu*/cpufreq/schedutil
 do
-  echo "1" > $little/schedutil/pl
-done
-##Big
-for big in /sys/devices/system/cpu/cpu[4,5,6,7]/cpufreq
-do
-  echo "1" > $big/schedutil/pl
+  echo "1" > $cpl/pl
 done
 
 # Enable Core control
-for cctl in /sys/devices/system/cpu/*/core_ctl
+for cctl in /sys/devices/system/cpu/cpu*/core_ctl
 do
   chmod 666 $cctl/enable
   echo 1 > $cctl/enable
