@@ -2,6 +2,11 @@
 
 #Changelog
 
+• v7.7
+- Optimize installer
+- Remove unusable tweak
+- Update wifi bonding from simonsmh
+
 • v7.6
 - Move toast as user app
 - Move rewrite.sh to system/bin
