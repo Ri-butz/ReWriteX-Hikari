@@ -269,7 +269,7 @@ done
 ui_print "    Selected: $F"
 case $F in
     1 ) TEXT6="🟢Enable"; wifibonding_enable;;
-    2 ) TEXT6="🔴Disable"; sed -i '/# Wifi bonding/s/.*/# Wifi bonding(Disable)/' $MODPATH/service.sh;;
+    2 ) TEXT6="🔴Disable";;
 esac
 ui_print "    $TEXT6"
 ui_print ""
