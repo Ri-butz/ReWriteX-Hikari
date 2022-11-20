@@ -2,7 +2,7 @@
 
 #Changelog
 
-• v7.7
+• v7.7 Rev2
 - Optimize installer
 - Remove unusable tweak
 - Update wifi bonding from simonsmh
