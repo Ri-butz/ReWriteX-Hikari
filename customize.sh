@@ -113,18 +113,16 @@ ui_print "  5) Unity Big.Little trick"
 ui_print "  6) Wifi bonding"
 ui_print "  7) DNS changer"
 ui_print ""
-sleep 2
 ui_print "  Button Function:"
 ui_print "  • Volume + (Next)"
 ui_print "  • Volume - (Select)"
 ui_print ""
-sleep 2  
 
 ui_print "  ⚠️Disable thermal on performance mode..."
 ui_print "    1. Yes"
 ui_print "    2. No"
 ui_print ""
-sleep 1
+ui_print "    Select:"
 A=1
 while true; do
     ui_print "    $A"
@@ -142,16 +140,14 @@ case $A in
     1 ) TEXT1="🟢Yes"; sed -i '/start thermal-engine/s/.*/start thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_balance.sh; sed -i '/start vendor.thermal-engine/s/.*/start vendor.thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_balance.sh; sed -i '/stop thermal-engine/s/.*/stop thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_performance.sh; sed -i '/stop vendor.thermal-engine/s/.*/stop vendor.thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_performance.sh;;
     2 ) TEXT1="🔴No"; sed -i '/start thermal-engine/s/.*/#start thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_balance.sh; sed -i '/start vendor.thermal-engine/s/.*/#start vendor.thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_balance.sh; sed -i '/stop thermal-engine/s/.*/#stop thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_performance.sh; sed -i '/stop vendor.thermal-engine/s/.*/#stop vendor.thermal-engine/' $MODPATH/system/etc/rewrite/rewrite_performance.sh;;
 esac
-sleep 0.7
 ui_print "    $TEXT1"
 ui_print ""
-sleep 1
 
 ui_print "  ⚠️Dex2oat Optimizer..."
 ui_print "    1. Enable"
 ui_print "    2. Disable"
 ui_print ""
-sleep 1
+ui_print "    Select:"
 B=1
 while true; do
     ui_print "    $B"
@@ -169,17 +165,15 @@ case $B in
     1 ) TEXT2="🟢Enable"; sed -i '/#DO/s/.*/# Dex2oat optimizer by Iamlooper(enable)/' $MODPATH/service.sh; dex2oat_enable;;
     2 ) TEXT2="🔴Disable"; rm -rf $MODPATH/system/bin/dex2oat*;sed -i '/#DO/s/.*/# Dexoat optimizer by Iamlooper(disable)/' $MODPATH/service.sh; sed -i '/Dex2oat/s/.*/#deleted/' $MODPATH/service.sh; sed -i '/dex2oat_opt/s/.*/#deleted/' $MODPATH/service.sh; sed -i '/sleep 15/s/.*/#deleted/' $MODPATH/service.sh;;
 esac
-sleep 0.7
 ui_print "    $TEXT2"
 ui_print ""
-sleep 1
 
 ui_print "  ⚠️Zram size..."
 ui_print "    1. 2gb"
 ui_print "    2. 3gb"
 ui_print "    3. 4gb"
 ui_print ""
-sleep 1
+ui_print "    Select:"
 C=1
 while true; do
     ui_print "    $C"
@@ -198,10 +192,8 @@ case $C in
     2 ) TEXT3="🟡3gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=3072M/' $MODPATH/service.sh;;
     3 ) TEXT3="🔵4gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=4096M/' $MODPATH/service.sh;;
 esac
-sleep 0.7
 ui_print "    $TEXT3"
 ui_print ""
-sleep 1
 
 ui_print "  ⚠️Doze Mode..."
 ui_print "    1. Default(use default phone dozing mode)"
@@ -209,7 +201,7 @@ ui_print "    2. Light"
 ui_print "    3. Deep"
 ui_print "    4. Disable"
 ui_print ""
-sleep 1
+ui_print "    Select:"
 D=1
 while true; do
     ui_print "    $D"
@@ -229,16 +221,14 @@ case $D in
     3 ) TEXT4="⚫Deep"; sed -i '/# Doze mode/s/.*/# Doze mode(Deep)/' $MODPATH/service.sh; sed -i '/#dumpsysdeviceidle/s/.*/dumpsys deviceidle enable/' $MODPATH/service.sh; sed -i '/#deep doze/s/.*/dumpsys deviceidle force-idle/' $MODPATH/service.sh;;
     4 ) TEXT4="🔴Disable"; sed -i '/# Doze mode/s/.*/# Doze mode(Disable)/' $MODPATH/service.sh; sed -i '/#dumpsysdeviceidle/s/.*/dumpsys deviceidle disable/' $MODPATH/service.sh;;
 esac
-sleep 0.7
 ui_print "    $TEXT4"
 ui_print ""
-sleep 1
 
 ui_print "  ⚠️Unity Big.Little trick..."
 ui_print "    1. Enable"
 ui_print "    2. Disable"
 ui_print ""
-sleep 1
+ui_print "    Select:"
 E=1
 while true; do
     ui_print "    $E"
@@ -256,17 +246,14 @@ case $E in
     1 ) TEXT5="🟢Enable"; sed -i '/# Unity Big.Little trick by lybxlpsv/s/.*/# Unity Big.Little trick by lybxlpsv(Enable)/' $MODPATH/service.sh; unzip -o "$ZIPFILE" 'script/*' -d $MODPATH >&2;;
     2 ) TEXT5="🔴Disable"; sed -i '/# Unity Big.Little trick by lybxlpsv/s/.*/# Unity Big.Little trick by lybxlpsv(Disable)/' $MODPATH/service.sh; sed -i '/nohup/s/.*/#deleted/' $MODPATH/service.sh;;
 esac
-sleep 0.7
 ui_print "    $TEXT5"
 ui_print ""
-sleep 1
-
 
 ui_print "  ⚠️Wifi Bonding..."
 ui_print "    1. Enable"
 ui_print "    2. Disable"
 ui_print ""
-sleep 1
+ui_print "    Select:"
 F=1
 while true; do
     ui_print "    $F"
@@ -284,10 +271,8 @@ case $F in
     1 ) TEXT6="🟢Enable"; wifibonding_enable;;
     2 ) TEXT6="🔴Disable"; sed -i '/# Wifi bonding/s/.*/# Wifi bonding(Disable)/' $MODPATH/service.sh;;
 esac
-sleep 0.7
 ui_print "    $TEXT6"
 ui_print ""
-sleep 1
 
 ui_print "  ⚠️DNS Changer..."
 ui_print "    1. Disable (Without DNS)"
@@ -298,7 +283,7 @@ ui_print "    5. OpenDns"
 ui_print "    6. Quad9 DNS"
 ui_print "    7. Uncensored DNS"
 ui_print ""
-sleep 1
+ui_print "    Select:"
 G=1
 while true; do
     ui_print "    $G"
@@ -321,10 +306,8 @@ case $G in
     6 ) TEXT7="🟢Quad9 DNS"; sed -i '/nameserver1/s/.*/nameserver 9.9.9.9/' $MODPATH/system/etc/resolv.conf; sed -i '/nameserver2/s/.*/nameserver 149.112.112.112/' $MODPATH/system/etc/resolv.conf; sed -i '/resetprop -n net.dns1/s/.*/resetprop -n net.dns1 9.9.9.9/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.dns2/s/.*/resetprop -n net.dns2 149.112.112.112/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.eth0.dns1/s/.*/resetprop -n net.eth0.dns1 9.9.9.9/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.eth0.dns2/s/.*/resetprop -n net.eth0.dns2 149.112.112.112/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.ppp0.dns1/s/.*/resetprop -n net.ppp0.dns1 9.9.9.9/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.ppp0.dns2/s/.*/resetprop -n net.ppp0.dns2 149.112.112.112/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.rmnet0.dns1/s/.*/resetprop -n net.rmnet0.dns1 9.9.9.9/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.rmnet0.dns2/s/.*/resetprop -n net.rmnet0.dns2 149.112.112.112/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.rmnet1.dns1/s/.*/resetprop -n net.rmnet1.dns1 9.9.9.9/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.rmnet1.dns2/s/.*/resetprop -n net.rmnet1.dns2 149.112.112.112/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.pdpbr1.dns1/s/.*/resetprop -n net.pdpbr1.dns1 9.9.9.9/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.pdpbr1.dns2/s/.*/resetprop -n net.pdpbr1.dns2 149.112.112.112/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.lte.dns1/s/.*/resetprop -n net.lte.dns1 9.9.9.9/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.lte.dns2/s/.*/resetprop -n net.lte.dns2 149.112.112.112/' $MODPATH/post-fs-data.sh; sed -i '/iptables -t nat -A OUTPUT -p tcp --dport 53 -j DNAT --to-destination :53/s/.*/iptables -t nat -A OUTPUT -p tcp --dport 53 -j DNAT --to-destination 9.9.9.9:53/' $MODPATH/post-fs-data.sh; sed -i '/iptables -t nat -A OUTPUT -p udp --dport 53 -j DNAT --to-destination :53/s/.*/iptables -t nat -A OUTPUT -p udp --dport 53 -j DNAT --to-destination 149.112.112.112:53/' $MODPATH/post-fs-data.sh; sed -i '/iptables -t nat -I OUTPUT -p tcp --dport 53 -j DNAT --to-destination :53/s/.*/iptables -t nat -I OUTPUT -p tcp --dport 53 -j DNAT --to-destination 9.9.9.9:53/' $MODPATH/post-fs-data.sh; sed -i '/iptables -t nat -I OUTPUT -p udp --dport 53 -j DNAT --to-destination :53/s/.*/iptables -t nat -I OUTPUT -p udp --dport 53 -j DNAT --to-destination 149.112.112.112:53/' $MODPATH/post-fs-data.sh; sed -i '/net.dns1/s/.*/net.dns1=9.9.9.9/' $MODPATH/system.prop; sed -i '/net.dns2/s/.*/net.dns2=149.112.112.112/' $MODPATH/system.prop; sed -i '/net.eth0.dns1/s/.*/net.eth0.dns1=9.9.9.9/' $MODPATH/system.prop; sed -i '/net.eth0.dns2/s/.*/net.eth0.dns2=149.112.112.112/' $MODPATH/system.prop; sed -i '/net.ppp0.dns1/s/.*/net.ppp0.dns1=9.9.9.9/' $MODPATH/system.prop; sed -i '/net.ppp0.dns2/s/.*/net.ppp0.dns2=149.112.112.112/' $MODPATH/system.prop; sed -i '/net.rmnet0.dns1/s/.*/net.rmnet0.dns1=9.9.9.9/' $MODPATH/system.prop; sed -i '/net.rmnet0.dns2/s/.*/net.rmnet0.dns2=149.112.112.112/' $MODPATH/system.prop; sed -i '/net.rmnet1.dns1/s/.*/net.rmnet1.dns1=9.9.9.9/' $MODPATH/system.prop; sed -i '/net.rmnet1.dns2/s/.*/net.rmnet1.dns2=149.112.112.112/' $MODPATH/system.prop; sed -i '/net.pdpbr1.dns1/s/.*/net.pdpbr1.dns1=9.9.9.9/' $MODPATH/system.prop; sed -i '/net.pdpbr1.dns2/s/.*/net.pdpbr1.dns2=149.112.112.112/' $MODPATH/system.prop; sed -i '/net.lte.dns1/s/.*/net.lte.dns1=9.9.9.9/' $MODPATH/system.prop; sed -i '/net.lte.dns2/s/.*/net.lte.dns2=149.112.112.112/' $MODPATH/system.prop;;
     7 ) TEXT7="🟢Uncensored DNS"; sed -i '/nameserver1/s/.*/nameserver 91.239.100.100/' $MODPATH/system/etc/resolv.conf; sed -i '/nameserver2/s/.*/nameserver 89.233.43.71/' $MODPATH/system/etc/resolv.conf; sed -i '/resetprop -n net.dns1/s/.*/resetprop -n net.dns1 91.239.100.100/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.dns2/s/.*/resetprop -n net.dns2 89.233.43.71/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.eth0.dns1/s/.*/resetprop -n net.eth0.dns1 91.239.100.100/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.eth0.dns2/s/.*/resetprop -n net.eth0.dns2 89.233.43.71/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.ppp0.dns1/s/.*/resetprop -n net.ppp0.dns1 91.239.100.100/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.ppp0.dns2/s/.*/resetprop -n net.ppp0.dns2 89.233.43.71/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.rmnet0.dns1/s/.*/resetprop -n net.rmnet0.dns1 91.239.100.100/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.rmnet0.dns2/s/.*/resetprop -n net.rmnet0.dns2 89.233.43.71/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.rmnet1.dns1/s/.*/resetprop -n net.rmnet1.dns1 91.239.100.100/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.rmnet1.dns2/s/.*/resetprop -n net.rmnet1.dns2 89.233.43.71/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.pdpbr1.dns1/s/.*/resetprop -n net.pdpbr1.dns1 91.239.100.100/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.pdpbr1.dns2/s/.*/resetprop -n net.pdpbr1.dns2 89.233.43.71/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.lte.dns1/s/.*/resetprop -n net.lte.dns1 91.239.100.100/' $MODPATH/post-fs-data.sh; sed -i '/resetprop -n net.lte.dns2/s/.*/resetprop -n net.lte.dns2 89.233.43.71/' $MODPATH/post-fs-data.sh; sed -i '/iptables -t nat -A OUTPUT -p tcp --dport 53 -j DNAT --to-destination :53/s/.*/iptables -t nat -A OUTPUT -p tcp --dport 53 -j DNAT --to-destination 91.239.100.100:53/' $MODPATH/post-fs-data.sh; sed -i '/iptables -t nat -A OUTPUT -p udp --dport 53 -j DNAT --to-destination :53/s/.*/iptables -t nat -A OUTPUT -p udp --dport 53 -j DNAT --to-destination 89.233.43.71:53/' $MODPATH/post-fs-data.sh; sed -i '/iptables -t nat -I OUTPUT -p tcp --dport 53 -j DNAT --to-destination :53/s/.*/iptables -t nat -I OUTPUT -p tcp --dport 53 -j DNAT --to-destination 91.239.100.100:53/' $MODPATH/post-fs-data.sh; sed -i '/iptables -t nat -I OUTPUT -p udp --dport 53 -j DNAT --to-destination :53/s/.*/iptables -t nat -I OUTPUT -p udp --dport 53 -j DNAT --to-destination 89.233.43.71:53/' $MODPATH/post-fs-data.sh; sed -i '/net.dns1/s/.*/net.dns1=91.239.100.100/' $MODPATH/system.prop; sed -i '/net.dns2/s/.*/net.dns2=89.233.43.71/' $MODPATH/system.prop; sed -i '/net.eth0.dns1/s/.*/net.eth0.dns1=91.239.100.100/' $MODPATH/system.prop; sed -i '/net.eth0.dns2/s/.*/net.eth0.dns2=89.233.43.71/' $MODPATH/system.prop; sed -i '/net.ppp0.dns1/s/.*/net.ppp0.dns1=91.239.100.100/' $MODPATH/system.prop; sed -i '/net.ppp0.dns2/s/.*/net.ppp0.dns2=89.233.43.71/' $MODPATH/system.prop; sed -i '/net.rmnet0.dns1/s/.*/net.rmnet0.dns1=91.239.100.100/' $MODPATH/system.prop; sed -i '/net.rmnet0.dns2/s/.*/net.rmnet0.dns2=89.233.43.71/' $MODPATH/system.prop; sed -i '/net.rmnet1.dns1/s/.*/net.rmnet1.dns1=91.239.100.100/' $MODPATH/system.prop; sed -i '/net.rmnet1.dns2/s/.*/net.rmnet1.dns2=89.233.43.71/' $MODPATH/system.prop; sed -i '/net.pdpbr1.dns1/s/.*/net.pdpbr1.dns1=91.239.100.100/' $MODPATH/system.prop; sed -i '/net.pdpbr1.dns2/s/.*/net.pdpbr1.dns2=89.233.43.71/' $MODPATH/system.prop; sed -i '/net.lte.dns1/s/.*/net.lte.dns1=91.239.100.100/' $MODPATH/system.prop; sed -i '/net.lte.dns2/s/.*/net.lte.dns2=89.233.43.71/' $MODPATH/system.prop;;
 esac
-sleep 0.7
 ui_print "    $TEXT7"
 ui_print ""
-sleep 1
 
 rm -rf $MODPATH/addon 2>/dev/null
 
