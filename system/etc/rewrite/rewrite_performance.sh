@@ -46,7 +46,7 @@ do
   echo "0" > $cpl/pl
 done
 
-# Disable Core ctl
+# Core ctl
 for cctl in /sys/devices/system/cpu/*/core_ctl
 do
   chmod 666 $cctl/enable
