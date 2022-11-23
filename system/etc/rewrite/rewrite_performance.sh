@@ -47,7 +47,7 @@ do
 done
 
 # Disable Core ctl
-for cctl in /sys/devices/system/cpu/cpu*/core_ctl
+for cctl in /sys/devices/system/cpu/*/core_ctl
 do
   chmod 666 $cctl/enable
   echo 0 > $cctl/enable
@@ -58,14 +58,33 @@ done
 echo "70" > /dev/stune/top-app/schedtune.boost
 echo "1" > /dev/stune/top-app/schedtune.sched_boost_no_override
 
-# Gpu
-echo "1000000" > /sys/class/kgsl/kgsl-3d0/idle_timer
-echo "0" > /sys/class/kgsl/kgsl-3d0/throttling
-echo "0" > /sys/class/kgsl/kgsl-3d0/bus_split
-echo "1" > /sys/class/kgsl/kgsl-3d0/force_no_nap
-echo "1" > /sys/class/kgsl/kgsl-3d0/force_rail_on
-echo "1" > /sys/class/kgsl/kgsl-3d0/force_bus_on
-echo "1" > /sys/class/kgsl/kgsl-3d0/force_clk_on
+# GPU settings
+for gpu in /sys/class/kgsl/kgsl-3d0
+do
+  echo "710000000" > $gpu/max_gpuclk
+  echo "0" > $gpu/throttling
+  echo "0" > $gpu/bus_split
+  echo "1" > $gpu/force_clk_on
+  echo "1" > $gpu/force_bus_on
+  echo "1" > $gpu/force_rail_on
+  echo "1" > $gpu/force_no_nap
+  echo "4" > $gpu/devfreq/polling_interval
+  echo "1000000" > $gpu/idle_timer
+done
+
+# Sched boost
+echo "1" > /proc/sys/kernel/sched_boost
+
+# Fs
+echo "5" > /proc/sys/fs/lease-break-time
+
+# Virtual memory
+for virtual_memory in /proc/sys/vm
+do
+  echo "1" > $virtual_memory/stat_interval
+  echo "3000" > $virtual_memory/dirty_expire_centisecs
+  echo "3000" > $virtual_memory/dirty_writeback_centisecs
+done
 
 # Entropy
 echo "512" > /proc/sys/kernel/random/read_wakeup_threshold
