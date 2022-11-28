@@ -51,4 +51,5 @@ cp ReWriteX.Hikari.zip /storage/emulated/0
 - [Pedrozzz0](https://github.com/King-Projects)
 - [Niko Schwickert](https://github.com/feravolt)
 - [lybxlpsv](https://github.com/lybdroid)
+- [DESIRE](https://t.me/SMOOTH_Team)
 - And all my friends who contributed to the development of the project and many others
