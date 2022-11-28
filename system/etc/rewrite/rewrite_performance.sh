@@ -61,7 +61,6 @@ echo "1" > /dev/stune/top-app/schedtune.sched_boost_no_override
 # GPU settings
 for gpu in /sys/class/kgsl/kgsl-3d0
 do
-  echo "710000000" > $gpu/max_gpuclk
   echo "0" > $gpu/throttling
   echo "0" > $gpu/bus_split
   echo "1" > $gpu/force_clk_on
@@ -77,14 +76,6 @@ echo "1" > /proc/sys/kernel/sched_boost
 
 # Fs
 echo "5" > /proc/sys/fs/lease-break-time
-
-# Virtual memory
-for virtual_memory in /proc/sys/vm
-do
-  echo "1" > $virtual_memory/stat_interval
-  echo "3000" > $virtual_memory/dirty_expire_centisecs
-  echo "3000" > $virtual_memory/dirty_writeback_centisecs
-done
 
 # Entropy
 echo "512" > /proc/sys/kernel/random/read_wakeup_threshold
