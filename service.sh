@@ -100,12 +100,12 @@ echo "0" > /sys/class/kgsl/kgsl-3d0/snapshot/snapshot_crashdumper
 
 # Zram
 ZRAMSIZE=0
-swapoff /dev/block/zram0 > /dev/null 2>&1
+swapoff /dev/block/zram0
 echo "1" > /sys/block/zram0/reset
 echo "0" > /sys/block/zram0/disksize
 echo "$ZRAMSIZE" > /sys/block/zram0/disksize
-mkswap /dev/block/zram0 > /dev/null 2>&1
-swapon /dev/block/zram0 > /dev/null 2>&1
+mkswap /dev/block/zram0
+swapon /dev/block/zram0
 
 # Virtual memory tweaks
 echo "10" > /proc/sys/vm/dirty_background_ratio
