@@ -169,9 +169,10 @@ ui_print "    $TEXT2"
 ui_print ""
 
 ui_print "  ⚠️Zram size..."
-ui_print "    1. 2gb"
-ui_print "    2. 3gb"
-ui_print "    3. 4gb"
+ui_print "    1. 2Gb"
+ui_print "    2. 2.5Gb"
+ui_print "    3. 3Gb"
+ui_print "    4. 4Gb"
 ui_print ""
 ui_print "    Select:"
 C=1
@@ -182,15 +183,16 @@ while true; do
     else
         break
     fi
-    if [ $C -gt 3 ]; then
+    if [ $C -gt 4 ]; then
         C=1
     fi
 done
 ui_print "    Selected: $C"
 case $C in
-    1 ) TEXT3="🟢2gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=2048M/' $MODPATH/service.sh;;
-    2 ) TEXT3="🟡3gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=3072M/' $MODPATH/service.sh;;
-    3 ) TEXT3="🔵4gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=4096M/' $MODPATH/service.sh;;
+    1 ) TEXT3="🟢2Gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=2048M/' $MODPATH/service.sh;;
+    2 ) TEXT3="🟡2.5Gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=2560M/' $MODPATH/service.sh;;
+    3 ) TEXT3="🟠3Gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=3072M/' $MODPATH/service.sh;;
+    4 ) TEXT3="🔴4Gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=4096M/' $MODPATH/service.sh;;
 esac
 ui_print "    $TEXT3"
 ui_print ""
