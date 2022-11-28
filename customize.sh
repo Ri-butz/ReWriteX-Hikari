@@ -21,7 +21,22 @@ ui_print " "
 ui_print "██████████████████████████████"
 sleep 0.5
 ui_print " "
+ui_print " Module info: "
+sleep 0.5
+ui_print " • Name            : ReWriteX-Hikari"
+sleep 0.5
+ui_print " • Version         : v7.8 "
+sleep 0.5
+ui_print " • Release Date    : 28-11-2022"
+sleep 0.5
+ui_print " • Owner           : Ri_Butz "
+sleep 0.5
+ui_print " • Contacts        : @Ri_Butz(tele) "
+ui_print "                     @ri_butz69(ig/twitter) "
+sleep 0.5
+ui_print " "
 ui_print " Device info:"
+sleep 0.5
 ui_print " • Brand           : $(getprop ro.product.system.brand) "
 sleep 0.5
 ui_print " • Device          : $(getprop ro.product.system.model) "
