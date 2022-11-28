@@ -55,6 +55,8 @@ ui_print " • Pedrozzz0 (Notification)"
 sleep 0.5
 ui_print " • lybxlpsv (Unity Big.Little trick)"
 sleep 0.5
+ui_print " • DESIRE (Renicer)"
+sleep 0.5
 ui_print " • Niko Schwickert for all the suggestions"
 sleep 0.5
 ui_print " • All my friends who contributed to the"
