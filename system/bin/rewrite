@@ -22,25 +22,26 @@ echo " |_|   |_|_|_|\_\____|_|  |_|      /_/       \_\ " >> $LOG
 echo " " >> $LOG
 echo "███████████████████████████████" >> $LOG
 echo " " >> $LOG
-echo "Module info: " >> $LOG
-echo "• Name            : ReWriteX-Hikari " >> $LOG
-echo "• Version         : v7.8 " >> $LOG
-echo "• Owner           : Ri_Butz " >> $LOG
-echo "• Contacts        : @Ri_Butz(tele) " >> $LOG
+echo " Module info: " >> $LOG
+echo " • Name            : ReWriteX-Hikari " >> $LOG
+echo " • Version         : v7.8 " >> $LOG
+echo " • Release Date    : 28-11-2022 " >> $LOG
+echo " • Owner           : Ri_Butz " >> $LOG
+echo " • Contacts        : @Ri_Butz(tele) " >> $LOG
 echo "                    @ri_butz69(ig/twitter) " >> $LOG
 echo " " >> $LOG
-echo "Device info: " >> $LOG
-echo "• Brand           : $(getprop ro.product.system.brand) " >> $LOG
-echo "• Device          : $(getprop ro.product.system.model) " >> $LOG
-echo "• Processor       : $(getprop ro.product.board) " >> $LOG
-echo "• Android Version : $(getprop ro.system.build.version.release)" >> $LOG
-echo "• SDK Version     : $(getprop ro.build.version.sdk) " >> $LOG
-echo "• Architecture    : $(getprop ro.product.cpu.abi) " >> $LOG
-echo "• Kernel Version  : $(uname -r)" >> $LOG
+echo " Device info: " >> $LOG
+echo " • Brand           : $(getprop ro.product.system.brand) " >> $LOG
+echo " • Device          : $(getprop ro.product.system.model) " >> $LOG
+echo " • Processor       : $(getprop ro.product.board) " >> $LOG
+echo " • Android Version : $(getprop ro.system.build.version.release)" >> $LOG
+echo " • SDK Version     : $(getprop ro.build.version.sdk) " >> $LOG
+echo " • Architecture    : $(getprop ro.product.cpu.abi) " >> $LOG
+echo " • Kernel Version  : $(uname -r)" >> $LOG
 echo " " >> $LOG
 echo "███████████████████████████████" >> $LOG
 echo " " >> $LOG
-echo "Profile Mode:" >> $LOG
+echo " Profile Mode:" >> $LOG
 
 # Begin of AI
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ 🤖 Ai is started... ] /g' "/data/adb/modules/NGNL/module.prop"
@@ -56,7 +57,7 @@ while true; do
             echo " "
             else
             sh $P
-            echo "•> Performance mode activated at $(date "+%H:%M:%S")" >> $LOG
+            echo " •> Performance mode activated at $(date "+%H:%M:%S")" >> $LOG
             sleep 0.5
             fi
 else
@@ -65,7 +66,7 @@ else
             echo " "
             else
             sh $B
-            echo "•> Balance mode activated at $(date "+%H:%M:%S")" >> $LOG
+            echo " •> Balance mode activated at $(date "+%H:%M:%S")" >> $LOG
             fi
 fi
 done
