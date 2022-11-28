@@ -29,7 +29,7 @@ echo "• Owner           : Ri_Butz " >> $LOG
 echo "• Contacts        : @Ri_Butz(tele) " >> $LOG
 echo "                    @ri_butz69(ig/twitter) " >> $LOG
 echo " " >> $LOG
-echo "Device info:"
+echo "Device info: " >> $LOG
 echo "• Brand           : $(getprop ro.product.system.brand) " >> $LOG
 echo "• Device          : $(getprop ro.product.system.model) " >> $LOG
 echo "• Processor       : $(getprop ro.product.board) " >> $LOG
