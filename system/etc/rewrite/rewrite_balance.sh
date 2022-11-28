@@ -77,14 +77,6 @@ echo "0" > /proc/sys/kernel/sched_boost
 # Fs
 echo "50" > /proc/sys/fs/lease-break-time
 
-# Virtual memory
-for virtual_memory in /proc/sys/vm
-do
-  echo "20" > $virtual_memory/stat_interval
-  echo "1000" > $virtual_memory/dirty_expire_centisecs
-  echo "500" > $virtual_memory/dirty_writeback_centisecs
-done
-
 # Entropy
 echo "128" > /proc/sys/kernel/random/read_wakeup_threshold
 echo "1024" > /proc/sys/kernel/random/write_wakeup_threshold
