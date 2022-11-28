@@ -85,12 +85,6 @@ vendor.gralloc.disable_ubwc=0
 video.accelerate.hw=1
 windowsmgr.max_events_per_sec=150
 
-# Signal Tweaks
-persist.cust.tel.eons=1 
-ro.config.hw_fast_dormancy=1
-ro.config.combined_signal=true
-telephony.lteOnCdmaDevice=1
-
 # Support For IPV4 and IPV6
 persist.telephony.support.ipv6=1
 persist.telephony.support.ipv4=1
