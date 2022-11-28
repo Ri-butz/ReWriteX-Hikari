@@ -28,7 +28,7 @@ echo " • Version         : v7.8 " >> $LOG
 echo " • Release Date    : 28-11-2022 " >> $LOG
 echo " • Owner           : Ri_Butz " >> $LOG
 echo " • Contacts        : @Ri_Butz(tele) " >> $LOG
-echo "                    @ri_butz69(ig/twitter) " >> $LOG
+echo "                     @ri_butz69(ig/twitter) " >> $LOG
 echo " " >> $LOG
 echo " Device info: " >> $LOG
 echo " • Brand           : $(getprop ro.product.system.brand) " >> $LOG
