@@ -22,6 +22,13 @@ echo " |_|   |_|_|_|\_\____|_|  |_|      /_/       \_\ " >> $LOG
 echo " " >> $LOG
 echo "███████████████████████████████" >> $LOG
 echo " " >> $LOG
+echo "Module info: " >> $LOG
+echo "• Name            : ReWriteX-Hikari " >> $LOG
+echo "• Version         : v7.8 " >> $LOG
+echo "• Owner           : Ri_Butz " >> $LOG
+echo "• Contacts        : @Ri_Butz(tele) " >> $LOG
+echo "                    @ri_butz69(ig/twitter) " >> $LOG
+echo " " >> $LOG
 echo "Device info:"
 echo "• Brand           : $(getprop ro.product.system.brand) " >> $LOG
 echo "• Device          : $(getprop ro.product.system.model) " >> $LOG
