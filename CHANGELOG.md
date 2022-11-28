@@ -7,6 +7,7 @@
 - Add fs lease_break_time
 - Add gpu polling_interval
 - Add option 2.5Gb zram
+- Add freefire,NIKKE: Goddess of Victory to performance profile
 - Enable sched_boost at performance mode and disable it on balance mode
 
 • v7.7 Rev2
