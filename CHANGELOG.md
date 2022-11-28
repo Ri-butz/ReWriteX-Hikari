@@ -2,6 +2,13 @@
 
 #Changelog
 
+• v7.8
+- Updated the installer view and logs view
+- Add fs lease_break_time
+- Add gpu polling_interval
+- Add option 2.5Gb zram
+- Enable sched_boost at performance mode and disable it on balance mode
+
 • v7.7 Rev2
 - Optimize installer
 - Remove unusable tweak
