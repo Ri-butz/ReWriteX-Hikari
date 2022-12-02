@@ -6,6 +6,7 @@ ReWriteX-Hikari is an advanced version of the previously released ReWriteX Alpha
 - Kernel parameters tweak for better UX and less latency
 - Zram with ram management tweak
 - Gms Doze from Gloeyisk
+- Fstrim
 - Dex2Oat Optimizer from Iamlooper
 - Internet tweaks and DNS changer from Taka🌿
 - Wifi Bonding from Simonsmh
@@ -52,4 +53,5 @@ cp ReWriteX.Hikari.zip /storage/emulated/0
 - [Niko Schwickert](https://github.com/feravolt)
 - [lybxlpsv](https://github.com/lybdroid)
 - [DESIRE](https://t.me/SMOOTH_Team)
+- [Matt Yang](https://github.com/yc9559)
 - And all my friends who contributed to the development of the project and many others
