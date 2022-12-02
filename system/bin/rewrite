@@ -24,8 +24,8 @@ echo "████████████████████████�
 echo " " >> $LOG
 echo " Module info: " >> $LOG
 echo " • Name            : ReWriteX-Hikari " >> $LOG
-echo " • Version         : v7.8 " >> $LOG
-echo " • Release Date    : 28-11-2022 " >> $LOG
+echo " • Version         : v7.9 " >> $LOG
+echo " • Release Date    : 02-12-2022 " >> $LOG
 echo " • Owner           : Ri_Butz " >> $LOG
 echo " • Contacts        : @Ri_Butz(tele) " >> $LOG
 echo "                     @ri_butz69(ig/twitter) " >> $LOG
