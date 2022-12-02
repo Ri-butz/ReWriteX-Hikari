@@ -2,7 +2,7 @@
 
 #Changelog
 
-• v7.9(coming soon)
+• v7.9
 - Add cgroup and fscc functions from matt yang
 - Enable lmk with psi instead minfree levels
 - Sync art properties with dex2oat optimizer
