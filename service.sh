@@ -210,15 +210,6 @@ su -lp 2000 -c "cmd notification post -S bigtext -t 'NoGame•NoLife' tag '🚴 
 magiskpolicy --live 'allow untrusted_app proc_net_tcp_udp file {read write open getattr}'
 magiskpolicy --live 'allow untrusted_app app_data_file file {read write open getattr execute execute_no_trans}'
 
-# Cpuset
-echo "0-7" > /dev/cpuset/foreground/cpus
-echo "0-7" > /dev/cpuset/top-app/cpus
-echo "0-7" > /dev/cpuset/camera-daemon/cpus
-echo "0-7" > /dev/cpuset/restricted/cpus
-echo "0-3" > /dev/cpuset/audio-app/cpus
-echo "0-3" > /dev/cpuset/background/cpus
-echo "0-3" > /dev/cpuset/system-background/cpus
-
 # Schedutil as default governor
 for gov in /sys/devices/system/cpu/*/cpufreq
 do
@@ -353,7 +344,7 @@ chmod 444 /sys/module/lowmemorykiller/parameters/minfree
 fstrim /data
 fstrim /cache
 fstrim /system
-sm fstrim
+fstrim /vendor
 
 # Unity Big.Little trick by lybxlpsv 
 nohup sh $MODDIR/script/unitytrick > /dev/null &
@@ -446,4 +437,4 @@ su -lp 2000 -c "cmd notification post -S bigtext -t 'NoGame•NoLife' tag '✅ A
 
 # Run Ai
 sleep 3
-nogamenolife
+rewrite
