@@ -70,11 +70,11 @@ ui_print " • Pedrozzz0"
 sleep 0.5
 ui_print " • lybxlpsv"
 sleep 0.5
-ui_print " • 𝘿𝙀𝙎𝙄𝙍𝙀 🇷🇺"
-sleep 0.5
 ui_print " • Niko Schwickert"
 sleep 0.5
 ui_print " • Matt Yang"
+sleep 0.5
+ui_print " • 𝘿𝙀𝙎𝙄𝙍𝙀 🇷🇺"
 sleep 0.5
 ui_print " • All my friends who contributed to the"
 ui_print "   development of the project and many others"
@@ -204,10 +204,16 @@ ui_print "    $TEXT2"
 ui_print ""
 
 ui_print "  ⚠️Zram size..."
-ui_print "    1. 2Gb"
-ui_print "    2. 2.5Gb"
-ui_print "    3. 3Gb"
-ui_print "    4. 4Gb"
+ui_print "    1. Disable/0MB"
+ui_print "    2. 512MB"
+ui_print "    3. 1024MB"
+ui_print "    4. 1536MB"
+ui_print "    5. 2048MB"
+ui_print "    6. 2560MB"
+ui_print "    7. 3072MB"
+ui_print "    8. 4096MB"
+ui_print "    9. 5120MB"
+ui_print "    10. 6144MB"
 ui_print ""
 ui_print "    Select:"
 C=1
@@ -218,16 +224,22 @@ while true; do
     else
         break
     fi
-    if [ $C -gt 4 ]; then
+    if [ $C -gt 10 ]; then
         C=1
     fi
 done
 ui_print "    Selected: $C"
 case $C in
-    1 ) TEXT3="🟢2Gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=2048M/' $MODPATH/service.sh;;
-    2 ) TEXT3="🟡2.5Gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=2560M/' $MODPATH/service.sh;;
-    3 ) TEXT3="🟠3Gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=3072M/' $MODPATH/service.sh;;
-    4 ) TEXT3="🔴4Gb"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=4096M/' $MODPATH/service.sh;;
+    1 ) TEXT3="🔴Disable/OMB";;
+    2 ) TEXT3="🟢513MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=512M/' $MODPATH/service.sh;;
+    3 ) TEXT3="🟢1025MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=1024M/' $MODPATH/service.sh;;
+    4 ) TEXT3="🟢1537MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=1536M/' $MODPATH/service.sh;;
+    5 ) TEXT3="🟢2049MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=2048M/' $MODPATH/service.sh;;
+    6 ) TEXT3="🟢2561MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=2560M/' $MODPATH/service.sh;;
+    7 ) TEXT3="🟢3073MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=3072M/' $MODPATH/service.sh;;
+    8 ) TEXT3="🟢4097MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=4096M/' $MODPATH/service.sh;;
+    9 ) TEXT3="🟢5121MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=5120M/' $MODPATH/service.sh;;
+    10 ) TEXT3="🟢6145MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=6144M/' $MODPATH/service.sh;;
 esac
 ui_print "    $TEXT3"
 ui_print ""
