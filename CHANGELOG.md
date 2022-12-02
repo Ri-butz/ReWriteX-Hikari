@@ -6,6 +6,7 @@
 - Add cgroup and fscc functions from matt yang
 - Enable lmk with psi instead minfree levels
 - Sync art properties with dex2oat optimizer
+- Zram up to 6GB
 
 • v7.8
 - Updated the installer view and logs view
