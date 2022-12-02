@@ -2,6 +2,11 @@
 
 #Changelog
 
+• v7.9(coming soon)
+- Add cgroup and fscc functions from matt yang
+- Enable lmk with psi instead minfree levels
+- Sync art properties with dex2oat optimizer
+
 • v7.8
 - Updated the installer view and logs view
 - Add fs lease_break_time
