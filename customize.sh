@@ -56,23 +56,25 @@ ui_print " Thanks To:"
 sleep 0.5
 ui_print " • Allah swt"
 sleep 0.5
-ui_print " • wHo_EM_i & NotZeetaa (Ai script)"
+ui_print " • wHo_EM_i & NotZeetaa"
 sleep 0.5
-ui_print " • Simonsmh (Wifi Bonding)"
+ui_print " • Simonsmh"
 sleep 0.5
-ui_print " • Gloeyisk (Gms Doze)"
+ui_print " • Gloeyisk"
 sleep 0.5
-ui_print " • Iamlooper (Dex2oat Optimizer)"
+ui_print " • Iamlooper"
 sleep 0.5
-ui_print " • Taka🌿 (Dns changer and addon script)"
+ui_print " • Taka🌿"
 sleep 0.5
-ui_print " • Pedrozzz0 (Notification)"
+ui_print " • Pedrozzz0"
 sleep 0.5
-ui_print " • lybxlpsv (Unity Big.Little trick)"
+ui_print " • lybxlpsv"
 sleep 0.5
-ui_print " • DESIRE (Renicer)"
+ui_print " • 𝘿𝙀𝙎𝙄𝙍𝙀 🇷🇺"
 sleep 0.5
-ui_print " • Niko Schwickert for all the suggestions"
+ui_print " • Niko Schwickert"
+sleep 0.5
+ui_print " • Matt Yang"
 sleep 0.5
 ui_print " • All my friends who contributed to the"
 ui_print "   development of the project and many others"
