@@ -368,8 +368,8 @@ change_task_cgroup "surfaceflinger" "top-app" "cpuset"
 change_task_cgroup "surfaceflinger" "foreground" "stune"
 change_task_cgroup "android.hardware.graphics.composer" "top-app" "cpuset"
 change_task_cgroup "android.hardware.graphics.composer" "foreground" "stune"
-change_task_nice "surfaceflinger" "-15"
-change_task_nice "android.hardware.graphics.composer" "-15"
+change_task_nice "surfaceflinger" "-20"
+change_task_nice "android.hardware.graphics.composer" "-20"
 
 # Reduce big cluster wakeup, eg. android.hardware.sensors@1.0-service
 change_task_affinity ".hardware." "0f"
