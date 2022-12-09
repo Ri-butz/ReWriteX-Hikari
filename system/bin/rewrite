@@ -24,8 +24,8 @@ echo "████████████████████████�
 echo " " >> $LOG
 echo " Module info: " >> $LOG
 echo " • Name            : ReWriteX-Hikari " >> $LOG
-echo " • Version         : v7.9 " >> $LOG
-echo " • Release Date    : 02-12-2022 " >> $LOG
+echo " • Version         : v7.9 Rev2 " >> $LOG
+echo " • Release Date    : 09-12-2022 " >> $LOG
 echo " • Owner           : Ri_Butz " >> $LOG
 echo " • Contacts        : @Ri_Butz(tele) " >> $LOG
 echo "                     @ri_butz69(ig/twitter) " >> $LOG
@@ -44,7 +44,7 @@ echo " " >> $LOG
 echo " Profile Mode:" >> $LOG
 
 # Begin of AI
-sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ 🤖 Ai is started... ] /g' "/data/adb/modules/NGNL/module.prop"
+sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ 🤖 Ai is started... ] /g' "/data/adb/modules/ReWriteX/module.prop"
 am start -a android.intent.action.MAIN -e toasttext "🤖 Ai is started..." -n bellavita.toast/.MainActivity
 
 # Thx to @wHo_EM_i for his top script
