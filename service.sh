@@ -203,8 +203,8 @@ change_task_nice()
 ###############################
 
 # Enable all tweak
-sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ 🚴 Apply tweaks please wait... ] /g' "/data/adb/modules/NGNL/module.prop"
-su -lp 2000 -c "cmd notification post -S bigtext -t 'NoGame•NoLife' tag '🚴 Apply tweaks please wait...'" >/dev/null 2>&1
+sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ 🚴 Apply tweaks please wait... ] /g' "/data/adb/modules/ReWrite/module.prop"
+su -lp 2000 -c "cmd notification post -S bigtext -t 'ReWriteX' tag '🚴 Apply tweaks please wait...'" >/dev/null 2>&1
 
 # AVC denial fix
 magiskpolicy --live 'allow untrusted_app proc_net_tcp_udp file {read write open getattr}'
@@ -420,8 +420,8 @@ fscc_stop
 fscc_start
 
 #DO
-sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ⛔ Dex2oat Optimizer is running... ] /g' "/data/adb/modules/NGNL/module.prop"
-su -lp 2000 -c "cmd notification post -S bigtext -t 'NoGame•NoLife' tag '⛔ Dex2oat Optimizer is running...'" >/dev/null 2>&1
+sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ⛔ Dex2oat Optimizer is running... ] /g' "/data/adb/modules/ReWrite/module.prop"
+su -lp 2000 -c "cmd notification post -S bigtext -t 'ReWriteX' tag '⛔ Dex2oat Optimizer is running...'" >/dev/null 2>&1
 sleep 15
 dex2oat_opt
 
@@ -432,8 +432,8 @@ dex2oat_opt
 }
 
 # Done
-sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ✅ All tweaks is applied... ] /g' "/data/adb/modules/NGNL/module.prop"
-su -lp 2000 -c "cmd notification post -S bigtext -t 'NoGame•NoLife' tag '✅ All tweaks is applied...'" >/dev/null 2>&1
+sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ✅ All tweaks is applied... ] /g' "/data/adb/modules/ReWrite/module.prop"
+su -lp 2000 -c "cmd notification post -S bigtext -t 'ReWriteX' tag '✅ All tweaks is applied...'" >/dev/null 2>&1
 
 # Run Ai
 sleep 3
