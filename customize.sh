@@ -25,9 +25,9 @@ ui_print " Module info: "
 sleep 0.5
 ui_print " • Name            : ReWriteX-Hikari"
 sleep 0.5
-ui_print " • Version         : v7.9 "
+ui_print " • Version         : v7.9 Rev2 "
 sleep 0.5
-ui_print " • Release Date    : 02-12-2022"
+ui_print " • Release Date    : 09-12-2022"
 sleep 0.5
 ui_print " • Owner           : Ri_Butz "
 sleep 0.5
