@@ -31,6 +31,7 @@ DALVIK="/data/dalvik-cache"
 APEX1="/apex/com.android.art/javalib"
 APEX2="/apex/com.android.runtime/javalib"
 ZRAMSIZE=0
+SWPNS=0
 
 ###############################
 # FSCC tool functions
@@ -303,7 +304,7 @@ echo "30" > /proc/sys/vm/dirty_ratio
 echo "300" > /proc/sys/vm/dirty_expire_centisecs
 echo "700" > /proc/sys/vm/dirty_writeback_centisecs
 echo "750" > /proc/sys/vm/extfrag_threshold
-echo "100" > /proc/sys/vm/swappiness
+echo "$SWPNS" > /proc/sys/vm/swappiness
 echo "0" > /proc/sys/vm/page-cluster
 echo "0" > /proc/sys/vm/oom_kill_allocating_task
 echo "50" > /proc/sys/vm/vfs_cache_pressure
