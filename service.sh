@@ -338,8 +338,13 @@ chmod 444 /sys/module/lowmemorykiller/parameters/minfree
     echo "64" > $ext/nr_requests
   done
 
-# Max Processing
-[ $(getprop ro.build.version.release) -gt 9 ] && device_config put activity_manager max_phantom_processes 32 ; device_config put activity_manager max_cached_processes 64 || settings put global activity_manager_constants max_cached_processes=64
+# Activity manager
+device_config set_sync_disabled_for_tests none
+device_config put activity_manager max_cached_processes 32
+device_config put activity_manager max_empty_time_millis 1800000
+device_config put activity_manager max_phantom_processes 32
+settings put global settings_enable_monitor_phantom_procs true
+settings put global activity_manager_constants max_cached_processes=32
 
 # Fstrim
 fstrim /data
@@ -353,6 +358,28 @@ nohup sh $MODDIR/script/unitytrick > /dev/null &
 # Doze mode
 #dumpsysdeviceidle
 #deep doze
+
+# Doze enhance parameters
+device_config reset trusted_defaults device_idle
+device_config put device_idle light_after_inactive_to 30000
+device_config put device_idle light_pre_idle_to 120000
+device_config put device_idle light_idle_to 300000
+device_config put device_idle light_idle_factor 2
+device_config put device_idle light_max_idle_to 900000
+device_config put device_idle light_idle_maintenance_min_budget 30000
+device_config put device_idle light_idle_maintenance_max_budget 180000
+device_config put device_idle inactive_to 900000
+device_config put device_idle sensing_to 0
+device_config put device_idle locating_to 0
+device_config put device_idle motion_inactive_to 0
+device_config put device_idle idle_after_inactive_to 900000
+device_config put device_idle idle_pending_to 60000
+device_config put device_idle max_idle_pending_to 120000
+device_config put device_idle idle_pending_factor 2
+device_config put device_idle idle_to 900000
+device_config put device_idle max_idle_to 21600000
+device_config put device_idle idle_factor 2
+device_config put device_idle wait_for_unlock true
 
 # Fix laggy bilibili feed scrolling
 change_task_cgroup "servicemanager" "top-app" "cpuset"
@@ -420,17 +447,17 @@ fscc_add_apex_lib "bouncycastle.jar"
 fscc_stop
 fscc_start
 
-#DO
-sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ⛔ Dex2oat Optimizer is running... ] /g' "/data/adb/modules/ReWrite/module.prop"
-su -lp 2000 -c "cmd notification post -S bigtext -t 'ReWriteX' tag '⛔ Dex2oat Optimizer is running...'" >/dev/null 2>&1
-sleep 15
-dex2oat_opt
-
 # Report max frequency to unity tasks
 [[ -e "/proc/sys/kernel/sched_lib_mask_force" ]] && [[ -e "/proc/sys/kernel/sched_lib_name" ]] && {
 	echo "UnityMain,libunity.so" > "/proc/sys/kernel/sched_lib_name"
 	echo "255" > "/proc/sys/kernel/sched_lib_mask_force"
 }
+
+#DO
+sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ⛔ Dex2oat Optimizer is running... ] /g' "/data/adb/modules/ReWrite/module.prop"
+su -lp 2000 -c "cmd notification post -S bigtext -t 'ReWriteX' tag '⛔ Dex2oat Optimizer is running...'" >/dev/null 2>&1
+sleep 15
+dex2oat_opt
 
 # Done
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ ✅ All tweaks is applied... ] /g' "/data/adb/modules/ReWrite/module.prop"
