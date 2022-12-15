@@ -31,7 +31,6 @@ DALVIK="/data/dalvik-cache"
 APEX1="/apex/com.android.art/javalib"
 APEX2="/apex/com.android.runtime/javalib"
 ZRAMSIZE=0
-SWPNS=0
 
 ###############################
 # FSCC tool functions
@@ -202,6 +201,17 @@ change_task_nice()
     done
 }
 ###############################
+# Zram functions
+###############################
+change_zram()
+{
+    swapoff /dev/block/zram0
+    echo "1" > /sys/block/zram0/reset
+    echo "$ZRAMSIZE" > /sys/block/zram0/disksize
+    mkswap /dev/block/zram0
+    swapon /dev/block/zram0
+}
+###############################
 
 # Enable all tweak
 sed -Ei 's/^description=(\[.*][[:space:]]*)?/description=[ 🚴 Apply tweaks please wait... ] /g' "/data/adb/modules/ReWrite/module.prop"
@@ -290,21 +300,13 @@ fi
 # Disable Adreno snapshot crashdumper
 echo "0" > /sys/class/kgsl/kgsl-3d0/snapshot/snapshot_crashdumper
 
-# Zram
-swapoff /dev/block/zram0
-echo "1" > /sys/block/zram0/reset
-echo "0" > /sys/block/zram0/disksize
-echo "$ZRAMSIZE" > /sys/block/zram0/disksize
-mkswap /dev/block/zram0
-swapon /dev/block/zram0
-
 # Virtual memory tweaks
 echo "10" > /proc/sys/vm/dirty_background_ratio
 echo "30" > /proc/sys/vm/dirty_ratio
 echo "300" > /proc/sys/vm/dirty_expire_centisecs
 echo "700" > /proc/sys/vm/dirty_writeback_centisecs
 echo "750" > /proc/sys/vm/extfrag_threshold
-echo "$SWPNS" > /proc/sys/vm/swappiness
+echo "100" > /proc/sys/vm/swappiness
 echo "0" > /proc/sys/vm/page-cluster
 echo "0" > /proc/sys/vm/oom_kill_allocating_task
 echo "50" > /proc/sys/vm/vfs_cache_pressure
