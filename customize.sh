@@ -204,16 +204,18 @@ ui_print "    $TEXT2"
 ui_print ""
 
 ui_print "  ⚠️Zram size..."
-ui_print "    1. Disable/0MB"
-ui_print "    2. 512MB"
-ui_print "    3. 1024MB"
-ui_print "    4. 1536MB"
-ui_print "    5. 2048MB"
-ui_print "    6. 2560MB"
-ui_print "    7. 3072MB"
-ui_print "    8. 4096MB"
-ui_print "    9. 5120MB"
-ui_print "    10. 6144MB"
+ui_prui_print "  ⚠️Zram size..."
+ui_print "    1. Default(using default zram from device)"
+ui_print "    2. Disable/0MB"
+ui_print "    3. 512MB"
+ui_print "    4. 1024MB"
+ui_print "    5. 1536MB"
+ui_print "    6. 2048MB"
+ui_print "    7. 2560MB"
+ui_print "    8. 3072MB"
+ui_print "    9. 4096MB"
+ui_print "    10. 5120MB"
+ui_print "    11. 6144MB"
 ui_print ""
 ui_print "    Select:"
 C=1
@@ -230,16 +232,17 @@ while true; do
 done
 ui_print "    Selected: $C"
 case $C in
-    1 ) TEXT3="🔴Disable/OMB";;
-    2 ) TEXT3="🟢512MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=512M/' $MODPATH/service.sh; sed -i '/SWPNS=0/s/.*/SWPNS=40/' $MODPATH/service.sh;;
-    3 ) TEXT3="🟢1024MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=1024M/' $MODPATH/service.sh; sed -i '/SWPNS=0/s/.*/SWPNS=40/' $MODPATH/service.sh;;
-    4 ) TEXT3="🟢1536MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=1536M/' $MODPATH/service.sh; sed -i '/SWPNS=0/s/.*/SWPNS=60/' $MODPATH/service.sh;;
-    5 ) TEXT3="🟢2048MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=2048M/' $MODPATH/service.sh; sed -i '/SWPNS=0/s/.*/SWPNS=60/' $MODPATH/service.sh;;
-    6 ) TEXT3="🟢2560MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=2560M/' $MODPATH/service.sh; sed -i '/SWPNS=0/s/.*/SWPNS=80/' $MODPATH/service.sh;;
-    7 ) TEXT3="🟢3072MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=3072M/' $MODPATH/service.sh; sed -i '/SWPNS=0/s/.*/SWPNS=80/' $MODPATH/service.sh;;
-    8 ) TEXT3="🟢4096MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=4096M/' $MODPATH/service.sh; sed -i '/SWPNS=0/s/.*/SWPNS=100/' $MODPATH/service.sh;;
-    9 ) TEXT3="🟢5120MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=5120M/' $MODPATH/service.sh; sed -i '/SWPNS=0/s/.*/SWPNS=100/' $MODPATH/service.sh;;
-    10 ) TEXT3="🟢6144MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=6144M/' $MODPATH/service.sh; sed -i '/SWPNS=0/s/.*/SWPNS=100/' $MODPATH/service.sh;;
+    1 ) TEXT3="🔵Default";;
+    2 ) TEXT3="🔴Disable/OMB"; sed -i '/#change_zram/s/.*/change_zram/' $MODPATH/service.sh;;
+    3 ) TEXT3="🟢512MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=512M/' $MODPATH/service.sh; sed -i '/#change_zram/s/.*/change_zram/' $MODPATH/service.sh;;
+    4 ) TEXT3="🟢1024MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=1024M/' $MODPATH/service.sh; sed -i '/#change_zram/s/.*/change_zram/' $MODPATH/service.sh;;
+    5 ) TEXT3="🟢1536MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=1536M/' $MODPATH/service.sh; sed -i '/#change_zram/s/.*/change_zram/' $MODPATH/service.sh;;
+    6 ) TEXT3="🟢2048MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=2048M/' $MODPATH/service.sh; sed -i '/#change_zram/s/.*/change_zram/' $MODPATH/service.sh;;
+    7 ) TEXT3="🟢2560MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=2560M/' $MODPATH/service.sh; sed -i '/#change_zram/s/.*/change_zram/' $MODPATH/service.sh;;
+    8 ) TEXT3="🟢3072MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=3072M/' $MODPATH/service.sh; sed -i '/#change_zram/s/.*/change_zram/' $MODPATH/service.sh;;
+    9 ) TEXT3="🟢4096MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=4096M/' $MODPATH/service.sh; sed -i '/#change_zram/s/.*/change_zram/' $MODPATH/service.sh;;
+    10 ) TEXT3="🟢5120MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=5120M/' $MODPATH/service.sh; sed -i '/#change_zram/s/.*/change_zram/' $MODPATH/service.sh;;
+    11 ) TEXT3="🟢6144MB"; sed -i '/ZRAMSIZE=0/s/.*/ZRAMSIZE=6144M/' $MODPATH/service.sh; sed -i '/#change_zram/s/.*/change_zram/' $MODPATH/service.sh;;
 esac
 ui_print "    $TEXT3"
 ui_print ""
