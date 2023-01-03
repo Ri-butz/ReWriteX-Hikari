@@ -2,6 +2,11 @@
 
 #Changelog
 
+• v8.3
+- Performance mode --> Gaming mode
+- Gaming mode: ~Add fstrim
+               ~Clear ram
+
 • v7.9
 - Add cgroup and fscc functions from matt yang
 - Enable lmk with psi instead vmpressure
