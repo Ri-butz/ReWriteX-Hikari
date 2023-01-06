@@ -1,6 +1,7 @@
 # ##ReWriteX-Hikari##
 
 ReWriteX-Hikari is an advanced version of the previously released ReWriteX Alpha and Omega
+Recomended to use [Busybox NDK](https://github.com/Magisk-Modules-Repo/busybox-ndk) or [Brutal Busybox](https://github.com/feravolt/Brutal_busybox)
 
 # Features:
 - Kernel parameters tweak for better UX and less latency
