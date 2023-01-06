@@ -7,6 +7,8 @@
 - Use max freq for hispeed_freq
 - Composition type use gpu
 - Clear pagecache and kill all process that are safe to kill after trigger gaming mode
+- Disable cpu time max percent
+- Etc
 
 • v8.3
 - Performance mode --> Gaming mode
